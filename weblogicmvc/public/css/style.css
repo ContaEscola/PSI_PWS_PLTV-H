@@ -239,6 +239,8 @@ select {
 }
 
 .navigation__option[data-state="active"] {
+  --bg-color-alpha: 0.1;
+
   --font-color: var(--clr-accent);
   --font-color-alpha: 1;
   --font-weight: 700;
