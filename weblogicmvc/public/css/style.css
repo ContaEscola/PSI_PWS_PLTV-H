@@ -7,14 +7,29 @@
   --fs-200: 0.813rem;
 
   /* colors */
-  --clr-primary: 0 0% 11% / 0.9;
-  --clr-accent: 227 100% 50% / 1;
+  --clr-primary: 0 0% 11%;
+  --clr-primary-alpha: 0.9;
 
-  --clr-warning: 0 100 50% / 1;
+  --clr-accent: 227 100% 50%;
+  --clr-accent-alpha: 1;
 
-  --clr-input-error: 0 0% 11% / 0.65;
+  --clr-warning: 0 100 50%;
+  --clr-warning-alpha: 1;
 
-  --clr-dropdown-item-hover: 0 0% 11% / 0.15;
+  --clr-input-error: 0 0% 11%;
+  --clr-input-error-alpha: 0.65;
+
+  --clr-dropdown-item-hover: 0 0% 11%;
+  --clr-dropdown-item-hover-alpha: 0.15;
+}
+
+@media (max-width: 30em) {
+  :root {
+    --fs-600: 1.375rem;
+    --fs-500: 1.25rem;
+    --fs-400: 0.875rem;
+    --fs-300: 0.75rem;
+  }
 }
 
 /* Reset Css */
@@ -58,7 +73,8 @@ body {
   line-height: 1.6;
 
   font-family: "Inter", sans-serif;
-  color: hsl(var(--clr-primary));
+  font-size: var(--fs-400);
+  color: hsl(var(--clr-primary) / var(--clr-primary-alpha));
 }
 
 /* A elements that don't have a class get default styles */
@@ -108,10 +124,25 @@ select {
   gap: var(--gap);
 }
 
+.grid {
+  --grid-direction: row;
+  --column-gap: 1rem;
+  --row-gap: 1rem;
+
+  display: grid;
+  grid-auto-flow: var(--grid-direction);
+  row-gap: var(--row-gap);
+  column-gap: var(--column-gap);
+}
+
 .flex-grow {
   --flex-grow: 1;
 
   flex-grow: var(--flex-grow);
+}
+
+.d-block {
+  display: block;
 }
 
 .container {
@@ -124,7 +155,7 @@ select {
 }
 
 .flow > :where(:not(:first-child)) {
-  margin-top: var(--flow-space, 1em);
+  margin-top: var(--flow-space, 1rem);
 }
 
 /* Utilities */
@@ -172,4 +203,46 @@ select {
   --fs-500: 1.25rem;
   --fs-400: 0.875rem;
   --fs-300: 0.75rem;
+}
+
+.navigation__option {
+  --bg-color: var(--clr-primary);
+  --bg-color-alpha: 0.01;
+
+  --border-color: var(--clr-primary);
+  --border-color-alpha: 0.3;
+
+  --font-color: var(--clr-primary);
+  --font-color-alpha: var(--clr-primary-alpha);
+  --font-weight: 400;
+
+  --border-size: 3px;
+
+  color: hsl(var(--font-color) / var(--font-color-alpha));
+  font-weight: var(--font-weight);
+  text-decoration: none;
+
+  display: inline-block;
+  padding: 1.25em 3.125em;
+
+  background-color: hsl(var(--bg-color) / var(--bg-color-alpha));
+
+  border-right: var(--border-size) solid
+    hsl(var(--border-color) / var(--border-color-alpha));
+}
+
+/* Só para os que têm um state */
+
+.navigation__option:not([data-state]):hover {
+  --bg-color-alpha: 0.1;
+  --clr-border-alpha: 0.5;
+}
+
+.navigation__option[data-state="active"] {
+  --font-color: var(--clr-accent);
+  --font-color-alpha: 1;
+  --font-weight: 700;
+
+  --border-color: var(--clr-accent);
+  --border-color-alpha: 1;
 }

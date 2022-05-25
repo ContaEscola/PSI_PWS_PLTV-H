@@ -16,14 +16,13 @@
 
 <body>
 
-    <main class="container">
-
+    <main class="container grid" style="--row-gap: 3rem">
 
         <!-- Typography -->
 
-        <div class="flex">
+        <section class="flex">
 
-            <section class="flow flex-grow">
+            <div class="flex-grow flow">
                 <h1 class="fs-600 bold uppercase">Desktop</h1>
 
                 <div>
@@ -37,7 +36,7 @@
                 </div>
 
                 <div>
-                    <p class="fs-400">Body</p>
+                    <p>Body</p>
                     <p>Iner - 16px</p>
                 </div>
 
@@ -51,10 +50,10 @@
                     <p>Iner - 13px - Italic</p>
                 </div>
 
-            </section>
+            </div>
 
 
-            <section class="[ flow flex-grow ] [ typography-phone ]">
+            <div class="[ flex-grow flow ] [ typography-phone ]">
                 <h1 class="fs-600 bold uppercase">Phone</h1>
 
                 <div>
@@ -68,7 +67,7 @@
                 </div>
 
                 <div>
-                    <p class="fs-400">Body</p>
+                    <p>Body</p>
                     <p>Iner - 14px</p>
                 </div>
 
@@ -78,10 +77,18 @@
                     <p>Iner - 12px - Bold</p>
                 </div>
 
-            </section>
-        </div>
-    </main>
+            </div>
+        </section>
 
+
+        <section class="flow">
+            <h1 class="fs-600 bold">Links</h1>
+            <!-- Links -->
+            <a href="#" class="navigation__option">item</a>
+            <a href="#" class="navigation__option" data-state="active">item</a>
+        </section>
+
+    </main>
 
 </body>
 
