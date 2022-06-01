@@ -7,33 +7,37 @@ USE pws_h;
  https://www.php.net/manual/en/function.password-hash.php 
 */
 CREATE TABLE users(
-id 					INT 											UNSIGNED 	AUTO_INCREMENT,
-username 			VARCHAR(50) 									NOT NULL,
-password 			VARCHAR(255)									NOT NULL,
-email 				VARCHAR(150) 									NOT NULL,
-telefone 			CHAR(9) 										NOT NULL,
-nif 				CHAR(9) 										NOT NULL,
-morada 				VARCHAR(255) 									NOT NULL,
-codPostal 			CHAR(8) 										NOT NULL,
-localidade 			VARCHAR(50) 									NOT NULL,
-role 				ENUM('Administrador','Funcionário','Cliente')  	DEFAULT 'Cliente',
-CONSTRAINT pk_user 	PRIMARY KEY(id),
-CONSTRAINT uk_user 	UNIQUE(username, nif)
+id 								INT 											UNSIGNED 	AUTO_INCREMENT,
+username 						VARCHAR(50) 									NOT NULL,
+password 						VARCHAR(255)									NOT NULL,
+email 							VARCHAR(150) 									NOT NULL,
+telefone 						CHAR(9) 										NOT NULL,
+nif 							CHAR(9) 										NOT NULL,
+morada 							VARCHAR(255) 									NOT NULL,
+codPostal 						CHAR(8) 										NOT NULL,
+localidade 						VARCHAR(50) 									NOT NULL,
+role 							ENUM('Administrador','Funcionário','Cliente')  	DEFAULT 'Cliente',
+CONSTRAINT pk_user 				PRIMARY KEY(id),
+CONSTRAINT uk_user_username 	UNIQUE(username),
+CONSTRAINT uk_user_nif 			UNIQUE(nif)
 ) ENGINE = InnoDB;
 
 
 CREATE TABLE empresas(
-id 						INT 				UNSIGNED	AUTO_INCREMENT, 
-designacaoSocial 		VARCHAR(30) 		NOT NULL,
-email 					VARCHAR(150) 		NOT NULL,
-telefone 				CHAR(9) 			NOT NULL,
-nif 					CHAR(9) 			NOT NULL,
-morada 					VARCHAR(255) 		NOT NULL,
-capitalSocial 			DOUBLE				NOT NULL,
-localidade  			VARCHAR(50) 		NOT NULL,
-codPostal 				CHAR(8) 			NOT NULL,
-CONSTRAINT pk_empresa	PRIMARY KEY(id),
-CONSTRAINT uk_empresa 	UNIQUE(designacaoSocial, email, telefone, nif)
+id 											INT 						UNSIGNED	AUTO_INCREMENT, 
+designacaoSocial 							VARCHAR(30) 				NOT NULL,
+email 										VARCHAR(150) 				NOT NULL,
+telefone 									CHAR(9) 					NOT NULL,
+nif 										CHAR(9) 					NOT NULL,
+morada 										VARCHAR(255) 				NOT NULL,
+capitalSocial 								DOUBLE						NOT NULL,
+localidade  								VARCHAR(50) 				NOT NULL,
+codPostal 									CHAR(8) 					NOT NULL,
+CONSTRAINT pk_empresa						PRIMARY KEY(id),
+CONSTRAINT uk_empresa_designacaoSocial		UNIQUE(designacaoSocial),
+CONSTRAINT uk_empresa_email 				UNIQUE(email),
+CONSTRAINT uk_empresa_telefone				UNIQUE(telefone),
+CONSTRAINT uk_empresa_nif					UNIQUE(nif)
 ) ENGINE = InnoDB;
 
 
@@ -48,15 +52,16 @@ CONSTRAINT uk_iva	UNIQUE(descricao)
 
 -- A referência tem 7 caracteres, exemplo de uma referencia: 01.0001
 CREATE TABLE produtos (
-id  						INT 					UNSIGNED				AUTO_INCREMENT,
-referencia  				CHAR(7) 				NOT NULL,
-descricao  					VARCHAR(50)				NOT NULL,
-preco  						DOUBLE 					NOT NULL,
-stock  						INT						NOT NULL,
-iva_id						INT 					UNSIGNED				NOT NULL,
-CONSTRAINT pk_produto		PRIMARY KEY(id),
-CONSTRAINT uk_produto		UNIQUE(referencia, descricao),
-CONSTRAINT fk_produto_iva	FOREIGN KEY(iva_id)		REFERENCES ivas(id)
+id  								INT 					UNSIGNED				AUTO_INCREMENT,
+referencia  						CHAR(7) 				NOT NULL,
+descricao  							VARCHAR(50)				NOT NULL,
+preco  								DOUBLE 					NOT NULL,
+stock  								INT						NOT NULL,
+iva_id								INT 					UNSIGNED				NOT NULL,
+CONSTRAINT pk_produto				PRIMARY KEY(id),
+CONSTRAINT uk_produto_referencia	UNIQUE(referencia),
+CONSTRAINT uk_produto_descricao		UNIQUE(descricao),
+CONSTRAINT fk_produto_iva			FOREIGN KEY(iva_id)		REFERENCES ivas(id)
 ) ENGINE = InnoDB;
 
 
