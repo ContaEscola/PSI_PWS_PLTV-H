@@ -1,17 +1,38 @@
 
-CREATE TABLE empresas(
-idempresa int unsigned auto_increment, 
-  designacaosocial  varchar(35) NOT NULL,
-	email VARCHAR(256) not null,
- telefone VARCHAR(15) not null,
-  nif char(9) NOT NULL,
-  morada VARCHAR(120) not null,
-  codigoPostal int(11) NOT NULL,
-  localidade  varchar(50) NOT NULL,
-  capitalsocial  int(11) NOT NULL,
- CONSTRAINT pk_empresas PRIMARY KEY (idempresa)
-) ENGINE=InnoDB;
 
+/*
+ Iremos utilizar o PASSWORD_DEFAULT como algoritmo de hash logo é recomendado 255 characters na password
+ https://www.php.net/manual/en/function.password-hash.php 
+*/
+CREATE TABLE users(
+id 					INT 											UNSIGNED 	AUTO_INCREMENT,
+username 			VARCHAR(50) 									NOT NULL,
+password 			VARCHAR(255)									NOT NULL,
+email 				VARCHAR(150) 									NOT NULL,
+telefone 			CHAR(9) 										NOT NULL,
+nif 				CHAR(9) 										NOT NULL,
+morada 				VARCHAR(255) 									NOT NULL,
+codPostal 			CHAR(7) 										NOT NULL,
+localidade 			VARCHAR(50) 									NOT NULL,
+role 				ENUM('Administrador','Funcionário','Cliente')  	DEFAULT 'Cliente',
+CONSTRAINT pk_user 	PRIMARY KEY(id)
+) ENGINE = InnoDB;
+
+CREATE TABLE empresas(
+id 						INT 				UNSIGNED	AUTO_INCREMENT, 
+designacaoSocial 		VARCHAR(30) 		NOT NULL,
+email 					VARCHAR(150) 		NOT NULL,
+telefone 				CHAR(9) 			NOT NULL,
+nif 					CHAR(9) 			NOT NULL,
+morada 					VARCHAR(255) 		NOT NULL,
+capitalSocial 			INT 				NOT NULL,
+localidade  			VARCHAR(50) 		NOT NULL,
+codPostal 				CHAR(7) 			NOT NULL,
+CONSTRAINT pk_empresa	PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+
+/*
 CREATE TABLE faturas (
   idfatura  int unsigned AUTO_INCREMENT ,
   data date NOT NULL,
@@ -63,15 +84,3 @@ CREATE TABLE produtos (
    CONSTRAINT pk_produtos PRIMARY KEY (idproduto) 
 ) ENGINE=InnoDB;
 
-CREATE TABLE users  (
-  iduser int unsigned  auto_increment,
-  email  varchar(150) NOT NULL,
-  telefone VARCHAR(15) not null,
-  nif  char(9) NOT NULL,
-  morada VARCHAR(120) not null,
-  codigopostal  varchar(38) NOT NULL,
-  localidade  varchar(50) NOT NULL,
-  username  varchar(20) NOT NULL,
- Pass VARCHAR(64) not null,
-   CONSTRAINT pk_users PRIMARY KEY (iduser) 
-) ENGINE=InnoDB;
