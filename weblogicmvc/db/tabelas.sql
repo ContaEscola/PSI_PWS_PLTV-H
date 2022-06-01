@@ -14,10 +14,11 @@ email 				VARCHAR(150) 									NOT NULL,
 telefone 			CHAR(9) 										NOT NULL,
 nif 				CHAR(9) 										NOT NULL,
 morada 				VARCHAR(255) 									NOT NULL,
-codPostal 			CHAR(7) 										NOT NULL,
+codPostal 			CHAR(8) 										NOT NULL,
 localidade 			VARCHAR(50) 									NOT NULL,
 role 				ENUM('Administrador','Funcionário','Cliente')  	DEFAULT 'Cliente',
-CONSTRAINT pk_user 	PRIMARY KEY(id)
+CONSTRAINT pk_user 	PRIMARY KEY(id),
+CONSTRAINT uk_user 	UNIQUE(username, nif)
 ) ENGINE = InnoDB;
 
 
@@ -30,8 +31,9 @@ nif 					CHAR(9) 			NOT NULL,
 morada 					VARCHAR(255) 		NOT NULL,
 capitalSocial 			DOUBLE				NOT NULL,
 localidade  			VARCHAR(50) 		NOT NULL,
-codPostal 				CHAR(7) 			NOT NULL,
-CONSTRAINT pk_empresa	PRIMARY KEY(id)
+codPostal 				CHAR(8) 			NOT NULL,
+CONSTRAINT pk_empresa	PRIMARY KEY(id),
+CONSTRAINT uk_empresa 	UNIQUE(designacaoSocial, email, telefone, nif)
 ) ENGINE = InnoDB;
 
 
@@ -40,7 +42,8 @@ id 					INT 				UNSIGNED	AUTO_INCREMENT,
 percentagem  		INT 				UNSIGNED 	NOT NULL,
 descricao 			VARCHAR(35) 		NOT NULL,
 emVigor  			BOOL 				NOT NULL,
-CONSTRAINT pk_iva	PRIMARY KEY(id) 
+CONSTRAINT pk_iva	PRIMARY KEY(id),
+CONSTRAINT uk_iva	UNIQUE(descricao) 
 ) ENGINE = InnoDB;
 
 -- A referência tem 7 caracteres, exemplo de uma referencia: 01.0001
@@ -52,6 +55,7 @@ preco  						DOUBLE 					NOT NULL,
 stock  						INT						NOT NULL,
 iva_id						INT 					UNSIGNED				NOT NULL,
 CONSTRAINT pk_produto		PRIMARY KEY(id),
+CONSTRAINT uk_produto		UNIQUE(referencia, descricao),
 CONSTRAINT fk_produto_iva	FOREIGN KEY(iva_id)		REFERENCES ivas(id)
 ) ENGINE = InnoDB;
 
