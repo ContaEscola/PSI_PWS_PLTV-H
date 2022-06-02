@@ -80,18 +80,18 @@ VALUES
 -- ///////////////////////
 -- As faturas para inserir
 INSERT INTO faturas
-(data, 					valorTotal,		ivaTotal,		estado,				referenciaFuncionario,		referenciaCliente)
+( data, 					valorTotal,		ivaTotal,		estado,				referenciaFuncionario,		referenciaCliente)
 VALUES
-(current_timestamp(), 	808.2456,		149.1256, 		"Em Lançamento", 	5, 							1),
+(current_timestamp(), 		808.2456,		149.1256, 		"Em Lançamento", 	5, 							1),
 
 
-(current_timestamp(), , , "Em Lançamento", 5, 2),
+(current_timestamp(),		179.667,		15.0892, 		"Em Lançamento", 	5, 							2),
 
 
-(current_timestamp(), , , "Em Lançamento", 6, 2),
+(current_timestamp(), 		808.2456, 		149.1256, 		"Em Lançamento", 	6, 							2),
 
 
-(current_timestamp(), , , "Em Lançamento", 6, 3);
+(current_timestamp(), 		179.667, 		15.0892, 		"Em Lançamento", 	6, 							3);
 
 
 -- ///////////////////////
@@ -109,24 +109,24 @@ VALUES
 
 
 -- 2º Fatura
-(1, , , 2, ),
-(2, , , 2, ),
-(3, , , 2, ),
-(2, , , 2, ),
-(1, , , 2, ),
+(1, 			11.50, 				1.495, 			2, 				6),
+(2, 			63, 				8.19, 			2, 				7),
+(3, 			50.7, 				3.042,			2, 				8),
+(2, 			30.42,				1.8252, 		2, 				9),
+(1, 			8.95, 				0.537, 			2, 				10),
 
 
 -- 3º Fatura
-(1, , , 3, ),
-(2, , , 3, ),
-(3, , , 3, ),
-(2, , , 3, ),
-(1, , , 3, ),
+(1,				469.92,				108.0816,		3, 				1),
+(2,				59.8,				13.754,			3, 				2),
+(3, 			104.7,  			24.081,			3,				3),
+(2, 			15.8,				2.052,			3,				4),
+(1,				8.9,				1.157,			3,				5),
 
 
 -- 4º Fatura
-(1, , , 4, ),
-(2, , , 4, ),
-(3, , , 4, ),
-(2, , , 4, ),
-(1, , , 4, ),
+(1, 			11.50, 				1.495, 			4, 				6),
+(2, 			63, 				8.19, 			4, 				7),
+(3, 			50.7, 				3.042,			4, 				8),
+(2, 			30.42,				1.8252, 		4, 				9),
+(1, 			8.95, 				0.537, 			4, 				10);
