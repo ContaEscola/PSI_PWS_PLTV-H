@@ -54,7 +54,7 @@ CONSTRAINT uk_iva	UNIQUE(descricao)
 CREATE TABLE produtos (
 id  								INT 					UNSIGNED				AUTO_INCREMENT,
 referencia  						CHAR(7) 				NOT NULL,
-descricao  							VARCHAR(50)				NOT NULL,
+descricao  							VARCHAR(255)			NOT NULL,
 preco  								DOUBLE 					NOT NULL,
 stock  								INT						NOT NULL,
 iva_id								INT 					UNSIGNED				NOT NULL,
