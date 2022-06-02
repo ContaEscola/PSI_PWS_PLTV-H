@@ -79,7 +79,7 @@ CONSTRAINT pk_fatura	PRIMARY KEY(id)
 
 
 
-CREATE TABLE linhaFaturas (
+CREATE TABLE linhafaturas (
 id  								INT 						UNSIGNED					AUTO_INCREMENT,
 quantidade 							INT 						UNSIGNED 					NOT NULL,
 valorUnitario						DOUBLE 						NOT NULL,
