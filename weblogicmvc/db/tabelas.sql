@@ -65,13 +65,12 @@ CONSTRAINT fk_produto_iva			FOREIGN KEY(iva_id)		REFERENCES ivas(id)
 ) ENGINE = InnoDB;
 
 
--- O valor total aceita até 9 digitos com 3 casas decimais assim o máximo será 999.999,999
--- O valor do iva aceita até 7 digitos com 3 casas decimais assim o máximo será 99.999,999
+
 CREATE TABLE faturas (
 id  					INT 								UNSIGNED	AUTO_INCREMENT,
 data 					DATETIME 							NOT NULL,
-valorTotal 				DECIMAL(9,3) 						NOT NULL,
-ivaTotal 				DECIMAL(7,3) 						NOT NULL,
+valorTotal 				DOUBLE								NOT NULL,
+ivaTotal 				DOUBLE 								NOT NULL,
 estado 					ENUM('Em Lançamento', 'Emitida')	NOT NULL,
 referenciaFuncionario	INT 								UNSIGNED	NOT NULL,
 referenciaCliente  		INT 								UNSIGNED 	NOT NULL,
@@ -79,13 +78,12 @@ CONSTRAINT pk_fatura	PRIMARY KEY(id)
 ) ENGINE = InnoDB;
 
 
--- O valor unitário aceita até 7 digitos com 3 casas decimais assim o máximo será 9.999,999
--- O valor do iva aceita até 6 digitos com 3 casas decimais assim o máximo será 999,999
+
 CREATE TABLE linhaFaturas (
 id  								INT 						UNSIGNED					AUTO_INCREMENT,
 quantidade 							INT 						UNSIGNED 					NOT NULL,
-valorUnitario						DECIMAL(7,3) 				NOT NULL,
-valorIva  							DECIMAL(6,3) 				NOT NULL,
+valorUnitario						DOUBLE 						NOT NULL,
+valorIva  							DOUBLE		 				NOT NULL,
 fatura_id 							INT 						UNSIGNED					NOT NULL,
 produto_id							INT 						UNSIGNED 					NOT NULL,
 CONSTRAINT pk_linhaFatura			PRIMARY KEY(id),
