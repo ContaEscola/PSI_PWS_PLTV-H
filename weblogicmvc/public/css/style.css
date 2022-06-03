@@ -185,19 +185,6 @@ select {
   margin-top: var(--flow-space, 1rem);
 }
 
-.box-shadow-1 {
-  --shadow-x: 0px;
-  --shadow-y: 2px;
-  --shadow-blur: 0.25em;
-  --shadow-spread: 0em;
-  --shadow-color: var(--clr-primary);
-  --shadow-color-alpha: 0.75;
-
-  color: hsl(var(--clr-white));
-  box-shadow: var(--shadow-x) var(--shadow-y) var(--shadow-blur)
-    var(--shadow-spread) hsl(var(--shadow-color) / var(--shadow-color-alpha));
-}
-
 /* Utilities */
 
 .fs-200 {
@@ -240,6 +227,18 @@ select {
   color: hsl(var(--clr-warning) / var(--clr-warning-alpha));
 }
 
+.box-shadow-1 {
+  --shadow-x: 0px;
+  --shadow-y: 2px;
+  --shadow-blur: 0.25em;
+  --shadow-spread: 0em;
+  --shadow-color: var(--clr-primary);
+  --shadow-color-alpha: 0.75;
+
+  box-shadow: var(--shadow-x) var(--shadow-y) var(--shadow-blur)
+    var(--shadow-spread) hsl(var(--shadow-color) / var(--shadow-color-alpha));
+}
+
 /* Block */
 
 .typography-phone {
@@ -262,6 +261,10 @@ select {
 
   padding-block: 1.875em;
   padding-inline: 1.25em;
+}
+
+.header[data-type="logged-in"] {
+  box-shadow: 0 0.25em 0.25em 0 hsl(var(--clr-primary) / 0.25);
 }
 
 .nav__list {
@@ -418,6 +421,11 @@ select {
 
 .input[data-state="error"] {
   background-color: hsl(var(--clr-warning) / 0.3);
+}
+
+.dropdown-toggle {
+  border: none;
+  background-color: white;
 }
 
 .dropdown-list {
