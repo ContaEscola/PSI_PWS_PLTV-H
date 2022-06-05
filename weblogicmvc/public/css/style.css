@@ -181,12 +181,12 @@ select {
 
 .margin-top-1 {
   /* 10 px */
-  margin-top: 0.625em;
+  margin-top: 0.625rem;
 }
 
 .margin-top-2 {
   /* 20 px */
-  margin-top: 1.25em;
+  margin-top: 1.25rem;
 }
 
 .margin-top-3 {
@@ -196,7 +196,7 @@ select {
 
 .margin-top-4 {
   /* 80 px */
-  margin-top: 5em;
+  margin-top: 5rem;
 }
 
 .container {
@@ -212,6 +212,16 @@ select {
   margin-top: var(--flow-space, 1rem);
 }
 
+.flow-space-1 {
+  /* 10 px  */
+  --flow-space: 0.625rem;
+}
+
+.flow-space-2 {
+  /* 20 px  */
+  --flow-space: 1.25rem;
+}
+
 .text-align-center {
   text-align: center;
 }
@@ -222,6 +232,10 @@ select {
 
 .text-align-right {
   text-align: right;
+}
+
+.word-wrap-break-word {
+  word-wrap: break-word;
 }
 
 /* Utilities */
@@ -246,16 +260,20 @@ select {
   font-size: var(--fs-600);
 }
 
-.italic {
-  font-style: italic;
-}
-
 .fw-bold {
   font-weight: var(--fw-bold);
 }
 
+.italic {
+  font-style: italic;
+}
+
 .uppercase {
   text-transform: uppercase;
+}
+
+.text-black {
+  color: hsl(0 0% 0%);
 }
 
 .text-dark {
@@ -272,14 +290,18 @@ select {
 
 .box-shadow-1 {
   --shadow-x: 0px;
-  --shadow-y: 2px;
-  --shadow-blur: 0.25em;
-  --shadow-spread: 0em;
+  --shadow-y: 0.125rem;
+  --shadow-blur: 0.25rem;
+  --shadow-spread: 0rem;
   --shadow-color: var(--clr-primary);
   --shadow-color-alpha: 0.75;
 
   box-shadow: var(--shadow-x) var(--shadow-y) var(--shadow-blur)
     var(--shadow-spread) hsl(var(--shadow-color) / var(--shadow-color-alpha));
+}
+
+.border-top-1 {
+  border-top: 0.063rem solid hsl(var(--clr-primary) / 0.7);
 }
 
 /* Block */
@@ -343,7 +365,11 @@ select {
 }
 
 @media (min-width: 52em) {
-  .main-content[data-page="how-to-start"] .main-content__title {
+  .main-content__title {
+    text-align: left;
+  }
+
+  .main-title__subtext {
     text-align: left;
   }
 }
@@ -492,22 +518,25 @@ select {
   position: relative;
 }
 
-.dropdown-list {
+.dropdown-nav {
   position: absolute;
   top: calc(100% + 0.875rem);
   right: 0;
   z-index: 2;
-  margin: 0;
-  padding: 0;
-  border-radius: 0.625rem;
 }
 
-.dropdown-list[data-visible="false"] {
+.dropdown-nav[data-visible="false"] {
   display: none;
 }
 
-.dropdown-list[data-visible="true"] {
+.dropdown-nav[data-visible="true"] {
   display: block;
+}
+
+.dropdown-list {
+  margin: 0;
+  padding: 0;
+  border-radius: 0.625rem;
 }
 
 .dropdown-list :first-child .dropdown-item__link {
@@ -560,20 +589,21 @@ select {
 }
 
 .table-subcontainer {
-  --max-width: 25rem;
-  --gap: 1.5rem;
+  --gap: 0;
 
-  width: max(100%, var(--max-width));
-  grid-template-columns: 1fr min-content;
+  min-width: 100%;
+
+  grid-template-columns: 1fr auto;
 }
 
 .table {
-  width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   grid-column: 1 / 2;
 }
 
 .padding-right-fix {
+  width: 1.5rem;
   grid-column: 2 / -1;
 }
 
@@ -599,15 +629,19 @@ select {
 }
 
 .table-cell[data-type="faturas-list-num"] {
-  width: 30%;
+  width: 35%;
 }
 
 .table-cell[data-type="faturas-list-total"] {
-  width: 25%;
+  width: 20%;
 }
 
 .table-cell[data-type="faturas-list-dta-emissao"] {
   width: 40%;
+}
+
+.table-cell[data-type="faturas-list-see"] {
+  width: min-content;
 }
 
 @media (min-width: 30em) {
@@ -617,14 +651,6 @@ select {
 }
 
 @media (min-width: 52em) {
-  .main-content[data-page="minhas-faturas"] .main-content__title {
-    text-align: left;
-  }
-
-  .main-content[data-page="minhas-faturas"] p {
-    text-align: left;
-  }
-
   .table-container {
     width: max-content;
   }
@@ -690,14 +716,6 @@ select {
 }
 
 @media (min-width: 52em) {
-  .main-content[data-page="configurations"] .main-content__title {
-    text-align: left;
-  }
-
-  .main-content[data-page="configurations"] p {
-    text-align: left;
-  }
-
   .configuration-form {
     justify-content: space-between;
     grid-template-columns: repeat(3, minmax(9.375rem, 1fr));
@@ -719,4 +737,70 @@ select {
       "username password telefone nif cod-postal"
       "email    email    morada   morada .";
   }
+}
+
+.fatura-container {
+  --padding: 0;
+  --max-width: 83.75rem;
+
+  border-radius: 0.625rem;
+  overflow: auto;
+
+  height: 40.688rem;
+  max-height: 40.688rem;
+}
+
+.fatura-container__subcontainer {
+  padding-inline: 1.875rem;
+  padding-block: 1.25rem;
+
+  width: max(100%, 80rem);
+  min-height: 100%;
+
+  grid-template-rows: auto auto 1fr auto auto;
+  --gap: 1.25rem;
+}
+
+.fatura__dados-empresa {
+  max-width: 20rem;
+}
+
+.fatura-content__separator {
+  border-radius: 0.625rem;
+  border: 0;
+  width: 100%;
+  height: 0.188rem;
+  background-color: hsl(var(--clr-primary) / 0.15);
+}
+
+.fatura__products-list {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table-cell[data-type="fatura-products-referencia"] {
+  width: 15%;
+  max-width: 15%;
+}
+.table-cell[data-type="fatura-products-descricao"] {
+  width: 52%;
+  max-width: 52%;
+}
+.table-cell[data-type="fatura-products-preco-uni"] {
+  width: 10%;
+  max-width: 10%;
+}
+.table-cell[data-type="fatura-products-quantidade"] {
+  width: 5%;
+  max-width: 5%;
+}
+.table-cell[data-type="fatura-products-iva"] {
+  width: 8%;
+  max-width: 8%;
+}
+
+.table-cell[data-type="fatura-products-total"] {
+  width: 10%;
+  max-width: 10%;
 }

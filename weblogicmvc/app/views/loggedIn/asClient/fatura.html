@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minhas faturas</title>
+    <title>Fatura ####</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="../../../../public/css/style.css">
 
     <script src="../../../../public/js/dropdowns.js" defer></script>
-
 </head>
 
 <body class="[ body ] [ grid ]">
@@ -53,42 +52,93 @@
                     </li>
                 </ul>
             </nav>
+
         </div>
     </header>
     <main class="main-content">
-        <h1 class="[ main-content__title ] [ text-align-center ] [ fs-600 fw-bold ] ">As
-            minhas faturas
-        </h1>
-        <p class="[ main-title__subtext ] [ margin-top-2 text-align-center ]">
-            Aqui estão apresentadas todas as suas faturas, você pode visualizá-las individualmente!
+
+        <a class="d-inline-block" href="#" aria-label="voltar atrás">
+            <img src="../../../../public/assets/go-back.svg" alt="">
+        </a>
+
+        <h1 class="[ main-content__title ] [ margin-top-2 text-align-center ] [ fs-600 fw-bold ]">Fatura: ####</h1>
+        <p class="[ main-title__subtext ] [ text-align-center ]">A fatura em baixo será a fatura própria para impressão!
         </p>
 
-        <div class="[ table-container ] [ margin-top-4 ] ">
-            <div class="[ table-subcontainer ] [ grid ]">
-                <table class="[ table ] [ text-align-left ]">
-                    <thead>
-                        <tr class="table-row" data-type="header">
-                            <th class="table-cell" data-type="faturas-list-num">Número</th>
-                            <th class="table-cell" data-type="faturas-list-total">Total</th>
-                            <th class="table-cell" data-type="faturas-list-dta-emissao">Data de
-                                Emissão</th>
-                            <th class="[ table-cell ] [ text-align-right ]" data-type="faturas-list-see"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="table-row" data-type="body">
-                            <td class="table-cell">teste
-                            </td>
-                            <td class="table-cell">teste</td>
-                            <td class="table-cell">teste</td>
-                            <td class="[ table-cell ] [ text-align-right ]">
-                                teste</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="padding-right-fix"></div>
+        <div class="[ fatura-container ] [ container margin-top-2 ] [ box-shadow-1 ]">
+            <div class="[ fatura-container__subcontainer ] [ grid text-black ]">
+                <div class="flex">
+                    <section class="flex-grow flow flow-space-2" aria-label="Dados do cliente">
+                        <h2>Dados do cliente:</h2>
+                        <p>Maria albertina</p>
+                        <p>NIF: 111111111</p>
+                        <p>Email: maria@gmail.com</p>
+                        <p>Telemóvel: 911-111-111</p>
+                        <p>Morada: Rua das Camélias Bairro de São João 2815-765 Sobreda</p>
+                    </section>
+                    <section class="[ fatura__dados-empresa ] [ flow flow-space-1 word-wrap-break-word ]"
+                        aria-label="Dados da empresa">
+                        <h2>EDP</h2>
+                        <p>Email: asda@asd.pt</p>
+                        <p>NIF: 111111111</p>
+                    </section>
+                </div>
+                <hr class="fatura-content__separator">
+                <section aria-label="Produtos comprados">
+                    <h2>Produtos comprados:</h2>
+                    <table class="[ fatura__products-list ] [ margin-top-2 text-align-left ]">
+                        <thead>
+                            <tr class="table-row" data-type="header">
+                                <th class="[ table-cell ] [ word-wrap-break-word ]"
+                                    data-type="fatura-products-referencia">Referência</th>
+                                <th class="[ table-cell ] [ word-wrap-break-word ]"
+                                    data-type="fatura-products-descricao">Descrição</th>
+                                <th class="[ table-cell ] [ word-wrap-break-word ]"
+                                    data-type="fatura-products-preco-uni">Preço Un.</th>
+                                <th class="[ table-cell ] [ word-wrap-break-word text-align-right ]"
+                                    data-type="fatura-products-quantidade">Qtd.</th>
+                                <th class="[ table-cell ] [ word-wrap-break-word text-align-right ]"
+                                    data-type="fatura-products-iva">IVA
+                                </th>
+                                <th class="[ table-cell ] [ word-wrap-break-word text-align-right ]"
+                                    data-type="fatura-products-total">Total
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row" data-type="body">
+                                <td class="[ table-cell ] [ word-wrap-break-word ]">123123</td>
+                                <td class="[ table-cell ] [ word-wrap-break-word ]">Bota</td>
+                                <td class="[ table-cell ] [ word-wrap-break-word ]">23€</td>
+                                <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]">2</td>
+                                <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]">0%</td>
+                                <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]">
+                                    10999€</td>
+                            </tr>
+
+                        </tbody>
+
+                        <tfoot>
+                            <tr class="table-row" data-type="body">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="[ table-cell ] [ word-wrap-break-word text-align-right ] [ border-top-1 ]">
+                                    1000%</td>
+                                <td class="[ table-cell ] [ word-wrap-break-word text-align-right ] [ border-top-1 ]">
+                                    1000000</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </section>
+                <hr class="fatura-content__separator">
+                <section aria-label="Operador">
+                    <p>Operador: Maria Albertina</p>
+                </section>
             </div>
         </div>
+
     </main>
 </body>
 

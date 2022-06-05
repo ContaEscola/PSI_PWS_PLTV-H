@@ -1,5 +1,5 @@
 const dropdown = document.querySelector('[data-dropdown-toggle]');
-const dropdownList = dropdown.parentNode.querySelector('ul');
+const dropdownList = dropdown.parentNode.querySelector('nav');
 
 dropdown.addEventListener('click', () => {
     if (dropdownList.getAttribute('data-visible') == 'true') {
