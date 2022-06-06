@@ -26,7 +26,7 @@
             <button
                 class="[ dropdown-toggle ] [ grid g-direction-column g-place-items-center  ] [ text-dark bg-white ] "
                 data-dropdown-toggle>
-                Pedro Norberto / Cliente
+                Pedro Norberto / Admin
                 <img src="../../../../public/assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon">
             </button>
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
@@ -55,39 +55,51 @@
             </nav>
         </div>
     </header>
-    <main class="main-content">
-        <h1 class="[ main-content__title ] [ text-align-center ] [ fs-600 fw-bold ] ">As
-            minhas faturas
-        </h1>
-        <p class="[ main-title__subtext ] [ margin-top-2 text-align-center ]">
-            Aqui estão apresentadas todas as suas faturas, você pode visualizá-las individualmente!
-        </p>
+    <main class="[ main-content ] [ grid ]" data-page="dashboard">
 
-        <div class="[ table-container ] [ margin-top-4 ] ">
-            <div class="[ table-subcontainer ] [ grid ]">
-                <table class="[ table ] [ text-align-left ]">
-                    <thead>
-                        <tr class="table-row" data-type="header">
-                            <th class="table-cell" data-type="faturas-list-num">Número</th>
-                            <th class="table-cell" data-type="faturas-list-total">Total</th>
-                            <th class="table-cell" data-type="faturas-list-dta-emissao">Data de
-                                Emissão</th>
-                            <th class="[ table-cell ] [ text-align-right ]" data-type="faturas-list-see"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="table-row" data-type="body">
-                            <td class="table-cell">teste
-                            </td>
-                            <td class="table-cell">teste</td>
-                            <td class="table-cell">teste</td>
-                            <td class="[ table-cell ] [ text-align-right ]">
-                                teste</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="padding-right-fix"></div>
-            </div>
+        <button class="mobile-dashboard-toggle" aria-controls="dashboard-navigation"><span class="sr-only"
+                aria-expanded="false">Navegação
+                primária</span></button>
+
+        <nav class="dashboard-navigation" id="dashboard-navigation" data-visible="false"
+            aria-label="navegação primária">
+            <ul class="flex f-direction-column f-gap-0">
+                <li class="dashboard__item"> <a href="#" class="navigation__link">item</a></li>
+                <li class="dashboard__item"> <a href="#" class="navigation__link">itemasasd</a></li>
+            </ul>
+        </nav>
+
+        <div>
+            <h1 class="fs-600 fw-bold">Dados da Empresa</h1>
+
+            <form action="#" method="POST">
+                <label for="designacao-social">Designação Social:</label>
+                <input type="text" class="input" id="designacao-social">
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" class="input" id="telefone">
+
+                <label for="nif">NIF:</label>
+                <input type="text" class="input" id="nif">
+
+                <label for="email">Email:</label>
+                <input type="text" class="input" id="email">
+
+                <label for="localidade">Localidade:</label>
+                <input type="text" class="input" id="localidade">
+
+                <label for="capital-social">Capital Social:</label>
+                <input type="text" class="input" id="capital-social">
+
+                <label for="morada">Morada:</label>
+                <input type="text" class="input" id="morada">
+
+                <label for="codigo-postal">Código Postal:</label>
+                <input type="text" class="input" id="codigo-postal">
+
+                <input type="submit" class="button" data-type="outline" value="Guardar">
+
+            </form>
         </div>
     </main>
 </body>
