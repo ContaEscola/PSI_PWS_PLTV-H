@@ -2,37 +2,36 @@
 <html lang="pt">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minhas faturas</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../../../../public/css/style.css">
+    <link rel="stylesheet" href="../../../../public/css/style.css" />
 
     <script src="../../../../public/js/dropdowns.js" defer></script>
-
+    <script src="../../../../public/js/mobile-nav-toggle.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
     <header class="[ header ] [ flex ]" data-type="logged-in">
         <div class="grid g-place-items-center">
-            <img src="../../../../public/assets/logo.png" alt="Logo">
+            <img src="../../../../public/assets/logo.png" alt="Logo" />
         </div>
         <div class="[ dropdown ] [ grid g-place-items-center margin-left-auto ]">
-            <button
-                class="[ dropdown-toggle ] [ grid g-direction-column g-place-items-center  ] [ text-dark bg-white ] "
+            <button class="[ dropdown-toggle ] [ grid g-direction-column g-place-items-center ] [ text-dark bg-white ]"
                 data-dropdown-toggle>
                 Pedro Norberto / Admin
-                <img src="../../../../public/assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon">
+                <img src="../../../../public/assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon" />
             </button>
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
                 <ul class="[ dropdown-list ] [ bg-white box-shadow-1 ]">
                     <li>
-                        <a class="[ dropdown-item__link ]  [ grid ]" href="#">
+                        <a class="[ dropdown-item__link ] [ grid ]" href="#">
                             Configurações
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -42,7 +41,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="[ dropdown-item__link ] [ grid ] " data-type="warning" href="#">
+                        <a class="[ dropdown-item__link ] [ grid ]" data-type="warning" href="#">
                             Logout
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -56,49 +55,78 @@
         </div>
     </header>
     <main class="[ main-content ] [ grid ]" data-page="dashboard">
+        <button class="[ mobile-dashboard-toggle ] [ justify-self-center ]" aria-controls="dashboard-navigation"
+            data-state="closed">
+            <span class="sr-only" aria-expanded="false">Navegação primária</span>
+        </button>
 
-        <button class="mobile-dashboard-toggle" aria-controls="dashboard-navigation"><span class="sr-only"
-                aria-expanded="false">Navegação
-                primária</span></button>
-
-        <nav class="dashboard-navigation" id="dashboard-navigation" data-visible="false"
-            aria-label="navegação primária">
+        <nav class="dashboard-navigation" id="dashboard-navigation" aria-label="navegação primária">
             <ul class="flex f-direction-column f-gap-0">
-                <li class="dashboard__item"> <a href="#" class="navigation__link">item</a></li>
-                <li class="dashboard__item"> <a href="#" class="navigation__link">itemasasd</a></li>
+                <li class="dashboard__item">
+                    <a href="#" class="navigation__link" data-state="active">Empresa</a>
+                </li>
+                <li class="dashboard__item">
+                    <a href="#" class="navigation__link">itemasdasdsa</a>
+                </li>
             </ul>
         </nav>
 
-        <div>
-            <h1 class="fs-600 fw-bold">Dados da Empresa</h1>
+        <div class="main-content__page">
+            <h1 class="[ main-content__title ] [ text-align-center ] [ fs-600 fw-bold ]">
+                Dados da Empresa
+            </h1>
 
-            <form action="#" method="POST">
-                <label for="designacao-social">Designação Social:</label>
-                <input type="text" class="input" id="designacao-social">
+            <form action="#" method="POST" class="[ form ] [ margin-top-3 grid ]" data-type="dados-empresa">
 
-                <label for="telefone">Telefone:</label>
-                <input type="tel" class="input" id="telefone">
+                <div class="[ form__designacao-social ] [ flex f-direction-column f-gap-1 ]">
+                    <label for="designacao-social">Designação Social:</label>
+                    <input type="text" class="input" id="designacao-social" />
+                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                </div>
 
-                <label for="nif">NIF:</label>
-                <input type="text" class="input" id="nif">
+                <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" class="input" id="telefone" />
+                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                </div>
 
-                <label for="email">Email:</label>
-                <input type="text" class="input" id="email">
+                <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
+                    <label for="nif">NIF:</label>
+                    <input type="text" class="input" id="nif" />
+                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                </div>
 
-                <label for="localidade">Localidade:</label>
-                <input type="text" class="input" id="localidade">
+                <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
+                    <label for="email">Email:</label>
+                    <input type="text" class="input" id="email" />
+                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                </div>
 
-                <label for="capital-social">Capital Social:</label>
-                <input type="text" class="input" id="capital-social">
+                <div class="[ form__localidade ] [ flex f-direction-column f-gap-1 ]">
+                    <label for="localidade">Localidade:</label>
+                    <input type="text" class="input" id="localidade" />
+                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                </div>
 
-                <label for="morada">Morada:</label>
-                <input type="text" class="input" id="morada">
+                <div class="[ form__capital-social ] [ flex f-direction-column f-gap-1 ]">
+                    <label for="capital-social">Capital Social:</label>
+                    <input type="text" class="input" id="capital-social" />
+                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                </div>
 
-                <label for="codigo-postal">Código Postal:</label>
-                <input type="text" class="input" id="codigo-postal">
+                <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
+                    <label for="morada">Morada:</label>
+                    <input type="text" class="input" id="morada" />
+                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                </div>
 
-                <input type="submit" class="button" data-type="outline" value="Guardar">
+                <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
+                    <label for="codigo-postal">Código Postal:</label>
+                    <input type="text" class="input" id="codigo-postal" />
+                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                </div>
 
+                <input type="submit" class="[ button ] [ form__submit ]" data-type="outline" value="Guardar" />
             </form>
         </div>
     </main>

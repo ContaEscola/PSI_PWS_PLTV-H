@@ -66,6 +66,7 @@ ul,
 ol {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 /* Set core root defaults */
@@ -180,6 +181,10 @@ select {
 
 .g-place-items-center {
   place-items: center;
+}
+
+.justify-self-center {
+  justify-self: center;
 }
 
 .d-block {
@@ -324,6 +329,50 @@ select {
   border-top: 0.063rem solid hsl(var(--clr-primary) / 0.7);
 }
 
+.form__username {
+  grid-area: username;
+}
+
+.form__password {
+  grid-area: password;
+}
+
+.form__telefone {
+  grid-area: telefone;
+}
+
+.form__email {
+  grid-area: email;
+}
+
+.form__nif {
+  grid-area: nif;
+}
+
+.form__codigo-postal {
+  grid-area: codigo-postal;
+}
+
+.form__morada {
+  grid-area: morada;
+}
+
+.form__designacao-social {
+  grid-area: designacao-social;
+}
+
+.form__localidade {
+  grid-area: localidade;
+}
+
+.form__capital-social {
+  grid-area: capital-social;
+}
+
+.form__submit {
+  grid-area: submit;
+}
+
 /* Block */
 
 .typography-phone {
@@ -346,6 +395,9 @@ select {
 
   padding-block: 1.875em;
   padding-inline: 1.25em;
+  background-color: hsl(0 0% 100%);
+
+  z-index: 2;
 }
 
 .header[data-type="logged-in"] {
@@ -359,6 +411,7 @@ select {
 .main-content {
   padding-block: 3.125em;
   padding-inline: 1.25em;
+  z-index: 1;
 }
 
 .main-content[data-page="how-to-start"] {
@@ -419,12 +472,12 @@ select {
 /* Só para os que têm um state */
 
 .navigation__link:not([data-state]):hover {
-  --bg-color-alpha: 0.1;
-  --clr-border-alpha: 0.5;
+  --bg-color-alpha: 0.06;
+  --border-color-alpha: 0.5;
 }
 
 .navigation__link[data-state="active"] {
-  --bg-color-alpha: 0.1;
+  --bg-color-alpha: 0.12;
 
   --font-color: var(--clr-accent);
   --font-color-alpha: 1;
@@ -495,8 +548,8 @@ select {
 }
 
 .input:focus {
-  outline: 0.09em solid hsl(var(--clr-primary) / var(--clr-primary-alpha));
-  outline-offset: 0.05em;
+  outline: 1px solid hsl(var(--clr-primary) / var(--clr-primary-alpha));
+  outline-offset: 2px;
 }
 
 .input[data-state="disabled"] {
@@ -550,7 +603,6 @@ select {
 }
 
 .dropdown-list {
-  margin: 0;
   padding: 0;
   border-radius: 0.625rem;
 }
@@ -688,10 +740,12 @@ select {
   }
 }
 
-.configuration-form {
+.form {
   width: 100%;
   --gap: 3.125rem;
+}
 
+.form[data-type="configuration"] {
   grid-template-columns: 1fr;
   grid-template-areas:
     "username"
@@ -699,58 +753,30 @@ select {
     "telefone"
     "email"
     "nif"
-    "cod-postal"
+    "codigo-postal"
     "morada";
 }
 
-.configuration-form__username {
-  grid-area: username;
-}
-
-.configuration-form__password {
-  grid-area: password;
-}
-
-.configuration-form__telefone {
-  grid-area: telefone;
-}
-
-.configuration-form__email {
-  grid-area: email;
-}
-
-.configuration-form__nif {
-  grid-area: nif;
-}
-
-.configuration-form__cod-postal {
-  grid-area: cod-postal;
-}
-
-.configuration-form__morada {
-  grid-area: morada;
-}
-
 @media (min-width: 52em) {
-  .configuration-form {
+  .form[data-type="configuration"] {
     justify-content: space-between;
     grid-template-columns: repeat(3, minmax(9.375rem, 1fr));
 
     grid-template-areas:
       "username password telefone"
       "email    email    nif"
-      "morada   morada   cod-postal";
+      "morada   morada   codigo-postal";
   }
 }
 
 @media (min-width: 80em) {
-  .configuration-form {
+  .form[data-type="configuration"] {
     justify-content: normal;
 
     grid-template-columns: repeat(5, minmax(9.375rem, 1fr));
 
     grid-template-areas:
-      "username password telefone nif cod-postal"
+      "username password telefone nif codigo-postal"
       "email    email    morada   morada .";
   }
 }
@@ -822,30 +848,18 @@ select {
 }
 
 .main-content[data-page="dashboard"] {
-  /* --gap: 4.375rem; */
+  --gap: 4.375rem;
 
-  /* padding-top: 0;
+  padding-top: 0;
   padding-bottom: 0;
-  padding-left: 0; */
+  padding-left: 0;
 
-  /* grid-template-columns: auto 1fr; */
-
-  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
 }
 
 .dashboard-navigation {
   position: relative;
-  padding-block: 3.125rem;
-
-  display: none;
-}
-
-.dashboard-navigation[data-visible="false"] {
-  display: none;
-}
-
-.dashboard-navigation[data-visible="true"] {
-  display: block;
+  padding-block: 3.125em;
 }
 
 .dashboard-navigation::after {
@@ -857,13 +871,153 @@ select {
   width: 0.188rem;
 }
 
+.main-content__page {
+  padding-block: 3.125em;
+}
+
 .mobile-dashboard-toggle {
-  border: 0;
-  background-color: red;
-  aspect-ratio: 1 / 1;
-  width: 21px;
+  display: none;
+  z-index: 20;
 }
 
 .dashboard__item .navigation__link {
   width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+@media (max-width: 51.9999em) {
+  .main-content[data-page="dashboard"] {
+    padding-top: 1em;
+    padding-left: 3.125em;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    --gap: 0.812em;
+
+    position: relative;
+  }
+
+  .main-content__page {
+    padding-top: 0;
+  }
+
+  .mobile-dashboard-toggle {
+    display: block;
+    border: 0;
+    background-color: transparent;
+    background-image: url(../assets/mobile-nav-toggle-closed.svg);
+    background-size: cover;
+    aspect-ratio: 1 / 1;
+    width: 1.313rem;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-dashboard-toggle[data-state="closed"] {
+    background-image: url(../assets/mobile-nav-toggle-closed.svg);
+  }
+
+  .mobile-dashboard-toggle[data-state="opened"] {
+    background-image: url(../assets/mobile-nav-toggle-opened.svg);
+  }
+
+  .dashboard-navigation {
+    position: absolute;
+    z-index: 10;
+    background-color: hsl(0 0% 95%);
+    padding-top: 3.125em;
+    padding-bottom: 1em;
+    inset: 0 3.125rem 0 3.125rem;
+
+    transform: translateY(-100%);
+  }
+
+  .dashboard-navigation[data-visible] {
+    transition: transform 500ms ease-in;
+  }
+
+  .dashboard-navigation[data-visible="false"] {
+    transform: translateY(-100%);
+  }
+
+  .dashboard-navigation[data-visible="true"] {
+    transform: translateY(0%);
+  }
+
+  .dashboard-navigation::after {
+    width: 0;
+  }
+
+  .dashboard__item .navigation__link {
+    border: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 29.9999em) {
+  .main-content[data-page="dashboard"] {
+    padding-left: 1.25em;
+  }
+
+  .dashboard-navigation {
+    right: calc(1.25em);
+    left: calc(1.25em);
+  }
+}
+
+.form[data-type="dados-empresa"] {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "designacao-social"
+    "telefone"
+    "nif"
+    "email"
+    "localidade"
+    "capital-social"
+    "morada"
+    "codigo-postal"
+    "submit";
+}
+
+@media (min-width: 37.5em) {
+  .form[data-type="dados-empresa"] {
+    justify-content: space-between;
+    grid-template-columns: repeat(2, minmax(14rem, 1fr));
+    grid-template-areas:
+      "designacao-social  telefone"
+      "nif                capital-social"
+      "email              email"
+      "localidade         codigo-postal"
+      "morada             morada"
+      "submit             submit";
+    /* column-gap: 0; */
+  }
+
+  .form[data-type="dados-empresa"] .form__submit {
+    justify-self: center;
+  }
+}
+
+@media (min-width: 52em) {
+  .form[data-type="dados-empresa"] {
+    grid-template-columns: repeat(2, minmax(14.5rem, 1fr));
+  }
+  .form[data-type="dados-empresa"] .form__submit {
+    justify-self: left;
+  }
+}
+
+@media (min-width: 69.4em) {
+  .form[data-type="dados-empresa"] {
+    width: max-content;
+    justify-content: space-between;
+    grid-template-columns: 14rem 14rem 14rem;
+    grid-template-areas:
+      "designacao-social  telefone    nif"
+      "capital-social     localidade  codigo-postal"
+      "email              email       email"
+      "morada             morada      morada"
+      "submit             .           .";
+  }
 }
