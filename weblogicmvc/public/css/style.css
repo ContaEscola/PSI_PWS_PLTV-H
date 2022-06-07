@@ -541,7 +541,7 @@ select {
   --border-color: hsl(var(--clr-primary) / var(--clr-primary-alpha));
 
   color: hsl(var(--clr-primary) / var(--clr-primary-alpha));
-  border: 0.15em solid var(--border-color);
+  border: 0.12em solid var(--border-color);
   padding-inline: 1em;
   border-radius: 0.625rem;
 
