@@ -404,6 +404,10 @@ select {
   box-shadow: 0 0.25em 0.25em 0 hsl(var(--clr-primary) / 0.25);
 }
 
+.header[data-type="logged-in"] {
+  box-shadow: 0 0.25em 0.25em 0 hsl(var(--clr-primary) / 0.25);
+}
+
 .nav__list {
   --gap: 1.25em;
 }
@@ -603,8 +607,17 @@ select {
 }
 
 .dropdown-list {
+  margin: 0;
   padding: 0;
   border-radius: 0.625rem;
+}
+
+.dropdown-list[data-visible="false"] {
+  display: none;
+}
+
+.dropdown-list[data-visible="true"] {
+  display: block;
 }
 
 .dropdown-list :first-child .dropdown-item__link {
