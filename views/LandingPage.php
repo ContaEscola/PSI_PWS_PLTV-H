@@ -1,31 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="pt"><head>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<body>
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">LOGO FATURA +</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="#">LOGIN</a></li>
-        </ul>
+<body class="[ body ] [ grid ]">
+<header class="[ header ] [ flex ]">
+    <div class="grid g-place-items-center">
+        <img src="" alt="logo">
     </div>
-</nav>
+    <nav class="margin-left-auto">
+        <ul class="[ nav__list ] [ flex ]">
+            <li><a href="" class="button" data-type="primary">Login</a></li>
+        </ul>
+    </nav>
+</header>
 
-<div class="container">
-    <h1>Deixe as suas faturas connosco!</h1>
-    <p>Cansado de ter as suas faturas desorganizadas e em molhos, deixe connosco.
+<main class="[ main-content ] [ flow ]" data-type="how-to-start">
+    <h1 class="[ how-to-start__title ] [ text-align-center ] [ fs-600 ] ">Deixe as suas faturas connosco!</h1>
+    <p class="[ fs-400 ]">Cansado de ter as suas faturas desorganizadas e em molhos, deixe connosco.
+        <br>
         Nós guardamos-as e organizamos-as por si!</p>
-</div>
+    <br>
+    <a href="" class="button" data-type="outline">Começar</a>
 
-</body>
-</html>
+</main>
+
+
+
+</body></html>
