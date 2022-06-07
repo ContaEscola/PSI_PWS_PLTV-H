@@ -533,23 +533,15 @@ select {
   --border-color: hsl(var(--clr-primary) / var(--clr-primary-alpha));
 
   color: hsl(var(--clr-primary) / var(--clr-primary-alpha));
-  border: 0.063em solid var(--border-color);
+  border: 0.15em solid var(--border-color);
   padding-inline: 1em;
   border-radius: 0.625rem;
+
+  outline: none;
 }
 
-.input__error {
-  display: none;
-  color: hsl(var(--clr-primary) / var(--clr-input-error-alpha));
-}
-
-.input__error[data-visible="true"] {
-  display: block;
-}
-
-.input:focus {
-  outline: 1px solid hsl(var(--clr-primary) / var(--clr-primary-alpha));
-  outline-offset: 2px;
+.input:not([data-state="disabled"]):focus {
+  --border-color: hsl(var(--clr-accent) / var(--clr-accent-alpha));
 }
 
 .input[data-state="disabled"] {
@@ -560,6 +552,15 @@ select {
 
 .input[data-state="error"] {
   background-color: hsl(var(--clr-warning) / 0.3);
+}
+
+.input__error {
+  display: none;
+  color: hsl(var(--clr-primary) / var(--clr-input-error-alpha));
+}
+
+.input__error[data-visible="true"] {
+  display: block;
 }
 
 .dropdown-toggle {
