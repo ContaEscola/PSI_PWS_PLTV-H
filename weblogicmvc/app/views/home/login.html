@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Como começar ?</title>
+    <title>Login</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,28 +28,29 @@
         </nav>
     </header>
 
-    <main class="[ main-content ] [ flow ]" data-page="how-to-start">
-        <h1 class="[ main-content__title ] [ text-align-center ] [ fs-600 fw-bold ] ">Como começar ?
-        </h1>
-        <div>
-            <h2 class="fs-500 fw-bold">1. Ter uma conta</h2>
-            <div class="margin-top-2">
-                <p>Claro que para começar a usar este serviço precisa de uma conta.</p>
-                <p>Neste caso, nós iremos enviar os dados da sua conta.</p>
-                <p>Assim só tem de esperar por esta informação.</p>
+
+    <main class="main-content">
+        <form action="#" method="POST" class="[ form ] [ flex f-direction-column ] [ box-shadow-1 ]" data-type="login">
+            <h1 class="[ main-content__title ] [ text-align-center ] [ fs-600 fw-bold ]">Login</h1>
+            <p>A empresa enviou-lhe os dados da conta, utilize-os aqui!</p>
+
+
+            <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
+                <label for="email">Email:</label>
+                <input type="text" class="[ input ] [ width-100 ]" id="email">
+                <p class="[ input__error ] [ fs-200 italic ]"></p>
             </div>
-        </div>
-        <div>
-            <h2 class="fs-500 fw-bold">2. Efetuar o Login</h2>
-            <div class="margin-top-2">
-                <p>Assim que tiver acesso à informação sobre a conta, só precisa de efetuar o <a href="#">Login</a>.</p>
-                <p>
-                    Depois de efetuar o <a href="#">Login</a>, terá acesso total ao serviço, que inclui, gerir as suas
-                    faturas, etc.
-                </p>
+
+            <div class="[ form__password ] [ flex f-direction-column f-gap-1 ]">
+                <label for="password">Password:</label>
+                <input type="password" class="[ input ] [ width-100 ]" id="password">
+                <p class="[ input__error ] [ fs-200 italic ]"></p>
             </div>
-        </div>
+
+            <input type="submit" class="[ button ] [ form__submit ]" data-type="primary" value="Login" />
+        </form>
     </main>
+
 
 </body>
 
