@@ -28,7 +28,7 @@
                 Pedro Norberto / Cliente
                 <img src="../../../public/assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon">
             </button>
-            <nav class="dropdown-nav" data-visible="false">
+            <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
                 <ul class="[ dropdown-list ] [ bg-white box-shadow-1 ]">
                     <li>
                         <a class="[ dropdown-item__link ]  [ grid ]" href="#">
@@ -58,61 +58,53 @@
         <a class="d-inline-block" href="#" aria-label="voltar atrás">
             <img src="../../../public/assets/go-back.svg" alt="">
         </a>
-        <h1 class="[ main-content__title ] [ margin-top-2 text-align-center ] [ fs-600 fw-bold ]">Configurações</h1>
+        <h1 class="[ main-content__title ] [ margin-top-2 text-align-center ] [ fs-600 fw-bold ]">Configurações:</h1>
         <p class="[ main-title__subtext ] [ margin-top-1 text-align-center ]">Não é possível alterar nenhuma
             característica sua, já que não tem os
             privilégios
             necessários!</p>
 
-        <form action="#" method="POST" class="[ configuration-form ] [ margin-top-3 grid ]">
-            <div class="[ configuration-form__username ] [ flex f-direction-column f-gap-1 ]">
-                <label for="username">Username</label>
+        <form action="#" method="POST" class="[ form ] [ margin-top-3 grid ]" data-type="configuration">
+            <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
+                <label for="username">Username:</label>
                 <input type="text" class="input" id="username" disabled data-state="disabled">
-                <p class="[ input__error ] [ fs-200 italic ]">
-                </p>
+                <p class="[ input__error ] [ fs-200 italic ]"></p>
             </div>
 
-            <div class="[ configuration-form__password ] [ flex f-direction-column f-gap-1 ]">
-                <label for="password">Password</label>
+            <div class="[ form__password ] [ flex f-direction-column f-gap-1 ]">
+                <label for="password">Password:</label>
                 <input type="password" class="input" id="password" disabled data-state="disabled">
-                <p class="[ input__error ] [ fs-200 italic ]">
-                </p>
+                <p class="[ input__error ] [ fs-200 italic ]"></p>
             </div>
 
-            <div class="[ configuration-form__telefone ] [ flex f-direction-column f-gap-1 ]">
-                <label for="telefone">Telefone</label>
-                <input type="text" class="input" id="telefone" disabled data-state="disabled">
-                <p class="[ input__error ] [ fs-200 italic ]">
-                </p>
+            <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" class="input" id="telefone" disabled data-state="disabled">
+                <p class="[ input__error ] [ fs-200 italic ]"></p>
             </div>
 
-            <div class="[ configuration-form__email ] [ flex f-direction-column f-gap-1 ]">
-                <label for="email">Email</label>
+            <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
+                <label for="email">Email:</label>
                 <input type="text" class="input" id="email" disabled data-state="disabled">
-                <p class="[ input__error ] [ fs-200 italic ]">
-
-                </p>
+                <p class="[ input__error ] [ fs-200 italic ]"></p>
             </div>
 
-            <div class="[ configuration-form__nif ] [ flex f-direction-column f-gap-1 ]">
-                <label for="nif">NIF</label>
+            <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
+                <label for="nif">NIF:</label>
                 <input type="text" class="input" id="nif" disabled data-state="disabled">
-                <p class="[ input__error ] [ fs-200 italic ]">
-                </p>
+                <p class="[ input__error ] [ fs-200 italic ]"></p>
             </div>
 
-            <div class="[ configuration-form__cod-postal ] [ flex f-direction-column f-gap-1 ]">
-                <label for="cod-postal">Código Postal</label>
+            <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
+                <label for="cod-postal">Código Postal:</label>
                 <input type="text" class="input" id="cod-postal" disabled data-state="disabled">
-                <p class="[ input__error ] [ fs-200 italic ]">
-                </p>
+                <p class="[ input__error ] [ fs-200 italic ]"></p>
             </div>
 
-            <div class="[ configuration-form__morada ] [ flex f-direction-column f-gap-1 ]">
-                <label for="morada">Morada</label>
+            <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
+                <label for="morada">Morada:</label>
                 <input type="text" class="input" id="morada" disabled data-state="disabled">
-                <p class="[ input__error ] [ fs-200 italic ]">
-                </p>
+                <p class="[ input__error ] [ fs-200 italic ]"></p>
             </div>
         </form>
 
