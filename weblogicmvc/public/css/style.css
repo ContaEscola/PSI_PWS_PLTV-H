@@ -539,6 +539,14 @@ select {
   border-radius: 0.625rem;
 }
 
+.dropdown-list[data-visible="false"] {
+  display: none;
+}
+
+.dropdown-list[data-visible="true"] {
+  display: block;
+}
+
 .dropdown-list :first-child .dropdown-item__link {
   border-top-left-radius: 0.625rem;
   border-top-right-radius: 0.625rem;
