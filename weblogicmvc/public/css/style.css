@@ -132,6 +132,15 @@ select {
   gap: var(--gap);
 }
 
+.f-direction-column {
+  flex-direction: column;
+}
+
+.f-gap-1 {
+  /* 10 px  */
+  gap: 0.625em;
+}
+
 .flex-grow {
   --flex-grow: 1;
 
@@ -157,7 +166,7 @@ select {
   display: block;
 }
 
-.d-block-inline {
+.d-inline-block {
   display: inline-block;
 }
 
@@ -171,11 +180,21 @@ select {
 }
 
 .margin-top-1 {
+  /* 10 px */
+  margin-top: 0.625em;
+}
+
+.margin-top-2 {
   /* 20 px */
   margin-top: 1.25em;
 }
 
-.margin-top-2 {
+.margin-top-3 {
+  /* 50px  */
+  margin-top: 3.125rem;
+}
+
+.margin-top-4 {
   /* 80 px */
   margin-top: 5em;
 }
@@ -299,8 +318,7 @@ select {
   grid-column: 1 / -1;
   grid-row: 2 / -1;
 
-  padding-top: 3.125em;
-  padding-bottom: 1.25em;
+  padding-block: 3.125em;
   padding-inline: 1.25em;
 
   max-width: 100vw;
@@ -535,17 +553,28 @@ select {
 }
 
 .table-container {
-  --padding: 0;
-  --max-width: 100%;
-
-  height: 40rem;
+  padding-bottom: 0.625em;
+  height: auto;
+  max-height: 40rem;
   overflow: auto;
 }
 
-.table {
+.table-subcontainer {
   --max-width: 25rem;
+  --gap: 1.5rem;
+
   width: max(100%, var(--max-width));
+  grid-template-columns: 1fr min-content;
+}
+
+.table {
+  width: 100%;
   border-collapse: collapse;
+  grid-column: 1 / 2;
+}
+
+.padding-right-fix {
+  grid-column: 2 / -1;
 }
 
 .table-cell {
@@ -570,7 +599,7 @@ select {
 }
 
 .table-cell[data-type="faturas-list-num"] {
-  width: 25%;
+  width: 30%;
 }
 
 .table-cell[data-type="faturas-list-total"] {
@@ -579,6 +608,12 @@ select {
 
 .table-cell[data-type="faturas-list-dta-emissao"] {
   width: 40%;
+}
+
+@media (min-width: 30em) {
+  .table-subcontainer {
+    --max-width: 30rem;
+  }
 }
 
 @media (min-width: 52em) {
@@ -590,19 +625,98 @@ select {
     text-align: left;
   }
 
-  .table {
-    width: clamp(40.5rem, 80vw, 62.5rem);
+  .table-container {
+    width: max-content;
+  }
+
+  .table-subcontainer {
+    width: clamp(45rem, 80vw, 62.5rem);
   }
 
   .table-cell[data-type="faturas-list-num"] {
-    width: 60%;
+    width: 55%;
   }
 
   .table-cell[data-type="faturas-list-total"] {
-    width: 10%;
+    width: 20%;
   }
 
   .table-cell[data-type="faturas-list-dta-emissao"] {
-    width: 20%;
+    width: 25%;
+  }
+}
+
+.configuration-form {
+  width: 100%;
+  --gap: 3.125rem;
+
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "username"
+    "password"
+    "telefone"
+    "email"
+    "nif"
+    "cod-postal"
+    "morada";
+}
+
+.configuration-form__username {
+  grid-area: username;
+}
+
+.configuration-form__password {
+  grid-area: password;
+}
+
+.configuration-form__telefone {
+  grid-area: telefone;
+}
+
+.configuration-form__email {
+  grid-area: email;
+}
+
+.configuration-form__nif {
+  grid-area: nif;
+}
+
+.configuration-form__cod-postal {
+  grid-area: cod-postal;
+}
+
+.configuration-form__morada {
+  grid-area: morada;
+}
+
+@media (min-width: 52em) {
+  .main-content[data-page="configurations"] .main-content__title {
+    text-align: left;
+  }
+
+  .main-content[data-page="configurations"] p {
+    text-align: left;
+  }
+
+  .configuration-form {
+    justify-content: space-between;
+    grid-template-columns: repeat(3, minmax(9.375rem, 1fr));
+
+    grid-template-areas:
+      "username password telefone"
+      "email    email    nif"
+      "morada   morada   cod-postal";
+  }
+}
+
+@media (min-width: 80em) {
+  .configuration-form {
+    justify-content: normal;
+
+    grid-template-columns: repeat(5, minmax(9.375rem, 1fr));
+
+    grid-template-areas:
+      "username password telefone nif cod-postal"
+      "email    email    morada   morada .";
   }
 }
