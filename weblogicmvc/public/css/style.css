@@ -1062,3 +1062,13 @@ select {
       "submit             .           .";
   }
 }
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #E5E4E2;
+  color: white;
+  text-align: center;
+}
