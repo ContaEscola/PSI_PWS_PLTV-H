@@ -183,6 +183,14 @@ select {
   place-items: center;
 }
 
+.justify-items-center {
+  justify-items: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
 .justify-self-center {
   justify-self: center;
 }
@@ -261,6 +269,10 @@ select {
 
 .word-wrap-break-word {
   word-wrap: break-word;
+}
+
+.width-100 {
+  width: 100%;
 }
 
 /* Utilities */
@@ -414,6 +426,15 @@ select {
   z-index: 1;
 }
 
+.main-content[data-page="landing-page"] {
+  --gap: 3.125rem;
+  grid-template-rows: auto 1fr;
+}
+
+.landing-page-content__text {
+  --flow-space: 1.875rem;
+}
+
 .main-content[data-page="how-to-start"] {
   --flow-space: 4.688em;
 }
@@ -430,9 +451,26 @@ select {
   .main-content {
     padding-inline: 3.125em;
   }
+
+  .main-content[data-page="landing-page"] {
+    --gap: 6.25rem;
+  }
 }
 
 @media (min-width: 52em) {
+  .landing-page-content__text {
+    --flow-space: 4.375rem;
+  }
+
+  .main-content[data-page="landing-page"] {
+    --gap: 1.563rem;
+    grid-template-rows: 1fr;
+    justify-content: space-between;
+
+    grid-auto-flow: column;
+    grid-template-columns: minmax(35ch, auto) minmax(22rem, 38.125rem);
+  }
+
   .main-content__title {
     text-align: left;
   }
@@ -603,8 +641,17 @@ select {
 }
 
 .dropdown-list {
+  margin: 0;
   padding: 0;
   border-radius: 0.625rem;
+}
+
+.dropdown-list[data-visible="false"] {
+  display: none;
+}
+
+.dropdown-list[data-visible="true"] {
+  display: block;
 }
 
 .dropdown-list :first-child .dropdown-item__link {
@@ -742,7 +789,27 @@ select {
 
 .form {
   width: 100%;
+  max-width: 100%;
   --gap: 3.125rem;
+}
+
+.form[data-type="login"] {
+  --gap: 1.875rem;
+  padding: 1.875rem;
+  border-radius: 0.625rem;
+}
+
+@media (min-width: 30em) {
+  .form[data-type="login"] {
+    margin-inline: auto;
+    width: min(26.5rem, 100%);
+  }
+}
+
+@media (min-width: 52em) {
+  .form[data-type="login"] {
+    width: 20.75rem;
+  }
 }
 
 .form[data-type="configuration"] {
@@ -991,7 +1058,6 @@ select {
       "localidade         codigo-postal"
       "morada             morada"
       "submit             submit";
-    /* column-gap: 0; */
   }
 
   .form[data-type="dados-empresa"] .form__submit {
