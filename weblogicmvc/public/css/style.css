@@ -926,7 +926,7 @@ select {
     position: absolute;
     z-index: 10;
     background-color: hsl(0 0% 95%);
-    padding-top: 3.125em;
+    padding-top: calc(1em + 1.313rem + 1em);
     padding-bottom: 1em;
     inset: 0 3.125rem 0 3.125rem;
 
