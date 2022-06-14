@@ -393,6 +393,14 @@ select {
   grid-area: submit;
 }
 
+.fill-primary {
+  fill: hsl(var(--clr-primary) / var(--clr-primary-alpha));
+}
+
+.fill-warning {
+  fill: hsl(var(--clr-warning) / var(--clr-warning-alpha));
+}
+
 /* Block */
 
 .typography-phone {
@@ -749,13 +757,26 @@ select {
 .table-container {
   padding-bottom: 0.625em;
   height: auto;
-  max-height: 40rem;
+  max-height: 35rem;
   max-width: 100%;
   overflow: scroll;
 }
 
-.table-container[data-type="gestao-faturas"] {
-  width: ;
+.table-container[data-type="dashboard"] {
+  width: 100%;
+  max-width: calc(100vw - (2 * 1.25em));
+}
+
+@media (min-width: 30em) {
+  .table-container[data-type="dashboard"] {
+    max-width: calc(100vw - (2 * 3.125em));
+  }
+}
+
+@media (min-width: 52em) {
+  .table-container[data-type="dashboard"] {
+    max-width: calc(100vw - 4.375rem - 13rem - 3.125em);
+  }
 }
 
 .table-subcontainer {
@@ -770,6 +791,10 @@ select {
   table-layout: fixed;
   border-collapse: collapse;
   grid-column: 1 / 2;
+}
+
+.table[data-type="gestao-faturas"] {
+  min-width: 100%;
 }
 
 .padding-right-fix {
@@ -816,6 +841,37 @@ select {
   width: 1.438rem;
 }
 
+.table-cell[data-type="gestao-faturas-list-num"] {
+  min-width: 7rem;
+  width: 100%;
+}
+
+.table-cell[data-type="gestao-faturas-list-funcionario"] {
+  min-width: 10rem;
+}
+
+.table-cell[data-type="gestao-faturas-list-cliente"] {
+  min-width: 8rem;
+}
+.table-cell[data-type="gestao-faturas-list-estado"] {
+  min-width: 7rem;
+}
+.table-cell[data-type="gestao-faturas-list-total"] {
+  min-width: 6rem;
+}
+.table-cell[data-type="gestao-faturas-list-iva"] {
+  min-width: 6rem;
+}
+.table-cell[data-type="gestao-faturas-list-dta-emissao"] {
+  min-width: 12rem;
+}
+
+.table-cell[data-type="gestao-faturas-list-remove"] {
+  min-width: 1.438rem;
+  width: 1.438rem;
+  max-width: 1.438rem;
+}
+
 @media (min-width: 30em) {
   .table-subcontainer {
     --max-width: 30rem;
@@ -841,6 +897,30 @@ select {
 
   .table-cell[data-type="faturas-list-dta-emissao"] {
     width: 25%;
+  }
+
+  .table-cell[data-type="gestao-faturas-list-num"] {
+    width: 35%;
+  }
+
+  .table-cell[data-type="gestao-faturas-list-funcionario"] {
+    width: 10%;
+  }
+
+  .table-cell[data-type="gestao-faturas-list-cliente"] {
+    width: 10%;
+  }
+  .table-cell[data-type="gestao-faturas-list-estado"] {
+    width: 15%;
+  }
+  .table-cell[data-type="gestao-faturas-list-total"] {
+    width: 7%;
+  }
+  .table-cell[data-type="gestao-faturas-list-iva"] {
+    width: 7%;
+  }
+  .table-cell[data-type="gestao-faturas-list-dta-emissao"] {
+    width: 15%;
   }
 }
 
