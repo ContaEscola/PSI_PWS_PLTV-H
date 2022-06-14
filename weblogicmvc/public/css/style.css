@@ -65,6 +65,8 @@ dd {
 ul,
 ol {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Set core root defaults */
@@ -77,6 +79,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.6;
+  letter-spacing: 0.05em;
 
   font-family: "Inter", sans-serif;
   font-size: var(--fs-400);
@@ -121,6 +124,22 @@ select {
 
 /* Composition */
 
+/* https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034 */
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important; /* 2 */
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important; /* 3 */
+}
+
 .flex {
   --gap: 1rem;
   --flex-direction: row;
@@ -128,6 +147,10 @@ select {
   display: flex;
   flex-direction: var(--flex-direction);
   gap: var(--gap);
+}
+
+.f-direction-column {
+  flex-direction: column;
 }
 
 .f-direction-column {
@@ -180,16 +203,41 @@ select {
   display: block;
 }
 
-.d-block-inline {
+.d-inline-block {
   display: inline-block;
 }
 
 .margin-bottom-1 {
+  /* 32 px */
   margin-bottom: 2rem;
 }
 
+.margin-left-auto {
+  margin-left: auto;
+}
+
+.margin-top-1 {
+  /* 10 px */
+  margin-top: 0.625rem;
+}
+
+.margin-top-2 {
+  /* 20 px */
+  margin-top: 1.25rem;
+}
+
+.margin-top-3 {
+  /* 50px  */
+  margin-top: 3.125rem;
+}
+
+.margin-top-4 {
+  /* 80 px */
+  margin-top: 5rem;
+}
+
 .container {
-  --padding: 2rem;
+  --padding: 1.25rem;
   --max-width: 65rem;
 
   width: calc(100% - var(--padding));
@@ -198,22 +246,37 @@ select {
 }
 
 .flow > :where(:not(:first-child)) {
-  --flow-space: 1rem;
-
-  margin-top: var(--flow-space);
+  margin-top: var(--flow-space, 1rem);
 }
 
-.box-shadow-1 {
-  --shadow-x: 0px;
-  --shadow-y: 2px;
-  --shadow-blur: 0.25em;
-  --shadow-spread: 0em;
-  --shadow-color: var(--clr-primary);
-  --shadow-color-alpha: 0.75;
+.flow-space-1 {
+  /* 10 px  */
+  --flow-space: 0.625rem;
+}
 
-  color: hsl(var(--clr-white));
-  box-shadow: var(--shadow-x) var(--shadow-y) var(--shadow-blur)
-    var(--shadow-spread) hsl(var(--shadow-color) / var(--shadow-color-alpha));
+.flow-space-2 {
+  /* 20 px  */
+  --flow-space: 1.25rem;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.word-wrap-break-word {
+  word-wrap: break-word;
+}
+
+.width-100 {
+  width: 100%;
 }
 
 /* Utilities */
@@ -238,16 +301,20 @@ select {
   font-size: var(--fs-600);
 }
 
-.italic {
-  font-style: italic;
-}
-
 .fw-bold {
   font-weight: var(--fw-bold);
 }
 
+.italic {
+  font-style: italic;
+}
+
 .uppercase {
   text-transform: uppercase;
+}
+
+.text-black {
+  color: hsl(0 0% 0%);
 }
 
 .text-dark {
@@ -256,6 +323,70 @@ select {
 
 .text-warning {
   color: hsl(var(--clr-warning) / var(--clr-warning-alpha));
+}
+
+.bg-white {
+  background-color: hsl(var(--clr-white) / 1);
+}
+
+.box-shadow-1 {
+  --shadow-x: 0px;
+  --shadow-y: 0.125rem;
+  --shadow-blur: 0.25rem;
+  --shadow-spread: 0rem;
+  --shadow-color: var(--clr-primary);
+  --shadow-color-alpha: 0.75;
+
+  box-shadow: var(--shadow-x) var(--shadow-y) var(--shadow-blur)
+    var(--shadow-spread) hsl(var(--shadow-color) / var(--shadow-color-alpha));
+}
+
+.border-top-1 {
+  border-top: 0.063rem solid hsl(var(--clr-primary) / 0.7);
+}
+
+.form__username {
+  grid-area: username;
+}
+
+.form__password {
+  grid-area: password;
+}
+
+.form__telefone {
+  grid-area: telefone;
+}
+
+.form__email {
+  grid-area: email;
+}
+
+.form__nif {
+  grid-area: nif;
+}
+
+.form__codigo-postal {
+  grid-area: codigo-postal;
+}
+
+.form__morada {
+  grid-area: morada;
+}
+
+.form__designacao-social {
+  grid-area: designacao-social;
+}
+
+.form__localidade {
+  grid-area: localidade;
+}
+
+.form__capital-social {
+  grid-area: capital-social;
+}
+
+.form__submit {
+  grid-area: submit;
 }
 
 /* Block */
@@ -368,14 +499,15 @@ select {
   --font-color-alpha: var(--clr-primary-alpha);
   --font-weight: 400;
 
-  --border-size: 3px;
+  --border-size: 0.188rem;
 
   color: hsl(var(--font-color) / var(--font-color-alpha));
   font-weight: var(--font-weight);
   text-decoration: none;
 
   display: inline-block;
-  padding: 1.25em 3.125em;
+  padding-block: 1.25em;
+  padding-inline: 3.125em;
 
   background-color: hsl(var(--bg-color) / var(--bg-color-alpha));
 
@@ -385,13 +517,13 @@ select {
 
 /* Só para os que têm um state */
 
-.navigation__option:not([data-state]):hover {
-  --bg-color-alpha: 0.1;
-  --clr-border-alpha: 0.5;
+.navigation__link:not([data-state]):hover {
+  --bg-color-alpha: 0.06;
+  --border-color-alpha: 0.5;
 }
 
-.navigation__option[data-state="active"] {
-  --bg-color-alpha: 0.1;
+.navigation__link[data-state="active"] {
+  --bg-color-alpha: 0.12;
 
   --font-color: var(--clr-accent);
   --font-color-alpha: 1;
@@ -411,6 +543,7 @@ select {
 
   border: 0.125rem solid transparent;
   background-color: transparent;
+  text-decoration: none;
 
   padding: 0.5em 0.938em;
   font-size: var(--fs-300);
@@ -461,8 +594,8 @@ select {
 }
 
 .input:focus {
-  outline: 0.09em solid hsl(var(--clr-primary) / var(--clr-primary-alpha));
-  outline-offset: 0.05em;
+  outline: 1px solid hsl(var(--clr-primary) / var(--clr-primary-alpha));
+  outline-offset: 2px;
 }
 
 .input[data-state="disabled"] {
@@ -475,9 +608,58 @@ select {
   background-color: hsl(var(--clr-warning) / 0.3);
 }
 
+.dropdown-toggle {
+  border: none;
+  --gap: 0.625rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+@media (min-width: 30em) {
+  .dropdown-toggle {
+    --gap: 1.25rem;
+  }
+}
+
+.dropdown-toggle__icon {
+  transition: transform 250ms ease-in-out;
+}
+
+.dropdown-toggle:hover .dropdown-toggle__icon {
+  transform: scale(1.2);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-nav {
+  position: absolute;
+  top: calc(100% + 0.875rem);
+  right: 0;
+  z-index: 2;
+}
+
+.dropdown-nav[data-visible="false"] {
+  display: none;
+}
+
+.dropdown-nav[data-visible="true"] {
+  display: block;
+}
+
 .dropdown-list {
+  margin: 0;
   padding: 0;
   border-radius: 0.625rem;
+}
+
+.dropdown-list[data-visible="false"] {
+  display: none;
+}
+
+.dropdown-list[data-visible="true"] {
+  display: block;
 }
 
 .dropdown-list :first-child .dropdown-item__link {
@@ -501,6 +683,7 @@ select {
 }
 
 .dropdown-item__icon {
+  fill: hsl(var(--clr-primary) / var(--clr-primary-alpha));
   width: 0.938em;
 }
 
@@ -519,4 +702,397 @@ select {
 
 .dropdown-item__link[data-type="warning"]:hover .dropdown-item__icon {
   fill: hsl(var(--clr-warning) / var(--clr-warning-alpha));
+}
+
+.table-container {
+  padding-bottom: 0.625em;
+  height: auto;
+  max-height: 40rem;
+  overflow: auto;
+}
+
+.table-subcontainer {
+  --gap: 0;
+
+  min-width: 100%;
+
+  grid-template-columns: 1fr auto;
+}
+
+.table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  grid-column: 1 / 2;
+}
+
+.padding-right-fix {
+  width: 1.5rem;
+  grid-column: 2 / -1;
+}
+
+.table-cell {
+  padding: 0;
+}
+
+.table-row > :where(:not(:last-child)) {
+  padding-right: 1rem;
+}
+
+.table-row[data-type="header"] {
+  border-bottom: 0.063rem solid
+    hsl(var(--clr-primary) / var(--clr-primary-alpha));
+}
+
+.table-row[data-type="header"] th {
+  padding-bottom: 0.625em;
+}
+
+.table-row[data-type="body"] td {
+  padding-block: 0.625em;
+}
+
+.table-cell[data-type="faturas-list-num"] {
+  width: 35%;
+}
+
+.table-cell[data-type="faturas-list-total"] {
+  width: 20%;
+}
+
+.table-cell[data-type="faturas-list-dta-emissao"] {
+  width: 40%;
+}
+
+.table-cell[data-type="faturas-list-see"] {
+  width: min-content;
+}
+
+@media (min-width: 30em) {
+  .table-subcontainer {
+    --max-width: 30rem;
+  }
+}
+
+@media (min-width: 52em) {
+  .table-container {
+    width: max-content;
+  }
+
+  .table-subcontainer {
+    width: clamp(45rem, 80vw, 62.5rem);
+  }
+
+  .table-cell[data-type="faturas-list-num"] {
+    width: 55%;
+  }
+
+  .table-cell[data-type="faturas-list-total"] {
+    width: 20%;
+  }
+
+  .table-cell[data-type="faturas-list-dta-emissao"] {
+    width: 25%;
+  }
+}
+
+.form {
+  width: 100%;
+  max-width: 100%;
+  --gap: 3.125rem;
+}
+
+.form[data-type="login"] {
+  --gap: 1.875rem;
+  padding: 1.875rem;
+  border-radius: 0.625rem;
+}
+
+@media (min-width: 30em) {
+  .form[data-type="login"] {
+    margin-inline: auto;
+    width: min(26.5rem, 100%);
+  }
+}
+
+@media (min-width: 52em) {
+  .form[data-type="login"] {
+    width: 20.75rem;
+  }
+}
+
+.form[data-type="configuration"] {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "username"
+    "password"
+    "telefone"
+    "email"
+    "nif"
+    "codigo-postal"
+    "morada";
+}
+
+@media (min-width: 52em) {
+  .form[data-type="configuration"] {
+    justify-content: space-between;
+    grid-template-columns: repeat(3, minmax(9.375rem, 1fr));
+
+    grid-template-areas:
+      "username password telefone"
+      "email    email    nif"
+      "morada   morada   codigo-postal";
+  }
+}
+
+@media (min-width: 80em) {
+  .form[data-type="configuration"] {
+    justify-content: normal;
+
+    grid-template-columns: repeat(5, minmax(9.375rem, 1fr));
+
+    grid-template-areas:
+      "username password telefone nif codigo-postal"
+      "email    email    morada   morada .";
+  }
+}
+
+.fatura-container {
+  --padding: 0;
+  --max-width: 83.75rem;
+
+  border-radius: 0.625rem;
+  overflow: auto;
+
+  height: 40.688rem;
+  max-height: 40.688rem;
+}
+
+.fatura-container__subcontainer {
+  padding-inline: 1.875rem;
+  padding-block: 1.25rem;
+
+  width: max(100%, 80rem);
+  min-height: 100%;
+
+  grid-template-rows: auto auto 1fr auto auto;
+  --gap: 1.25rem;
+}
+
+.fatura__dados-empresa {
+  max-width: 20rem;
+}
+
+.fatura-content__separator {
+  border-radius: 0.625rem;
+  border: 0;
+  width: 100%;
+  height: 0.188rem;
+  background-color: hsl(var(--clr-primary) / 0.15);
+}
+
+.fatura__products-list {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table-cell[data-type="fatura-products-referencia"] {
+  width: 15%;
+  max-width: 15%;
+}
+.table-cell[data-type="fatura-products-descricao"] {
+  width: 52%;
+  max-width: 52%;
+}
+.table-cell[data-type="fatura-products-preco-uni"] {
+  width: 10%;
+  max-width: 10%;
+}
+.table-cell[data-type="fatura-products-quantidade"] {
+  width: 5%;
+  max-width: 5%;
+}
+.table-cell[data-type="fatura-products-iva"] {
+  width: 8%;
+  max-width: 8%;
+}
+
+.table-cell[data-type="fatura-products-total"] {
+  width: 10%;
+  max-width: 10%;
+}
+
+.main-content[data-page="dashboard"] {
+  --gap: 4.375rem;
+
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+
+  grid-template-columns: auto 1fr;
+}
+
+.dashboard-navigation {
+  position: relative;
+  padding-block: 3.125em;
+}
+
+.dashboard-navigation::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 auto;
+  background-color: hsl(var(--clr-primary) / 0.2);
+  width: 0.188rem;
+}
+
+.main-content__page {
+  padding-block: 3.125em;
+}
+
+.mobile-dashboard-toggle {
+  display: none;
+  z-index: 20;
+}
+
+.dashboard__item .navigation__link {
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+@media (max-width: 51.9999em) {
+  .main-content[data-page="dashboard"] {
+    padding-top: 1em;
+    padding-left: 3.125em;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    --gap: 0.812em;
+
+    position: relative;
+  }
+
+  .main-content__page {
+    padding-top: 0;
+  }
+
+  .mobile-dashboard-toggle {
+    display: block;
+    border: 0;
+    background-color: transparent;
+    background-image: url(../assets/mobile-nav-toggle-closed.svg);
+    background-size: cover;
+    aspect-ratio: 1 / 1;
+    width: 1.313rem;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-dashboard-toggle[data-state="closed"] {
+    background-image: url(../assets/mobile-nav-toggle-closed.svg);
+  }
+
+  .mobile-dashboard-toggle[data-state="opened"] {
+    background-image: url(../assets/mobile-nav-toggle-opened.svg);
+  }
+
+  .dashboard-navigation {
+    position: absolute;
+    z-index: 10;
+    background-color: hsl(0 0% 95%);
+    padding-top: 3.125em;
+    padding-bottom: 1em;
+    inset: 0 3.125rem 0 3.125rem;
+
+    transform: translateY(-100%);
+  }
+
+  .dashboard-navigation[data-visible] {
+    transition: transform 500ms ease-in;
+  }
+
+  .dashboard-navigation[data-visible="false"] {
+    transform: translateY(-100%);
+  }
+
+  .dashboard-navigation[data-visible="true"] {
+    transform: translateY(0%);
+  }
+
+  .dashboard-navigation::after {
+    width: 0;
+  }
+
+  .dashboard__item .navigation__link {
+    border: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 29.9999em) {
+  .main-content[data-page="dashboard"] {
+    padding-left: 1.25em;
+  }
+
+  .dashboard-navigation {
+    right: calc(1.25em);
+    left: calc(1.25em);
+  }
+}
+
+.form[data-type="dados-empresa"] {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "designacao-social"
+    "telefone"
+    "nif"
+    "email"
+    "localidade"
+    "capital-social"
+    "morada"
+    "codigo-postal"
+    "submit";
+}
+
+@media (min-width: 37.5em) {
+  .form[data-type="dados-empresa"] {
+    justify-content: space-between;
+    grid-template-columns: repeat(2, minmax(14rem, 1fr));
+    grid-template-areas:
+      "designacao-social  telefone"
+      "nif                capital-social"
+      "email              email"
+      "localidade         codigo-postal"
+      "morada             morada"
+      "submit             submit";
+    /* column-gap: 0; */
+  }
+
+  .form[data-type="dados-empresa"] .form__submit {
+    justify-self: center;
+  }
+}
+
+@media (min-width: 52em) {
+  .form[data-type="dados-empresa"] {
+    grid-template-columns: repeat(2, minmax(14.5rem, 1fr));
+  }
+  .form[data-type="dados-empresa"] .form__submit {
+    justify-self: left;
+  }
+}
+
+@media (min-width: 69.4em) {
+  .form[data-type="dados-empresa"] {
+    width: max-content;
+    justify-content: space-between;
+    grid-template-columns: 14rem 14rem 14rem;
+    grid-template-areas:
+      "designacao-social  telefone    nif"
+      "capital-social     localidade  codigo-postal"
+      "email              email       email"
+      "morada             morada      morada"
+      "submit             .           .";
+  }
 }
