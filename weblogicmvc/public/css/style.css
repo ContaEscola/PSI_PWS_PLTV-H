@@ -783,8 +783,6 @@ select {
   --gap: 0;
 
   min-width: 100%;
-
-  grid-template-columns: 1fr auto;
 }
 
 .table {
@@ -821,6 +819,10 @@ select {
 
 .table-row[data-type="body"] td {
   padding-block: 0.625em;
+}
+
+.table-cell[data-type="padding-left-fix"] {
+  min-width: 1rem;
 }
 
 .table-cell[data-type="faturas-list-num"] {
