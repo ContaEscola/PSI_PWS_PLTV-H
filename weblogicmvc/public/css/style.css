@@ -133,8 +133,22 @@ select {
 .grid {
   --gap: 1rem;
 
+<<<<<<< HEAD
   display: grid;
   gap: var(--gap);
+=======
+.f-direction-column {
+  flex-direction: column;
+}
+
+.f-gap-0 {
+  gap: 0;
+}
+
+.f-gap-1 {
+  /* 10 px  */
+  gap: 0.625em;
+>>>>>>> development
 }
 
 .flex-grow {
@@ -143,6 +157,36 @@ select {
   flex-grow: var(--flex-grow);
 }
 
+<<<<<<< HEAD
+=======
+.grid {
+  --gap: 1rem;
+
+  display: grid;
+  gap: var(--gap);
+}
+
+.g-direction-column {
+  grid-auto-flow: column;
+}
+
+.g-place-items-center {
+  place-items: center;
+}
+
+.justify-items-center {
+  justify-items: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-self-center {
+  justify-self: center;
+}
+
+>>>>>>> development
 .d-block {
   display: block;
 }
@@ -234,7 +278,101 @@ select {
   --fs-300: 0.75rem;
 }
 
+<<<<<<< HEAD
 .navigation__option {
+=======
+.body {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-auto-flow: row;
+  --gap: 0;
+}
+
+.header {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+
+  padding-block: 1.875em;
+  padding-inline: 1.25em;
+  background-color: hsl(0 0% 100%);
+
+  z-index: 2;
+}
+
+.header[data-type="logged-in"] {
+  box-shadow: 0 0.25em 0.25em 0 hsl(var(--clr-primary) / 0.25);
+}
+
+.header[data-type="logged-in"] {
+  box-shadow: 0 0.25em 0.25em 0 hsl(var(--clr-primary) / 0.25);
+}
+
+.nav__list {
+  --gap: 1.25em;
+}
+
+.main-content {
+  padding-block: 3.125em;
+  padding-inline: 1.25em;
+  z-index: 1;
+}
+
+.main-content[data-page="landing-page"] {
+  --gap: 3.125rem;
+  grid-template-rows: auto 1fr;
+}
+
+.landing-page-content__text {
+  --flow-space: 1.875rem;
+}
+
+.main-content[data-page="how-to-start"] {
+  --flow-space: 4.688em;
+}
+
+@media (min-width: 30em) {
+  .header {
+    padding-inline: 3.125em;
+  }
+
+  .nav__list {
+    --gap: 3.125em;
+  }
+
+  .main-content {
+    padding-inline: 3.125em;
+  }
+
+  .main-content[data-page="landing-page"] {
+    --gap: 6.25rem;
+  }
+}
+
+@media (min-width: 52em) {
+  .landing-page-content__text {
+    --flow-space: 4.375rem;
+  }
+
+  .main-content[data-page="landing-page"] {
+    --gap: 1.563rem;
+    grid-template-rows: 1fr;
+    justify-content: space-between;
+
+    grid-auto-flow: column;
+    grid-template-columns: minmax(35ch, auto) minmax(22rem, 38.125rem);
+  }
+
+  .main-content__title {
+    text-align: left;
+  }
+
+  .main-title__subtext {
+    text-align: left;
+  }
+}
+
+.navigation__link {
+>>>>>>> development
   --bg-color: var(--clr-primary);
   --bg-color-alpha: 0.01;
 
