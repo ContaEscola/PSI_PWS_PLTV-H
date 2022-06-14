@@ -130,13 +130,6 @@ select {
   gap: var(--gap);
 }
 
-.grid {
-  --gap: 1rem;
-
-<<<<<<< HEAD
-  display: grid;
-  gap: var(--gap);
-=======
 .f-direction-column {
   flex-direction: column;
 }
@@ -148,7 +141,6 @@ select {
 .f-gap-1 {
   /* 10 px  */
   gap: 0.625em;
->>>>>>> development
 }
 
 .flex-grow {
@@ -157,8 +149,6 @@ select {
   flex-grow: var(--flex-grow);
 }
 
-<<<<<<< HEAD
-=======
 .grid {
   --gap: 1rem;
 
@@ -186,7 +176,6 @@ select {
   justify-self: center;
 }
 
->>>>>>> development
 .d-block {
   display: block;
 }
@@ -278,9 +267,6 @@ select {
   --fs-300: 0.75rem;
 }
 
-<<<<<<< HEAD
-.navigation__option {
-=======
 .body {
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
@@ -372,7 +358,6 @@ select {
 }
 
 .navigation__link {
->>>>>>> development
   --bg-color: var(--clr-primary);
   --bg-color-alpha: 0.01;
 
