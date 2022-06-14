@@ -1,0 +1,15 @@
+<?php
+
+class Home extends BaseController
+{
+
+    public function index()
+    {
+        $this->renderView('home/landingPage');
+    }
+
+    public function comoComecar()
+    {
+        $this->renderView('home/howToStart');
+    }
+}
