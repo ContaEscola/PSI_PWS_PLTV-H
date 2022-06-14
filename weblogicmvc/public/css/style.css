@@ -187,6 +187,10 @@ select {
   place-items: center;
 }
 
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
 .justify-items-center {
   justify-items: center;
 }
