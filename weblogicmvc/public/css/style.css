@@ -795,11 +795,6 @@ select {
   min-width: 100%;
 }
 
-.padding-right-fix {
-  width: 1.5rem;
-  grid-column: 2 / -1;
-}
-
 .table-cell {
   padding: 0;
 }
