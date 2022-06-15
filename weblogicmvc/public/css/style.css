@@ -153,10 +153,6 @@ select {
   flex-direction: column;
 }
 
-.f-direction-column {
-  flex-direction: column;
-}
-
 .f-gap-0 {
   gap: 0;
 }
@@ -759,7 +755,7 @@ select {
   height: auto;
   max-height: 35rem;
   max-width: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .table-container[data-type="dashboard"] {
@@ -1126,7 +1122,7 @@ select {
     position: absolute;
     z-index: 10;
     background-color: hsl(0 0% 95%);
-    padding-top: 3.125em;
+    padding-top: calc(1em + 1.313rem + 1em);
     padding-bottom: 1em;
     inset: 0 3.125rem 0 3.125rem;
 
@@ -1191,7 +1187,6 @@ select {
       "localidade         codigo-postal"
       "morada             morada"
       "submit             submit";
-    /* column-gap: 0; */
   }
 
   .form[data-type="dados-empresa"] .form__submit {

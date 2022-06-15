@@ -27,7 +27,7 @@ class BaseController
     protected function redirectTo($controller = "Home", $action = "index", $params = [])
     {
         // Adiciona o controlador e a action ao url
-        $url = APP_BASE_URL . "c={$controller}&a={$action}";
+        $url = APP_BASE_URL . "?c={$controller}&a={$action}";
 
         // Adicionar os parâmetros ao url
         foreach ($params as $key => $value) {
@@ -36,5 +36,14 @@ class BaseController
 
         // Redireciona para o url
         header("Location: " . $url);
+    }
+
+
+
+    protected function checkLoggedIn($role)
+    {
+        $auth = $this->loadModel('Auth');
+        if ($auth->isLoggedIn([$role]))
+            $this->redirectTo('Dashboard');
     }
 }

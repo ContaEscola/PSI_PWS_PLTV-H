@@ -1,4 +1,4 @@
-USE pws_h;
+USE pwsdb;
 
 -- As passwords são todas "exemplo1234" elas estão são convertidas em hash utilizando o PASSWORD_DEFAULT do password_hash() em php
 
