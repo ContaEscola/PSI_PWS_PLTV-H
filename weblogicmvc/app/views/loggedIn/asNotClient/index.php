@@ -11,21 +11,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../../../../public/css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
 
-    <script src="../../../../public/js/dropdowns.js" defer></script>
-    <script src="../../../../public/js/mobile-nav-toggle.js" defer></script>
+    <script src="./js/dropdowns.js" defer></script>
+    <script src="./js/mobile-nav-toggle.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
     <header class="[ header ] [ flex ]" data-type="logged-in">
         <div class="grid g-place-items-center">
-            <img src="../../../../public/assets/logo.png" alt="Logo" />
+            <img src="./assets/logo.png" alt="Logo" />
         </div>
         <div class="[ dropdown ] [ grid g-place-items-center margin-left-auto ]">
             <button class="[ dropdown-toggle ] [ grid g-direction-column g-place-items-center ] [ text-dark bg-white ]" data-dropdown-toggle>
-                Pedro Norberto / Admin
-                <img src="../../../../public/assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon" />
+                <?= $username ?> / <?= $role ?>
+                <img src="./assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon" />
             </button>
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
                 <ul class="[ dropdown-list ] [ bg-white box-shadow-1 ]">
