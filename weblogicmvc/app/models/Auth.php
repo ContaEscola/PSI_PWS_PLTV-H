@@ -45,4 +45,9 @@ class Auth
             return true;
         }
     }
+
+    public function logout()
+    {
+        session_destroy();
+    }
 }
