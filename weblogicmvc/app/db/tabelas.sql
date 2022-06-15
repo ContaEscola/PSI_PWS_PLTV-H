@@ -1,6 +1,6 @@
-CREATE DATABASE pws_h;
+CREATE DATABASE pwsdb;
 
-USE pws_h;
+USE pwsdb;
 
 /*
  Iremos utilizar o PASSWORD_DEFAULT como algoritmo de hash logo é recomendado 255 characters na password
