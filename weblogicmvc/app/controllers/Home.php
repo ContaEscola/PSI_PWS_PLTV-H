@@ -5,7 +5,7 @@ class Home extends BaseController
 
     public function __construct()
     {
-        $this->checkLoggedIn(null);
+        $this->checkLoggedIn([null]);
     }
 
     public function index()

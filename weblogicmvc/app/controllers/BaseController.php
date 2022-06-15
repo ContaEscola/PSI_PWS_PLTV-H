@@ -43,7 +43,7 @@ class BaseController
     protected function checkLoggedIn($role)
     {
         $auth = $this->loadModel('Auth');
-        if ($auth->isLoggedIn([$role]))
+        if ($auth->isLoggedIn($role))
             $this->redirectTo('Dashboard');
     }
 }
