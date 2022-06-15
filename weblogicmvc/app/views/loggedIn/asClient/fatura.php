@@ -95,15 +95,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-row" data-type="body">
-                                <td class="[ table-cell ] [ word-wrap-break-word ]">123123</td>
-                                <td class="[ table-cell ] [ word-wrap-break-word ]">Bota</td>
-                                <td class="[ table-cell ] [ word-wrap-break-word ]">23€</td>
-                                <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]">2</td>
-                                <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]">0%</td>
-                                <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]">
-                                    10999€</td>
-                            </tr>
+
+
+                            <?php
+                            if (is_array($faturaFormatada)) {
+                                foreach ($faturaFormatada as $linhaFatura) {
+
+                            ?>
+
+                                    <tr class="table-row" data-type="body">
+                                        <td class="[ table-cell ] [ word-wrap-break-word ]"><?= $linhaFatura->referencia ?></td>
+                                        <td class="[ table-cell ] [ word-wrap-break-word ]"><?= $linhaFatura->descricao ?></td>
+                                        <td class="[ table-cell ] [ word-wrap-break-word ]"><?= round($linhaFatura->preco, 2) . '€' ?></td>
+                                        <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]"><?= $linhaFatura->quantidade ?></td>
+                                        <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]"><?= round($linhaFatura->valoriva) . '€' ?></td>
+                                        <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]"><?= round($linhaFatura->valorunitario) . '€' ?></td>
+                                    </tr>
+
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <tr class="table-row" data-type="body">
+                                    <td class="[ table-cell ] [ word-wrap-break-word ]"><?= $faturaFormatada->referencia ?></td>
+                                    <td class="[ table-cell ] [ word-wrap-break-word ]"><?= $faturaFormatada->descricao ?></td>
+                                    <td class="[ table-cell ] [ word-wrap-break-word ]"><?= round($faturaFormatada->preco, 2) . '€' ?></td>
+                                    <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]"><?= $faturaFormatada->quantidade ?></td>
+                                    <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]"><?= round($faturaFormatada->valoriva) . '€' ?></td>
+                                    <td class="[ table-cell ] [ word-wrap-break-word text-align-right ]"><?= round($faturaFormatada->valorunitario) . '€' ?></td>
+                                </tr>
+
+                            <?php
+                            }
+                            ?>
 
                         </tbody>
 
@@ -114,7 +138,7 @@
                                 <td></td>
                                 <td></td>
                                 <td class="[ table-cell ] [ word-wrap-break-word text-align-right ] [ border-top-1 ]">
-                                    <?= round($fatura->ivatotal, 2) . '%' ?></td>
+                                    <?= round($fatura->ivatotal, 2) . '€' ?></td>
                                 <td class="[ table-cell ] [ word-wrap-break-word text-align-right ] [ border-top-1 ]">
                                     <?= round($fatura->valortotal, 2) . '€' ?> </td>
                             </tr>

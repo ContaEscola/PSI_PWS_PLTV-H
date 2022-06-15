@@ -14,18 +14,27 @@ class Fatura extends BaseController
     public function index($id)
     {
         try {
-            $fatura = FaturaCliente::find([$id]);
 
+            $faturaToCheck = FaturaCliente::find([$id]);
 
             $auth = $this->loadModel('Auth');
             $clienteID = $auth->getID();
 
-            if ($fatura == null || ($fatura->referenciacliente != $clienteID)) {
+            if ($faturaToCheck == null || ($faturaToCheck->referenciacliente != $clienteID)) {
                 $this->redirectTo('Dashboard');
             }
 
-            $client = UserToLogin::find([$fatura->referenciacliente]);
-            $funcionario = UserToLogin::find([$fatura->referenciafuncionario]);
+            $select = 'lf.quantidade, lf.valorUnitario, lf.valorIva, p.referencia, p.descricao, p.preco';
+            $from = 'linhafaturas as lf';
+            $joins = 'INNER JOIN produtos as p ON(lf.produto_id = p.id)';
+            $conditions = array('lf.fatura_id = ?', $id);
+            $order = 'lf.valorUnitario desc';
+            $faturaFormatada = FaturaCliente::all(array('select' => $select, 'from' => $from, 'joins' => $joins, 'conditions' => $conditions, 'order' => $order));
+
+
+
+            $client = UserToLogin::find([$faturaToCheck->referenciacliente]);
+            $funcionario = UserToLogin::find([$faturaToCheck->referenciafuncionario]);
 
             $empresa = EmpresaCliente::first();
 
@@ -33,7 +42,8 @@ class Fatura extends BaseController
             $usernameLoggedIn = $auth->getUsername();
             $roleLoggedIn = $auth->getRole();
 
-            $this->renderView('loggedIn/asClient/fatura', ['username' => $usernameLoggedIn, 'role' => $roleLoggedIn, 'fatura' => $fatura, 'cliente' =>  $client, 'empresa' => $empresa, 'funcionario' => $funcionario]);
+
+            $this->renderView('loggedIn/asClient/fatura', ['username' => $usernameLoggedIn, 'role' => $roleLoggedIn, 'fatura' => $faturaToCheck, 'cliente' =>  $client, 'empresa' => $empresa, 'funcionario' => $funcionario, 'faturaFormatada' => $faturaFormatada]);
         } catch (Exception $ex) {
             $this->redirectTo('Dashboard');
         }
