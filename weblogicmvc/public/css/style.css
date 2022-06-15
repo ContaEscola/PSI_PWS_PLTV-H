@@ -919,7 +919,6 @@ select {
 
 .form {
   width: 100%;
-  max-width: 100%;
   --gap: 3.125rem;
 }
 
