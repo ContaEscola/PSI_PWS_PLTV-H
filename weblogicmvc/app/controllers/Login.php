@@ -44,7 +44,7 @@ class Login extends BaseController
                 if (password_verify($password, $userPasswordOnDB)) {
 
                     $auth = $this->loadModel('Auth');
-                    $auth->setAuth($username, $userToLookup->role);
+                    $auth->setAuth($userToLookup->username, $userToLookup->role, $userToLookup->id);
 
                     $this->redirectTo('Dashboard', 'index');
                 } else {

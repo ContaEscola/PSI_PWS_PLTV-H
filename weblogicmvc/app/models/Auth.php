@@ -19,16 +19,21 @@ class Auth
         return $_SESSION['role'];
     }
 
+    public function getID()
+    {
+        return $_SESSION['id'];
+    }
 
-    public function setAuth($username, $role)
+    public function setAuth($username, $role, $id)
     {
         $_SESSION['username'] = $username;
         $_SESSION['role'] = $role;
+        $_SESSION['id'] = $id;
     }
 
     public function isLoggedIn($expectedRole)
     {
-        if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) return false;
+        if (!isset($_SESSION['username']) || !isset($_SESSION['role']) || !isset($_SESSION['id'])) return false;
 
         if ($expectedRole[0] != null) {
             $foundRole = false;
