@@ -29,7 +29,7 @@
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
                 <ul class="[ dropdown-list ] [ bg-white box-shadow-1 ]">
                     <li>
-                        <a class="[ dropdown-item__link ]  [ grid ]" href="#">
+                        <a class="[ dropdown-item__link ]  [ grid ]" href="./?c=Configuracoes&a=index">
                             Configurações
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="[ dropdown-item__link ] [ grid ] " data-type="warning" href="#">
+                        <a class="[ dropdown-item__link ] [ grid ] " data-type="warning" href="./?c=Login&a=logout">
                             Logout
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
