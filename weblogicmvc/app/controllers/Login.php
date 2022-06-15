@@ -8,7 +8,6 @@ class Login extends BaseController
 
     public function  __construct()
     {
-        echo 'hey';
         $this->checkLoggedIn(null);
     }
 
