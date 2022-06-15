@@ -37,7 +37,6 @@ class Auth
 
         if ($expectedRole[0] != null) {
             $foundRole = false;
-
             foreach ($expectedRole as $role) {
                 if ($role == $_SESSION['role'])
                     $foundRole  = true;

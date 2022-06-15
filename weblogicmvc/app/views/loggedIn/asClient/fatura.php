@@ -23,7 +23,7 @@
         </div>
         <div class="[ dropdown ] [ grid g-place-items-center margin-left-auto ]">
             <button class="[ dropdown-toggle ] [ grid g-direction-column g-place-items-center  ] [ text-dark bg-white ] " data-dropdown-toggle>
-                <?= $username ?> / <?= $role ?>
+                <?= $sessionInfo['username'] ?> / <?= $sessionInfo['role'] ?>
                 <img src="./assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon">
             </button>
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">

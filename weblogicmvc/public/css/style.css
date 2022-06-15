@@ -787,7 +787,7 @@ select {
   grid-column: 1 / 2;
 }
 
-.table[data-type="gestao-faturas"] {
+.table[data-type="dashboard"] {
   min-width: 100%;
 }
 
@@ -816,6 +816,12 @@ select {
   min-width: 1rem;
 }
 
+.table-cell[data-type="list-remove"] {
+  min-width: 1.438rem;
+  width: 1.438rem;
+  max-width: 1.438rem;
+}
+
 .table-cell[data-type="faturas-list-num"] {
   min-width: 7rem;
   width: 100%;
@@ -832,6 +838,7 @@ select {
 .table-cell[data-type="faturas-list-see"] {
   min-width: 1.438rem;
   width: 1.438rem;
+  max-width: 1.438rem;
 }
 
 .table-cell[data-type="gestao-faturas-list-num"] {
@@ -859,10 +866,27 @@ select {
   min-width: 12rem;
 }
 
-.table-cell[data-type="gestao-faturas-list-remove"] {
-  min-width: 1.438rem;
-  width: 1.438rem;
-  max-width: 1.438rem;
+.table-cell[data-type="funcionarios-list-nome"] {
+  min-width: 7rem;
+  width: 100%;
+}
+.table-cell[data-type="funcionarios-list-email"] {
+  min-width: 10rem;
+}
+.table-cell[data-type="funcionarios-list-telefone"] {
+  min-width: 7rem;
+}
+.table-cell[data-type="funcionarios-list-nif"] {
+  min-width: 7rem;
+}
+.table-cell[data-type="funcionarios-list-cod-postal"] {
+  min-width: 12rem;
+}
+.table-cell[data-type="funcionarios-list-localidade"] {
+  min-width: 10rem;
+}
+.table-cell[data-type="funcionarios-list-morada"] {
+  min-width: 10rem;
 }
 
 @media (min-width: 30em) {
@@ -913,7 +937,29 @@ select {
     width: 7%;
   }
   .table-cell[data-type="gestao-faturas-list-dta-emissao"] {
+    width: 16%;
+  }
+
+  .table-cell[data-type="funcionarios-list-nome"] {
     width: 15%;
+  }
+  .table-cell[data-type="funcionarios-list-email"] {
+    width: 15%;
+  }
+  .table-cell[data-type="funcionarios-list-telefone"] {
+    width: 7%;
+  }
+  .table-cell[data-type="funcionarios-list-nif"] {
+    width: 7%;
+  }
+  .table-cell[data-type="funcionarios-list-cod-postal"] {
+    width: 7%;
+  }
+  .table-cell[data-type="funcionarios-list-localidade"] {
+    width: 8%;
+  }
+  .table-cell[data-type="funcionarios-list-morada"] {
+    width: 40%;
   }
 }
 

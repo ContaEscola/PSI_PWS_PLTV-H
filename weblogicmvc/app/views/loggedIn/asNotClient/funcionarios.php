@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dados da Empresa</title>
+    <title>Funcionários</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,7 +30,7 @@
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
                 <ul class="[ dropdown-list ] [ bg-white box-shadow-1 ]">
                     <li>
-                        <a class="[ dropdown-item__link ] [ grid ]" href="./?c=Configuracoes&a=index">
+                        <a class="[ dropdown-item__link ] [ grid ]" href="#">
                             Configurações
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="[ dropdown-item__link ] [ grid ]" data-type="warning" href="./?c=Login&a=logout">
+                        <a class="[ dropdown-item__link ] [ grid ]" data-type="warning" href="#">
                             Logout
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -59,7 +59,7 @@
         <nav class="dashboard-navigation" id="dashboard-navigation" aria-label="navegação primária">
             <ul class="flex f-direction-column f-gap-0">
                 <li class="dashboard__item">
-                    <a href="./?c=Dashboard&a=index" class="navigation__link" data-state="active">Empresa</a>
+                    <a href="./?c=Dashboard&a=index" class="navigation__link">Empresa</a>
                 </li>
                 <li class="dashboard__item">
                     <a href="#" class="navigation__link">Faturas</a>
@@ -70,78 +70,66 @@
                 <li class="dashboard__item">
                     <a href="#" class="navigation__link">Taxas de Iva</a>
                 </li>
-                <?php
-                if ($sessionInfo['role'] == 'Administrador') {
-                ?>
-                    <li class="dashboard__item">
-                        <a href="./?c=Funcionario&a=index" class="navigation__link">Funcionários</a>
-                    </li>
-                <?php
-                }
-                ?>
+                <li class="dashboard__item">
+                    <a href="#" class="navigation__link" data-state="active">Funcionários</a>
+                </li>
                 <li class="dashboard__item">
                     <a href="#" class="navigation__link">Clientes</a>
                 </li>
             </ul>
         </nav>
 
-        <div class="main-content__page">
+        <div class="main-content__page" data-page="dashboard">
+
             <h1 class="[ main-content__title ] [ text-align-center ] [ fs-600 fw-bold ]">
-                Dados da Empresa
+                Funcionários
             </h1>
+            <p class="[ main-title__subtext ] [ text-align-center ]">Aqui estão apresentados todos os funcionários na
+                empresa, pode editá-los ou removê-los!</p>
+            <div class="flex justify-content-space-between margin-top-2">
+                <button class="button" data-type="primary">Criar Funcionário</button>
+                <button class="button" data-type="outline">Editar Funcionário</button>
+            </div>
+            <div class="[ table-container ] [ margin-top-3 ] " data-type="dashboard">
+                <div class="table-subcontainer">
+                    <table class="[ table ] [ text-align-left ]" data-type="dashboard">
+                        <thead>
+                            <tr class="table-row" data-type="header">
+                                <th class="table-cell" data-type="funcionarios-list-nome">Nome</th>
+                                <th class="table-cell" data-type="funcionarios-list-email">Email</th>
+                                <th class="table-cell" data-type="funcionarios-list-telefone">Telefone</th>
+                                <th class="table-cell" data-type="funcionarios-list-nif">NIF</th>
+                                <th class="table-cell" data-type="funcionarios-list-cod-postal">Código Postal</th>
+                                <th class="table-cell" data-type="funcionarios-list-localidade">Localidade</th>
+                                <th class="table-cell" data-type="funcionarios-list-morada">Morada</th>
+                                <th class="table-cell" data-type="list-remove"></th>
+                                <th class="table-cell" data-type="padding-left-fix"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row" data-type="body">
+                                <td class="table-cell">teste</td>
+                                <td class="table-cell">teste</td>
+                                <td class="table-cell">teste</td>
+                                <td class="table-cell">teste</td>
+                                <td class="table-cell">teste</td>
+                                <td class="table-cell">teste</td>
+                                <td class="table-cell">teste</td>
+                                <td class="table-cell">
+                                    <a href="./?c=Funcionario&a=delete" class="flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-warning" viewBox="0 0 576 512">
+                                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                            <path d="M576 384C576 419.3 547.3 448 512 448H205.3C188.3 448 172 441.3 160 429.3L9.372 278.6C3.371 272.6 0 264.5 0 256C0 247.5 3.372 239.4 9.372 233.4L160 82.75C172 70.74 188.3 64 205.3 64H512C547.3 64 576 92.65 576 128V384zM271 208.1L318.1 256L271 303C261.7 312.4 261.7 327.6 271 336.1C280.4 346.3 295.6 346.3 304.1 336.1L352 289.9L399 336.1C408.4 346.3 423.6 346.3 432.1 336.1C442.3 327.6 442.3 312.4 432.1 303L385.9 256L432.1 208.1C442.3 199.6 442.3 184.4 432.1 175C423.6 165.7 408.4 165.7 399 175L352 222.1L304.1 175C295.6 165.7 280.4 165.7 271 175C261.7 184.4 261.7 199.6 271 208.1V208.1z" />
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
 
-            <form action="#" method="POST" class="[ form ] [ margin-top-3 grid ]" data-type="dados-empresa">
 
-                <div class="[ form__designacao-social ] [ flex f-direction-column f-gap-1 ]">
-                    <label for="designacao-social">Designação Social:</label>
-                    <input type="text" class="input" id="designacao-social" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                        </tbody>
+                    </table>
                 </div>
-
-                <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
-                    <label for="telefone">Telefone:</label>
-                    <input type="tel" class="input" id="telefone" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
-                </div>
-
-                <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
-                    <label for="nif">NIF:</label>
-                    <input type="text" class="input" id="nif" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
-                </div>
-
-                <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
-                    <label for="email">Email:</label>
-                    <input type="text" class="input" id="email" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
-                </div>
-
-                <div class="[ form__localidade ] [ flex f-direction-column f-gap-1 ]">
-                    <label for="localidade">Localidade:</label>
-                    <input type="text" class="input" id="localidade" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
-                </div>
-
-                <div class="[ form__capital-social ] [ flex f-direction-column f-gap-1 ]">
-                    <label for="capital-social">Capital Social:</label>
-                    <input type="text" class="input" id="capital-social" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
-                </div>
-
-                <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
-                    <label for="morada">Morada:</label>
-                    <input type="text" class="input" id="morada" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
-                </div>
-
-                <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
-                    <label for="codigo-postal">Código Postal:</label>
-                    <input type="text" class="input" id="codigo-postal" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
-                </div>
-
-                <input type="submit" class="[ button ] [ form__submit ]" data-type="outline" value="Guardar" />
-            </form>
+            </div>
         </div>
     </main>
 </body>
