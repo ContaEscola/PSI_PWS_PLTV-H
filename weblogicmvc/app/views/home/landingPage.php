@@ -44,7 +44,11 @@
         </div>
 
         <div class="grid justify-items-center">
+<<<<<<<< HEAD:weblogicmvc/app/views/home/landingPage.html
+            <img src="../../../public/assets/landingPage-Man.svg" alt="Uma pessoa com uma fatura na mão" />
+========
             <img src="./assets/landingPage-Man.svg" alt="Uma pessoa com uma fatura na mão" />
+>>>>>>>> development:weblogicmvc/app/views/home/landingPage.php
         </div>
     </main>
 </body>
