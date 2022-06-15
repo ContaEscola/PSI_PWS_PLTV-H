@@ -183,6 +183,10 @@ select {
   place-items: center;
 }
 
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
 .justify-items-center {
   justify-items: center;
 }
@@ -223,7 +227,7 @@ select {
 }
 
 .margin-top-3 {
-  /* 50px  */
+  /* 50 px  */
   margin-top: 3.125rem;
 }
 
@@ -385,6 +389,14 @@ select {
   grid-area: submit;
 }
 
+.fill-primary {
+  fill: hsl(var(--clr-primary) / var(--clr-primary-alpha));
+}
+
+.fill-warning {
+  fill: hsl(var(--clr-warning) / var(--clr-warning-alpha));
+}
+
 /* Block */
 
 .typography-phone {
@@ -423,6 +435,7 @@ select {
 .main-content {
   padding-block: 3.125em;
   padding-inline: 1.25em;
+  max-width: 100vw;
   z-index: 1;
 }
 
@@ -571,9 +584,25 @@ select {
   --border-color: hsl(var(--clr-primary) / var(--clr-primary-alpha));
 
   color: hsl(var(--clr-primary) / var(--clr-primary-alpha));
-  border: 0.063em solid var(--border-color);
+  border: 0.12em solid var(--border-color);
   padding-inline: 1em;
   border-radius: 0.625rem;
+
+  outline: none;
+}
+
+.input:not([data-state="disabled"]):focus {
+  --border-color: hsl(var(--clr-accent) / var(--clr-accent-alpha));
+}
+
+.input[data-state="disabled"] {
+  background-color: hsl(
+    var(--clr-input-disabled) / var(--clr-input-disabled-alpha)
+  );
+}
+
+.input[data-state="error"] {
+  background-color: hsl(var(--clr-warning) / 0.3);
 }
 
 .input__error {
@@ -585,19 +614,44 @@ select {
   display: block;
 }
 
-.input:focus {
-  outline: 1px solid hsl(var(--clr-primary) / var(--clr-primary-alpha));
-  outline-offset: 2px;
+.dropdown-toggle {
+  border: none;
+  --gap: 0.625rem;
+  cursor: pointer;
+  padding: 0;
 }
 
-.input[data-state="disabled"] {
-  background-color: hsl(
-    var(--clr-input-disabled) / var(--clr-input-disabled-alpha)
-  );
+@media (min-width: 30em) {
+  .dropdown-toggle {
+    --gap: 1.25rem;
+  }
 }
 
-.input[data-state="error"] {
-  background-color: hsl(var(--clr-warning) / 0.3);
+.dropdown-toggle__icon {
+  transition: transform 250ms ease-in-out;
+}
+
+.dropdown-toggle:hover .dropdown-toggle__icon {
+  transform: scale(1.2);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-nav {
+  position: absolute;
+  top: calc(100% + 0.875rem);
+  right: 0;
+  z-index: 2;
+}
+
+.dropdown-nav[data-visible="false"] {
+  display: none;
+}
+
+.dropdown-nav[data-visible="true"] {
+  display: block;
 }
 
 .dropdown-toggle {
@@ -699,16 +753,32 @@ select {
 .table-container {
   padding-bottom: 0.625em;
   height: auto;
-  max-height: 40rem;
+  max-height: 35rem;
+  max-width: 100%;
   overflow: auto;
+}
+
+.table-container[data-type="dashboard"] {
+  width: 100%;
+  max-width: calc(100vw - (2 * 1.25em));
+}
+
+@media (min-width: 30em) {
+  .table-container[data-type="dashboard"] {
+    max-width: calc(100vw - (2 * 3.125em));
+  }
+}
+
+@media (min-width: 52em) {
+  .table-container[data-type="dashboard"] {
+    max-width: calc(100vw - 4.375rem - 13rem - 3.125em);
+  }
 }
 
 .table-subcontainer {
   --gap: 0;
 
   min-width: 100%;
-
-  grid-template-columns: 1fr auto;
 }
 
 .table {
@@ -717,9 +787,8 @@ select {
   grid-column: 1 / 2;
 }
 
-.padding-right-fix {
-  width: 1.5rem;
-  grid-column: 2 / -1;
+.table[data-type="gestao-faturas"] {
+  min-width: 100%;
 }
 
 .table-cell {
@@ -743,20 +812,57 @@ select {
   padding-block: 0.625em;
 }
 
+.table-cell[data-type="padding-left-fix"] {
+  min-width: 1rem;
+}
+
 .table-cell[data-type="faturas-list-num"] {
-  width: 35%;
+  min-width: 7rem;
+  width: 100%;
 }
 
 .table-cell[data-type="faturas-list-total"] {
-  width: 20%;
+  min-width: 6rem;
 }
 
 .table-cell[data-type="faturas-list-dta-emissao"] {
-  width: 40%;
+  min-width: 10rem;
 }
 
 .table-cell[data-type="faturas-list-see"] {
-  width: min-content;
+  min-width: 1.438rem;
+  width: 1.438rem;
+}
+
+.table-cell[data-type="gestao-faturas-list-num"] {
+  min-width: 7rem;
+  width: 100%;
+}
+
+.table-cell[data-type="gestao-faturas-list-funcionario"] {
+  min-width: 10rem;
+}
+
+.table-cell[data-type="gestao-faturas-list-cliente"] {
+  min-width: 8rem;
+}
+.table-cell[data-type="gestao-faturas-list-estado"] {
+  min-width: 7rem;
+}
+.table-cell[data-type="gestao-faturas-list-total"] {
+  min-width: 6rem;
+}
+.table-cell[data-type="gestao-faturas-list-iva"] {
+  min-width: 6rem;
+}
+.table-cell[data-type="gestao-faturas-list-dta-emissao"] {
+  min-width: 12rem;
+}
+
+.table-cell[data-type="gestao-faturas-list-remove"] {
+  min-width: 1.438rem;
+  width: 1.438rem;
+  max-width: 1.438rem;
 }
 
 @media (min-width: 30em) {
@@ -784,6 +890,30 @@ select {
 
   .table-cell[data-type="faturas-list-dta-emissao"] {
     width: 25%;
+  }
+
+  .table-cell[data-type="gestao-faturas-list-num"] {
+    width: 35%;
+  }
+
+  .table-cell[data-type="gestao-faturas-list-funcionario"] {
+    width: 10%;
+  }
+
+  .table-cell[data-type="gestao-faturas-list-cliente"] {
+    width: 10%;
+  }
+  .table-cell[data-type="gestao-faturas-list-estado"] {
+    width: 15%;
+  }
+  .table-cell[data-type="gestao-faturas-list-total"] {
+    width: 7%;
+  }
+  .table-cell[data-type="gestao-faturas-list-iva"] {
+    width: 7%;
+  }
+  .table-cell[data-type="gestao-faturas-list-dta-emissao"] {
+    width: 15%;
   }
 }
 
