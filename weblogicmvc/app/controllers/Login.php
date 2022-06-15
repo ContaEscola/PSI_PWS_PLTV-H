@@ -60,4 +60,12 @@ class Login extends BaseController
             $this->renderView('home/login', ["user" => $userToLogin]);
         }
     }
+
+    public function logout()
+    {
+        $auth = $this->loadModel('Auth');
+        $auth->logout();
+
+        $this->redirectTo();
+    }
 }
