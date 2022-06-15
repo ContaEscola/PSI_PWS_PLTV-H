@@ -7,7 +7,7 @@ class Fatura extends BaseController
     {
         $auth = $this->loadModel('Auth');
 
-        if (!$auth->isLoggedIn([null]))
+        if (!$auth->isLoggedIn(['Cliente']))
             $this->redirectTo();
     }
 
