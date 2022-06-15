@@ -68,7 +68,7 @@ CONSTRAINT fk_produto_iva			FOREIGN KEY(iva_id)		REFERENCES ivas(id)
 
 CREATE TABLE faturas (
 id  					INT 								UNSIGNED	AUTO_INCREMENT,
-data 					DATETIME 							NOT NULL,
+data 					DATETIME 							DEFAULT 	NOW(),
 valorTotal 				DOUBLE								NOT NULL,
 ivaTotal 				DOUBLE 								NOT NULL,
 estado 					ENUM('Em Lançamento', 'Emitida')	NOT NULL,

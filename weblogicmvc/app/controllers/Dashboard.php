@@ -11,11 +11,14 @@ class Dashboard extends BaseController
 
             $usernameLoggedIn = $auth->getUsername();
             $roleLoggedIn = $auth->getRole();
+            $idLoggedIn = $auth->getID();
 
             switch ($roleLoggedIn) {
 
                 case 'Cliente':
-                    $this->renderView('loggedIn/asClient/index', ['username' => $usernameLoggedIn, 'role' => $roleLoggedIn]);
+                    $cond = array('conditions' => array('referenciaCliente = ? AND estado = ?', $idLoggedIn, 'Em Lançamento'), 'order' => 'data asc');
+                    $faturas = FaturaCliente::all($cond);
+                    $this->renderView('loggedIn/asClient/index', ['username' => $usernameLoggedIn, 'role' => $roleLoggedIn, 'faturas' => $faturas]);
                     break;
 
                 case 'Administrador':

@@ -80,18 +80,18 @@ VALUES
 -- ///////////////////////
 -- As faturas para inserir
 INSERT INTO faturas
-( data, 					valorTotal,		ivaTotal,		estado,				referenciaFuncionario,		referenciaCliente)
+(valorTotal,		ivaTotal,		estado,				referenciaFuncionario,		referenciaCliente)
 VALUES
-(current_timestamp(), 		808.2456,		149.1256, 		"Em Lançamento", 	5, 							1),
+(808.2456,			149.1256, 		"Em Lançamento", 	5, 							1),
 
 
-(current_timestamp(),		179.667,		15.0892, 		"Em Lançamento", 	5, 							2),
+(179.667,			15.0892, 		"Em Lançamento", 	5, 							2),
 
 
-(current_timestamp(), 		808.2456, 		149.1256, 		"Em Lançamento", 	6, 							2),
+(808.2456, 			149.1256, 		"Em Lançamento", 	6, 							2),
 
 
-(current_timestamp(), 		179.667, 		15.0892, 		"Em Lançamento", 	6, 							3);
+(179.667, 			15.0892, 		"Em Lançamento", 	6, 							3);
 
 
 -- ///////////////////////
