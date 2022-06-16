@@ -7,10 +7,7 @@ class Funcionario extends BaseController
     private $sessionInfo;
 
     private $allFuncionarios;
-
     private $defaultNewFuncionario;
-    private $defaultAddModalToggle;
-    private $defaultEditModalToggle;
 
     public function __construct()
     {
@@ -25,16 +22,13 @@ class Funcionario extends BaseController
         $this->allFuncionarios = FuncionarioAdmin::all($cond);
 
         $this->defaultNewFuncionario = new FuncionarioAdmin();
-        $this->defaultAddModalToggle = 'false';
-        $this->defaultEditModalToggle = 'false';
+        $this->defaultNewFuncionario->role = 'Funcionário';
     }
 
-    public function index($changeDefaultNewFuncionario, $changeAddModalToggle, $changeEditModalToggle)
+    public function index($reset = false)
     {
-        var_dump($changeDefaultNewFuncionario);
-        var_dump($changeAddModalToggle);
-        var_dump($changeEditModalToggle);
-        $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->defaultNewFuncionario, 'addModalToggle' => $this->defaultAddModalToggle, "editModalToggle" => $this->defaultEditModalToggle]);
+
+        $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->defaultNewFuncionario, 'addModalToggle' => "false", "editModalToggle" => "false"]);
     }
 
     public function delete($id)
@@ -47,11 +41,9 @@ class Funcionario extends BaseController
 
             $funcionario->delete();
 
-            $this->allFuncionarios = FuncionarioAdmin::all($this->conditionForAllFuncionarios);
-
-            $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->templateNewFuncionario, 'addModalToggle' => 'false', "editModalToggle" => 'false']);
+            $this->redirectTo('Funcionario');
         } catch (Exception $ex) {
-            $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->templateNewFuncionario, 'addModalToggle' => 'false', "editModalToggle" => 'false']);
+            $this->redirectTo('Funcionario');
         }
     }
 
@@ -96,11 +88,11 @@ class Funcionario extends BaseController
             $newFuncionario->password = $hashPassword;
 
             $newFuncionario->save();
-            $this->allFuncionarios = FuncionarioAdmin::all($this->conditionForAllFuncionarios);
 
-            $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->templateNewFuncionario, 'addModalToggle' => 'false', "editModalToggle" => 'false']);
+            $this->redirectTo('Funcionario');
         } else {
-            $this->redirectTo('Funcionario', 'index', ['changeDefaultNewFuncionario' => $newFuncionario, 'overrideAction' => 'index', 'overrideParams' => 'changeDefaultNewFuncionario' => $newFuncionario, 'changeAddModalToggle' => 'true', 'changeEditModalToggle' => null]]);
+
+            $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $newFuncionario, 'addModalToggle' => 'true', "editModalToggle" => 'false']);
         }
     }
 }

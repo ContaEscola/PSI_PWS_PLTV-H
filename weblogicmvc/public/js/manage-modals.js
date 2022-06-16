@@ -1,3 +1,4 @@
+
 const addModal = document.querySelector('#addModal');
 const openAddModal = document.querySelector('[data-open-add-modal]');
 const closeAddModal = document.querySelector('[data-close-add-modal]');
