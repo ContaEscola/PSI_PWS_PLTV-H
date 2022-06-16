@@ -1345,3 +1345,27 @@ select {
       "options  options  options  options  options";
   }
 }
+
+.fatura__menu {
+  grid-auto-flow: row;
+}
+
+@media (min-width: 30em) {
+  .fatura__menu .button {
+    width: min-content;
+    height: min-content;
+  }
+  .fatura__menu .button {
+    justify-self: right;
+  }
+}
+
+@media (min-width: 52em) {
+  .fatura__menu {
+    grid-auto-flow: column;
+    grid-template-columns: auto 1fr;
+  }
+  .fatura__menu .button {
+    align-self: flex-end;
+  }
+}

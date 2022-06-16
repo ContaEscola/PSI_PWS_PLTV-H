@@ -58,11 +58,15 @@
             <img src="./assets/go-back.svg" alt="">
         </a>
 
-        <h1 class="[ main-content__title ] [ margin-top-2 text-align-center ] [ fs-600 fw-bold ]">Fatura: <?= $fatura->id ?></h1>
-        <p class="[ main-title__subtext ] [ text-align-center ]">A fatura em baixo será a fatura própria para impressão!
-        </p>
-
-        <div id="printFatura" class="[ fatura-container ] [ container margin-top-2 ] [ box-shadow-1 ]">
+        <div class="[ fatura__menu ]  [ grid ]">
+            <div>
+                <h1 class="[ main-content__title ] [ margin-top-2 text-align-center ] [ fs-600 fw-bold ]">Fatura: <?= $fatura->id ?></h1>
+                <p class="[ main-title__subtext ] [ text-align-center ]">A fatura em baixo será a fatura própria para impressão!
+                </p>
+            </div>
+            <button class="button" data-type="primary" data-print-receipt>Imprimir</button>
+        </div>
+        <div id="fatura" class="[ fatura-container ] [ container margin-top-2 ] [ box-shadow-1 ]">
             <div class="[ fatura-container__subcontainer ] [ grid text-black ]">
                 <div class="flex">
                     <section class="flex-grow flow flow-space-2" aria-label="Dados do cliente">
@@ -152,9 +156,6 @@
                 </section>
             </div>
         </div>
-
-        <h1>Print</h1>
-        <input type="button" onclick="printDiv()" value="print" />
     </main>
 </body>
 
