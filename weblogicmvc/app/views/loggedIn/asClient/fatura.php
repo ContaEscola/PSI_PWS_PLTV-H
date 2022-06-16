@@ -60,11 +60,11 @@
 
         <div class="[ fatura__menu ]  [ grid ]">
             <div>
-                <h1 class="[ main-content__title ] [ margin-top-2 text-align-center ] [ fs-600 fw-bold ]">Fatura: <?= $fatura->id ?></h1>
+                <h1 class="[ main-content__title ] [ margin-top-2 text-align-center ] [ fs-600 fw-bold ]">Fatura: <span id="fatura-id"><?= $fatura->id ?></span></h1>
                 <p class="[ main-title__subtext ] [ text-align-center ]">A fatura em baixo será a fatura própria para impressão!
                 </p>
             </div>
-            <button class="button" data-type="primary" onclick="printReceipt()">Imprimir</button>
+            <button class="button" data-type="primary" data-print-receipt>Imprimir</button>
         </div>
         <div id="fatura" class="[ fatura-container ] [ container margin-top-2 ] [ box-shadow-1 ]">
             <div class="[ fatura-container__subcontainer ] [ grid text-black ]">
