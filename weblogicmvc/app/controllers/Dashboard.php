@@ -4,26 +4,35 @@
 class Dashboard extends BaseController
 {
 
+    private $auth;
+
+    public function __construct()
+    {
+        $this->auth = $this->loadModel('Auth');
+    }
+
     public function index()
     {
-        $auth = $this->loadModel('Auth');
-        if ($auth->isLoggedIn([null])) {
 
-            $usernameLoggedIn = $auth->getUsername();
-            $roleLoggedIn = $auth->getRole();
-            $idLoggedIn = $auth->getID();
+        if ($this->auth->isLoggedIn([null])) {
 
-            switch ($roleLoggedIn) {
+            $sessionInfo = $this->getSessionInfo();
+
+            $idLoggedIn = $this->auth->getID();
+
+
+
+            switch ($sessionInfo['role']) {
 
                 case 'Cliente':
                     $cond = array('conditions' => array('referenciaCliente = ? AND estado = ?', $idLoggedIn, 'Em Lançamento'), 'order' => 'data asc');
                     $faturas = FaturaCliente::all($cond);
-                    $this->renderView('loggedIn/asClient/index', ['username' => $usernameLoggedIn, 'role' => $roleLoggedIn, 'faturas' => $faturas]);
+                    $this->renderView('loggedIn/asClient/index', ['sessionInfo' => $sessionInfo, 'faturas' => $faturas]);
                     break;
 
                 case 'Administrador':
                 case 'Funcionário':
-                    $this->renderView('loggedIn/asNotClient/index', ['username' => $usernameLoggedIn, 'role' => $roleLoggedIn]);
+                    $this->renderView('loggedIn/asNotClient/index', ['sessionInfo' => $sessionInfo]);
                     break;
             }
         } else {

@@ -13,6 +13,7 @@ class Login extends BaseController
 
     public function index()
     {
+
         $freshUser = new UserToLogin();
 
         $this->renderView('home/login', ['user' => $freshUser]);

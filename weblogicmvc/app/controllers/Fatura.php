@@ -2,13 +2,17 @@
 
 class Fatura extends BaseController
 {
+    private $auth;
+    private $sessionInfo;
 
     public function __construct()
     {
-        $auth = $this->loadModel('Auth');
+        $this->auth = $this->loadModel('Auth');
 
-        if (!$auth->isLoggedIn(['Cliente']))
-            $this->redirectTo();
+        if (!$this->auth->isLoggedIn(['Cliente']))
+            $this->redirectTo('Dashboard');
+
+        $this->sessionInfo = $this->getSessionInfo();
     }
 
     public function index($id)
@@ -17,12 +21,11 @@ class Fatura extends BaseController
 
             $faturaToCheck = FaturaCliente::find([$id]);
 
-            $auth = $this->loadModel('Auth');
-            $clienteID = $auth->getID();
+            $clienteID = $this->auth->getID();
 
-            if ($faturaToCheck == null || ($faturaToCheck->referenciacliente != $clienteID)) {
-                $this->redirectTo('Dashboard');
-            }
+            if ($faturaToCheck == null || ($faturaToCheck->referenciacliente != $clienteID))
+                throw new Exception();
+
 
             $select = 'lf.quantidade, lf.valorUnitario, lf.valorIva, p.referencia, p.descricao, p.preco';
             $from = 'linhafaturas as lf';
@@ -38,12 +41,7 @@ class Fatura extends BaseController
 
             $empresa = EmpresaCliente::first();
 
-            $auth = $this->loadModel('Auth');
-            $usernameLoggedIn = $auth->getUsername();
-            $roleLoggedIn = $auth->getRole();
-
-
-            $this->renderView('loggedIn/asClient/fatura', ['username' => $usernameLoggedIn, 'role' => $roleLoggedIn, 'fatura' => $faturaToCheck, 'cliente' =>  $client, 'empresa' => $empresa, 'funcionario' => $funcionario, 'faturaFormatada' => $faturaFormatada]);
+            $this->renderView('loggedIn/asClient/fatura', ['sessionInfo' => $this->sessionInfo, 'fatura' => $faturaToCheck, 'cliente' =>  $client, 'empresa' => $empresa, 'funcionario' => $funcionario, 'faturaFormatada' => $faturaFormatada]);
         } catch (Exception $ex) {
             $this->redirectTo('Dashboard');
         }

@@ -24,7 +24,7 @@
         </div>
         <div class="[ dropdown ] [ grid g-place-items-center margin-left-auto ]">
             <button class="[ dropdown-toggle ] [ grid g-direction-column g-place-items-center  ] [ text-dark bg-white ] " data-dropdown-toggle>
-                <?= $username ?> / <?= $role ?>
+                <?= $sessionInfo['username'] ?> / <?= $sessionInfo['role'] ?>
                 <img src="./assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon">
             </button>
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
@@ -61,8 +61,8 @@
         </p>
         <p class="[ main-title__subtext ] [ margin-top-1 text-align-center ]"><span class="fw-bold">Atenção:</span> só irá aparecer as <span class="fw-bold">emitidas</span>!</p>
 
-        <div class="[ table-container ] [ margin-top-4 ] ">
-            <div class="table-subcontainer">
+        <div class="[ table-container ] [ margin-top-4 ] " data-page="cliente-index">
+            <div class="table-subcontainer" data-page="cliente-index">
                 <table class="[ table ] [ text-align-left ]">
                     <thead>
                         <tr class="table-row" data-type="header">

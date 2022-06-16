@@ -40,10 +40,19 @@ class BaseController
 
 
 
-    protected function checkLoggedIn($role)
+    protected function checkLoggedIn($expectedRole)
     {
         $auth = $this->loadModel('Auth');
-        if ($auth->isLoggedIn($role))
+        if ($auth->isLoggedIn($expectedRole))
             $this->redirectTo('Dashboard');
+    }
+
+    protected function getSessionInfo()
+    {
+        $auth = $this->loadModel('Auth');
+        $username = $auth->getUsername();
+        $role = $auth->getRole();
+
+        return array("username" => $username, "role" => $role);
     }
 }

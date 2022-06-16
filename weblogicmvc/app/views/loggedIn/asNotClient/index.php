@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Dados da Empresa</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,7 +24,7 @@
         </div>
         <div class="[ dropdown ] [ grid g-place-items-center margin-left-auto ]">
             <button class="[ dropdown-toggle ] [ grid g-direction-column g-place-items-center ] [ text-dark bg-white ]" data-dropdown-toggle>
-                <?= $username ?> / <?= $role ?>
+                <?= $sessionInfo['username'] ?> / <?= $sessionInfo['role'] ?>
                 <img src="./assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon" />
             </button>
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
@@ -59,7 +59,7 @@
         <nav class="dashboard-navigation" id="dashboard-navigation" aria-label="navegação primária">
             <ul class="flex f-direction-column f-gap-0">
                 <li class="dashboard__item">
-                    <a href="#" class="navigation__link" data-state="active">Empresa</a>
+                    <a href="./?c=Dashboard&a=index" class="navigation__link" data-state="active">Empresa</a>
                 </li>
                 <li class="dashboard__item">
                     <a href="#" class="navigation__link">Faturas</a>
@@ -70,11 +70,17 @@
                 <li class="dashboard__item">
                     <a href="#" class="navigation__link">Taxas de Iva</a>
                 </li>
+                <?php
+                if ($sessionInfo['role'] == 'Administrador') {
+                ?>
+                    <li class="dashboard__item">
+                        <a href="./?c=Funcionario&a=index" class="navigation__link">Funcionários</a>
+                    </li>
+                <?php
+                }
+                ?>
                 <li class="dashboard__item">
                     <a href="#" class="navigation__link">Clientes</a>
-                </li>
-                <li class="dashboard__item">
-                    <a href="#" class="navigation__link">Funcionários</a>
                 </li>
             </ul>
         </nav>
