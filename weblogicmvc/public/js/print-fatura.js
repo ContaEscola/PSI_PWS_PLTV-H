@@ -1,7 +1,9 @@
+const printBtn = document.querySelector("[data-print-receipt]");
 
-function printReceipt() {
-    let originalPage = document.body.innerHTML;
-    let receipt = document.getElementById('fatura');
+printBtn.addEventListener('click', () => {
+
+    let faturaID = document.querySelector('#fatura-id');
+    let receipt = document.querySelector('#fatura');
 
     let receiptContainer = receipt.querySelector(".fatura-container__subcontainer");
     let productsList = receipt.querySelector(".fatura__products-list");
@@ -13,6 +15,7 @@ function printReceipt() {
 
     document.body.innerHTML = receiptReadyToPrint;
     window.print();
-    document.body.innerHTML = originalPage;
-}
+
+    document.location.href = `./?c=Fatura&a=index&id=${faturaID.textContent}`;
+})
 
