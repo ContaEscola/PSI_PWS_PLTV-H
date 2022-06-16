@@ -20,6 +20,8 @@ class Dashboard extends BaseController
 
             $idLoggedIn = $this->auth->getID();
 
+
+
             switch ($sessionInfo['role']) {
 
                 case 'Cliente':

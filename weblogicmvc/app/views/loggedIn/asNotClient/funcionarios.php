@@ -15,6 +15,7 @@
 
     <script src="./js/dropdowns.js" defer></script>
     <script src="./js/mobile-nav-toggle.js" defer></script>
+    <script src="./js/manage-modals.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
@@ -30,7 +31,7 @@
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
                 <ul class="[ dropdown-list ] [ bg-white box-shadow-1 ]">
                     <li>
-                        <a class="[ dropdown-item__link ] [ grid ]" href="#">
+                        <a class="[ dropdown-item__link ] [ grid ]" href="./?c=Configuracoes&a=index">
                             Configurações
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -39,7 +40,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="[ dropdown-item__link ] [ grid ]" data-type="warning" href="#">
+                        <a class="[ dropdown-item__link ] [ grid ]" data-type="warning" href="./?c=Login&a=logout">
                             Logout
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -71,7 +72,7 @@
                     <a href="#" class="navigation__link">Taxas de Iva</a>
                 </li>
                 <li class="dashboard__item">
-                    <a href="#" class="navigation__link" data-state="active">Funcionários</a>
+                    <a href="./?c=Funcionario&a=index" class="navigation__link" data-state="active">Funcionários</a>
                 </li>
                 <li class="dashboard__item">
                     <a href="#" class="navigation__link">Clientes</a>
@@ -87,8 +88,181 @@
             <p class="[ main-title__subtext ] [ text-align-center ]">Aqui estão apresentados todos os funcionários na
                 empresa, pode editá-los ou removê-los!</p>
             <div class="flex justify-content-space-between margin-top-2">
-                <button class="button" data-type="primary">Criar Funcionário</button>
-                <button class="button" data-type="outline">Editar Funcionário</button>
+                <button class="button" data-open-add-modal data-type="primary">Criar Funcionário</button>
+
+                <button class="button" data-open-edit-modal data-type="outline">Editar Funcionário</button>
+
+
+                <dialog class="modal" id="addModal">
+                    <h2 class="fs-500 text-dark">Criação do Funcionário:</h2>
+                    <p class="text-dark">Preencha todos os campos para criar o funcionário!</p>
+                    <form action="./?c=Funcionario&a=create" method="POST" class="[ modal-form ] [ form ] [ margin-top-3 grid ]" data-type="funcionarios">
+                        <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="username" class="text-dark">Username</label>
+                            <input type="text" class="input" id="username" name="username" value="<?= $funcionarioNovo->username ?>" <?php
+                                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrors['username']))
+                                                                                                                                            if ($funcionarioNovo->errors->on('username') != null || isset($customErrors['username']))
+                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                        ?>>
+                            <?php
+                            if (isset($customErrors['username'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrors['username'] . '</p>';
+                            }
+                            if (isset($funcionarioNovo->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('username') . '</p>';
+                            } else {
+                            }
+                            echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            ?>
+
+                            </p>
+                        </div>
+
+                        <div class="[ form__password ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="password" class="text-dark">Password</label>
+                            <input type="password" class="input" id="password" name="password" value="<?= $funcionarioNovo->password ?>" <?php
+                                                                                                                                            if (isset($funcionarioNovo->errors))
+                                                                                                                                                if ($funcionarioNovo->errors->on('password') != null)
+                                                                                                                                                    echo 'data-state="error"';
+                                                                                                                                            ?>>
+
+                            <?php
+                            if (isset($funcionarioNovo->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('password') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+                        </div>
+
+                        <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="telefone" class="text-dark">Telefone</label>
+                            <input type="text" class="input" id="telefone" name="telefone" value="<?= $funcionarioNovo->telefone ?>" <?php
+                                                                                                                                        if (isset($funcionarioNovo->errors))
+                                                                                                                                            if ($funcionarioNovo->errors->on('telefone') != null)
+                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                        ?>>
+                            <?php
+                            if (isset($funcionarioNovo->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('telefone') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="email" class="text-dark">Email</label>
+                            <input type="text" class="input" id="email" name="email" value="<?= $funcionarioNovo->email ?>" <?php
+                                                                                                                            if (isset($funcionarioNovo->errors))
+                                                                                                                                if ($funcionarioNovo->errors->on('email') != null)
+                                                                                                                                    echo 'data-state="error"';
+                                                                                                                            ?>>
+
+                            <?php
+                            if (isset($funcionarioNovo->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('email') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="nif" class="text-dark">NIF</label>
+                            <input type="text" class="input" id="nif" name="nif" value="<?= $funcionarioNovo->nif ?>" <?php
+                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrors['nif']))
+                                                                                                                            if ($funcionarioNovo->errors->on('nif') != null || isset($customErrors['nif']))
+                                                                                                                                echo 'data-state="error"';
+                                                                                                                        ?>>
+
+                            <?php
+                            if (isset($customErrors['nif'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrors['nif'] . '</p>';
+                            } else if (isset($funcionarioNovo->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('nif') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="cod-postal" class="text-dark">Código Postal</label>
+                            <input type="text" class="input" id="cod-postal" name="codpostal" value="<?= $funcionarioNovo->codpostal ?>" <?php
+                                                                                                                                            if (isset($funcionarioNovo->errors))
+                                                                                                                                                if ($funcionarioNovo->errors->on('codpostal') != null)
+                                                                                                                                                    echo 'data-state="error"';
+                                                                                                                                            ?>>
+
+                            <?php
+                            if (isset($funcionarioNovo->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('codpostal') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="morada" class="text-dark">Morada</label>
+                            <input type="text" class="input" id="morada" name="morada" value="<?= $funcionarioNovo->morada ?>" <?php
+                                                                                                                                if (isset($funcionarioNovo->errors))
+                                                                                                                                    if ($funcionarioNovo->errors->on('morada') != null)
+                                                                                                                                        echo 'data-state="error"';
+                                                                                                                                ?>>
+
+                            <?php
+                            if (isset($funcionarioNovo->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('morada') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__localidade ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="localidade" class="text-dark">Localidade</label>
+                            <input type="text" class="input" id="localidade" name="localidade" value="<?= $funcionarioNovo->localidade ?>" <?php
+                                                                                                                                            if (isset($funcionarioNovo->errors))
+                                                                                                                                                if ($funcionarioNovo->errors->on('localidade') != null)
+                                                                                                                                                    echo 'data-state="error"';
+                                                                                                                                            ?>>
+
+                            <?php
+                            if (isset($funcionarioNovo->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('localidade') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+
+                        <div class="[ form__options ] [ margin-top-1 ]">
+
+                            <div class="[ form_options__subcontainer ] [ flex ]">
+                                <button type="button" class="button" data-type="outline" data-close-add-modal>Cancelar</button>
+                                <input type="submit" class="button" data-type="primary" value="Confirmar">
+                            </div>
+                        </div>
+                    </form>
+
+                    <input type="hidden" data-forced-toggle-add-modal="<?= $addModalToggle ?>">
+                </dialog>
+
+                <dialog class="modal" id="editModal">
+                    <p>adeus</p>
+                    <button class="button" data-type="primary" data-close-edit-modal>close</button>
+                    <input type="hidden" data-forced-toggle-edit-modal="<?= $editModalToggle ?>">
+                </dialog>
+
             </div>
             <div class="[ table-container ] [ margin-top-3 ] " data-type="dashboard">
                 <div class="table-subcontainer">
@@ -107,25 +281,62 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-row" data-type="body">
-                                <td class="table-cell">teste</td>
-                                <td class="table-cell">teste</td>
-                                <td class="table-cell">teste</td>
-                                <td class="table-cell">teste</td>
-                                <td class="table-cell">teste</td>
-                                <td class="table-cell">teste</td>
-                                <td class="table-cell">teste</td>
-                                <td class="table-cell">
-                                    <a href="./?c=Funcionario&a=delete" class="flex align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-warning" viewBox="0 0 576 512">
-                                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                            <path d="M576 384C576 419.3 547.3 448 512 448H205.3C188.3 448 172 441.3 160 429.3L9.372 278.6C3.371 272.6 0 264.5 0 256C0 247.5 3.372 239.4 9.372 233.4L160 82.75C172 70.74 188.3 64 205.3 64H512C547.3 64 576 92.65 576 128V384zM271 208.1L318.1 256L271 303C261.7 312.4 261.7 327.6 271 336.1C280.4 346.3 295.6 346.3 304.1 336.1L352 289.9L399 336.1C408.4 346.3 423.6 346.3 432.1 336.1C442.3 327.6 442.3 312.4 432.1 303L385.9 256L432.1 208.1C442.3 199.6 442.3 184.4 432.1 175C423.6 165.7 408.4 165.7 399 175L352 222.1L304.1 175C295.6 165.7 280.4 165.7 271 175C261.7 184.4 261.7 199.6 271 208.1V208.1z" />
-                                        </svg>
-                                    </a>
-                                </td>
-                            </tr>
+                            <?php
+                            if ($funcionarios == null) {
+                            ?>
 
+                                <tr class="table-row" data-type="body">
+                                    <td class="[ table-cell ] [ text-align-center italic ]" colspan="9">Não tem nenhum funcionário !</td>
+                                </tr>
 
+                                <?php
+                            } else if (is_array($funcionarios)) {
+
+                                foreach ($funcionarios as $funcionario) {
+                                ?>
+                                    <tr class="table-row" data-type="body">
+                                        <td class="table-cell"><?= $funcionario->username ?></td>
+                                        <td class="table-cell"><?= $funcionario->email ?></td>
+                                        <td class="table-cell"><?= $funcionario->telefone ?></td>
+                                        <td class="table-cell"><?= $funcionario->nif ?></td>
+                                        <td class="table-cell"><?= $funcionario->codpostal ?></td>
+                                        <td class="table-cell"><?= $funcionario->localidade ?></td>
+                                        <td class="table-cell"><?= $funcionario->morada ?></td>
+                                        <td class="table-cell">
+                                            <a href="./?c=Funcionario&a=delete&id=<?= $funcionario->id ?>" class="flex align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="fill-warning" viewBox="0 0 576 512">
+                                                    <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                                    <path d="M576 384C576 419.3 547.3 448 512 448H205.3C188.3 448 172 441.3 160 429.3L9.372 278.6C3.371 272.6 0 264.5 0 256C0 247.5 3.372 239.4 9.372 233.4L160 82.75C172 70.74 188.3 64 205.3 64H512C547.3 64 576 92.65 576 128V384zM271 208.1L318.1 256L271 303C261.7 312.4 261.7 327.6 271 336.1C280.4 346.3 295.6 346.3 304.1 336.1L352 289.9L399 336.1C408.4 346.3 423.6 346.3 432.1 336.1C442.3 327.6 442.3 312.4 432.1 303L385.9 256L432.1 208.1C442.3 199.6 442.3 184.4 432.1 175C423.6 165.7 408.4 165.7 399 175L352 222.1L304.1 175C295.6 165.7 280.4 165.7 271 175C261.7 184.4 261.7 199.6 271 208.1V208.1z" />
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <tr class="table-row" data-type="body">
+                                    <td class="table-cell"><?= $funcionarios->username ?></td>
+                                    <td class="table-cell"><?= $funcionarios->email ?></td>
+                                    <td class="table-cell"><?= $funcionarios->telefone ?></td>
+                                    <td class="table-cell"><?= $funcionarios->nif ?></td>
+                                    <td class="table-cell"><?= $funcionarios->codpostal ?></td>
+                                    <td class="table-cell"><?= $funcionarios->localidade ?></td>
+                                    <td class="table-cell"><?= $funcionarios->morada ?></td>
+                                    <td class="table-cell">
+                                        <a href="./?c=Funcionario&a=delete&id=<?= $funcionarios->id ?>" class="flex align-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-warning" viewBox="0 0 576 512">
+                                                <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                                <path d="M576 384C576 419.3 547.3 448 512 448H205.3C188.3 448 172 441.3 160 429.3L9.372 278.6C3.371 272.6 0 264.5 0 256C0 247.5 3.372 239.4 9.372 233.4L160 82.75C172 70.74 188.3 64 205.3 64H512C547.3 64 576 92.65 576 128V384zM271 208.1L318.1 256L271 303C261.7 312.4 261.7 327.6 271 336.1C280.4 346.3 295.6 346.3 304.1 336.1L352 289.9L399 336.1C408.4 346.3 423.6 346.3 432.1 336.1C442.3 327.6 442.3 312.4 432.1 303L385.9 256L432.1 208.1C442.3 199.6 442.3 184.4 432.1 175C423.6 165.7 408.4 165.7 399 175L352 222.1L304.1 175C295.6 165.7 280.4 165.7 271 175C261.7 184.4 261.7 199.6 271 208.1V208.1z" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

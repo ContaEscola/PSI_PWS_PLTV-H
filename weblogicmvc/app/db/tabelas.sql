@@ -8,7 +8,7 @@ USE pwsdb;
 */
 CREATE TABLE users(
 id 								INT 											UNSIGNED 	AUTO_INCREMENT,
-username 						VARCHAR(50) 									NOT NULL,
+username 						VARCHAR(50) 									NOT NULL	COLLATE			utf8mb4_bin,
 password 						VARCHAR(255)									NOT NULL,
 email 							VARCHAR(150) 									NOT NULL,
 telefone 						CHAR(9) 										NOT NULL,

@@ -10,7 +10,7 @@ class Fatura extends BaseController
         $this->auth = $this->loadModel('Auth');
 
         if (!$this->auth->isLoggedIn(['Cliente']))
-            $this->redirectTo();
+            $this->redirectTo('Dashboard');
 
         $this->sessionInfo = $this->getSessionInfo();
     }
@@ -23,9 +23,9 @@ class Fatura extends BaseController
 
             $clienteID = $this->auth->getID();
 
-            if ($faturaToCheck == null || ($faturaToCheck->referenciacliente != $clienteID)) {
-                $this->redirectTo('Dashboard');
-            }
+            if ($faturaToCheck == null || ($faturaToCheck->referenciacliente != $clienteID))
+                throw new Exception();
+
 
             $select = 'lf.quantidade, lf.valorUnitario, lf.valorIva, p.referencia, p.descricao, p.preco';
             $from = 'linhafaturas as lf';
