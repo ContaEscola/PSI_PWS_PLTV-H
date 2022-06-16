@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="./js/dropdowns.js" defer></script>
-    <script src="./js/printfatura.js" defer></script>
+    <script src="./js/print-fatura.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
@@ -154,7 +154,7 @@
         </div>
 
         <h1>Print</h1>
-        <input type="button" onclick="printDiv('.printprint')" value="print" />
+        <input type="button" onclick="printDiv()" value="print" />
     </main>
 </body>
 
