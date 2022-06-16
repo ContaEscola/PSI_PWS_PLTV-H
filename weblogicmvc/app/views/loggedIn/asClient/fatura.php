@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="./js/dropdowns.js" defer></script>
+    <script src="./js/printfatura.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
@@ -61,7 +62,7 @@
         <p class="[ main-title__subtext ] [ text-align-center ]">A fatura em baixo será a fatura própria para impressão!
         </p>
 
-        <div class="[ fatura-container ] [ container margin-top-2 ] [ box-shadow-1 ]">
+        <div id="printFatura" class="[ fatura-container ] [ container margin-top-2 ] [ box-shadow-1 ]">
             <div class="[ fatura-container__subcontainer ] [ grid text-black ]">
                 <div class="flex">
                     <section class="flex-grow flow flow-space-2" aria-label="Dados do cliente">
@@ -152,6 +153,8 @@
             </div>
         </div>
 
+        <h1>Print</h1>
+        <input type="button" onclick="printDiv('.printprint')" value="print" />
     </main>
 </body>
 
