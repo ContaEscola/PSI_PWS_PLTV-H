@@ -258,8 +258,10 @@
                 </dialog>
 
                 <dialog class="modal" id="editModal">
-                    <p>adeus</p>
-                    <button class="button" data-type="primary" data-close-edit-modal>close</button>
+                    <h2>Escolha o funcionário !</h2>
+                    <div>
+                        <input type="text" class="input" data-searchbar-funcionarios>
+                    </div>
                     <input type="hidden" data-forced-toggle-edit-modal="<?= $editModalToggle ?>">
                 </dialog>
 

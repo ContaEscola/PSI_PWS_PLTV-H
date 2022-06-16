@@ -1,6 +1,5 @@
-const printBtn = document.querySelector('[data-print-receipt]');
 
-printBtn.addEventListener('click', () => {
+function printReceipt() {
     let originalPage = document.body.innerHTML;
     let receipt = document.getElementById('fatura');
 
@@ -15,5 +14,5 @@ printBtn.addEventListener('click', () => {
     document.body.innerHTML = receiptReadyToPrint;
     window.print();
     document.body.innerHTML = originalPage;
-})
+}
 
