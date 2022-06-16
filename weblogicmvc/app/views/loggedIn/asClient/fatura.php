@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="./js/dropdowns.js" defer></script>
+    <script src="./js/printfatura.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
@@ -23,7 +24,7 @@
         </div>
         <div class="[ dropdown ] [ grid g-place-items-center margin-left-auto ]">
             <button class="[ dropdown-toggle ] [ grid g-direction-column g-place-items-center  ] [ text-dark bg-white ] " data-dropdown-toggle>
-                <?= $username ?> / <?= $role ?>
+                <?= $sessionInfo['username'] ?> / <?= $sessionInfo['role'] ?>
                 <img src="./assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon">
             </button>
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
@@ -61,8 +62,8 @@
         <p class="[ main-title__subtext ] [ text-align-center ]">A fatura em baixo será a fatura própria para impressão!
         </p>
 
-        <div class="[ fatura-container ] [ container margin-top-2 ] [ box-shadow-1 ]">
-            <div class="[ fatura-container__subcontainer ] [ grid text-black ]">
+        <div id="printprint" class="[ fatura-container ] [ container margin-top-2 ] [ box-shadow-1 ]">
+            <div  class="[ fatura-container__subcontainer ] [ grid text-black ]">
                 <div class="flex">
                     <section class="flex-grow flow flow-space-2" aria-label="Dados do cliente">
                         <h2>Dados do cliente:</h2>
@@ -152,6 +153,8 @@
             </div>
         </div>
 
+            <h1>Print</h1>
+        <input type="button" onclick="printDiv('.printprint')" value="print"/>
     </main>
 </body>
 
