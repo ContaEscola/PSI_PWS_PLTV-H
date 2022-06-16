@@ -64,7 +64,7 @@
                 <p class="[ main-title__subtext ] [ text-align-center ]">A fatura em baixo será a fatura própria para impressão!
                 </p>
             </div>
-            <button class="button" data-type="primary" data-print-receipt>Imprimir</button>
+            <button class="button" data-type="primary" onclick="printReceipt()">Imprimir</button>
         </div>
         <div id="fatura" class="[ fatura-container ] [ container margin-top-2 ] [ box-shadow-1 ]">
             <div class="[ fatura-container__subcontainer ] [ grid text-black ]">
