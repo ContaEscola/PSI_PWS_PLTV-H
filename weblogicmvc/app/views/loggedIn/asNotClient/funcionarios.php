@@ -16,6 +16,7 @@
     <script src="./js/dropdowns.js" defer></script>
     <script src="./js/mobile-nav-toggle.js" defer></script>
     <script src="./js/manage-modals.js" defer></script>
+    <script src="./js/search-bar.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
@@ -90,7 +91,7 @@
             <div class="flex justify-content-space-between margin-top-2">
                 <button class="button" data-open-add-modal data-type="primary">Criar Funcionário</button>
 
-                <button class="button" data-open-edit-modal data-type="outline">Editar Funcionário</button>
+                <button class="button" data-open-choose-modal data-type="outline">Editar Funcionário</button>
 
 
                 <dialog class="modal" id="addModal">
@@ -100,13 +101,13 @@
                         <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
                             <label for="username" class="text-dark">Username</label>
                             <input type="text" class="input" id="username" name="username" value="<?= $funcionarioNovo->username ?>" <?php
-                                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrors['username']))
-                                                                                                                                            if ($funcionarioNovo->errors->on('username') != null || isset($customErrors['username']))
+                                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['username']))
+                                                                                                                                            if ($funcionarioNovo->errors->on('username') != null || isset($customErrorsOnOld['username']))
                                                                                                                                                 echo 'data-state="error"';
                                                                                                                                         ?>>
                             <?php
-                            if (isset($customErrors['username'])) {
-                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrors['username'] . '</p>';
+                            if (isset($customErrorsOnOld['username'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['username'] . '</p>';
                             }
                             if (isset($funcionarioNovo->errors)) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('username') . '</p>';
@@ -173,14 +174,14 @@
                         <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
                             <label for="nif" class="text-dark">NIF</label>
                             <input type="text" class="input" id="nif" name="nif" value="<?= $funcionarioNovo->nif ?>" <?php
-                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrors['nif']))
-                                                                                                                            if ($funcionarioNovo->errors->on('nif') != null || isset($customErrors['nif']))
+                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['nif']))
+                                                                                                                            if ($funcionarioNovo->errors->on('nif') != null || isset($customErrorsOnOld['nif']))
                                                                                                                                 echo 'data-state="error"';
                                                                                                                         ?>>
 
                             <?php
-                            if (isset($customErrors['nif'])) {
-                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrors['nif'] . '</p>';
+                            if (isset($customErrorsOnOld['nif'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['nif'] . '</p>';
                             } else if (isset($funcionarioNovo->errors)) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('nif') . '</p>';
                             } else {
@@ -257,12 +258,186 @@
                     <input type="hidden" data-forced-toggle-add-modal="<?= $addModalToggle ?>">
                 </dialog>
 
-                <dialog class="modal" id="editModal">
-                    <h2>Escolha o funcionário !</h2>
-                    <div>
-                        <input type="text" class="input" data-searchbar-funcionarios>
-
+                <dialog class="[ modal ] [ flow flow-space-2 ]" id="chooseModal" data-type="choose">
+                    <div class="flow flow-space-1">
+                        <h2 class="text-dark">Escolha o funcionário</h2>
+                        <p class="text-dark">Digite o nome do funcionário!</p>
                     </div>
+                    <form action="./?c=Funcionario&a=update&username=" method="POST">
+                        <div class="[ search-navigation ]">
+                            <input type="text" class="[ input ] [ width-100 ]" data-searchbar>
+                            <nav aria-label="funcionários navegação" class="[ search__results-container ] [ width-100 ]" data-search-results-container data-visible="false">
+                                <ul class="search__results-subcontainer">
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="flex justify-content-space-between margin-top-2">
+                            <button type="button" class="button" data-type="outline" data-close-choose-edit-modal>Cancelar</button>
+                            <input type="submit" class="button" data-type="primary" value="Confirmar">
+                        </div>
+                    </form>
+                </dialog>
+
+                <dialog class="modal" id="editModal">
+                    <h2 class="fs-500 text-dark">Editar Funcionário</h2>
+                    <form action="./?c=Funcionario&a=update&username&id=<?= $funcionarioOld->id ?>" method="POST" class="[ modal-form ] [ form ] [ margin-top-3 grid ]" data-type="funcionarios">
+                        <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="usernameOld" class="text-dark">Username</label>
+                            <input type="text" class="input" id="usernameOld" name="username" value="<?= $funcionarioOld->username ?>" <?php
+                                                                                                                                        if (isset($funcionarioOld->errors) || isset($customErrorsOnOld['username']))
+                                                                                                                                            if ($funcionarioOld->errors->on('username') != null || isset($customErrorsOnOld['username']))
+                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                        ?>>
+                            <?php
+                            if (isset($customErrorsOnOld['username'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['username'] . '</p>';
+                            }
+                            if (isset($funcionarioOld->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioOld->errors->on('username') . '</p>';
+                            } else {
+                            }
+                            echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            ?>
+
+                            </p>
+                        </div>
+
+                        <div class="[ form__password ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="passwordOld" class="text-dark">Password</label>
+                            <input type="password" class="input" id="passwordOld" name="password" value="<?= $funcionarioOld->password ?>" <?php
+                                                                                                                                            if (isset($funcionarioOld->errors))
+                                                                                                                                                if ($funcionarioOld->errors->on('password') != null)
+                                                                                                                                                    echo 'data-state="error"';
+                                                                                                                                            ?>>
+
+                            <?php
+                            if (isset($funcionarioOld->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioOld->errors->on('password') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+                        </div>
+
+                        <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="telefoneOld" class="text-dark">Telefone</label>
+                            <input type="text" class="input" id="telefoneOld" name="telefone" value="<?= $funcionarioOld->telefone ?>" <?php
+                                                                                                                                        if (isset($funcionarioOld->errors))
+                                                                                                                                            if ($funcionarioOld->errors->on('telefone') != null)
+                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                        ?>>
+                            <?php
+                            if (isset($funcionarioOld->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioOld->errors->on('telefone') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="email" class="text-dark">Email</label>
+                            <input type="text" class="input" id="email" name="email" value="<?= $funcionarioOld->email ?>" <?php
+                                                                                                                            if (isset($funcionarioOld->errors))
+                                                                                                                                if ($funcionarioOld->errors->on('email') != null)
+                                                                                                                                    echo 'data-state="error"';
+                                                                                                                            ?>>
+
+                            <?php
+                            if (isset($funcionarioOld->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioOld->errors->on('email') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="nif" class="text-dark">NIF</label>
+                            <input type="text" class="input" id="nif" name="nif" value="<?= $funcionarioOld->nif ?>" <?php
+                                                                                                                        if (isset($funcionarioOld->errors) || isset($customErrorsOnOld['nif']))
+                                                                                                                            if ($funcionarioOld->errors->on('nif') != null || isset($customErrorsOnOld['nif']))
+                                                                                                                                echo 'data-state="error"';
+                                                                                                                        ?>>
+
+                            <?php
+                            if (isset($customErrorsOnOld['nif'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['nif'] . '</p>';
+                            } else if (isset($funcionarioOld->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioOld->errors->on('nif') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="cod-postal" class="text-dark">Código Postal</label>
+                            <input type="text" class="input" id="cod-postal" name="codpostal" value="<?= $funcionarioOld->codpostal ?>" <?php
+                                                                                                                                        if (isset($funcionarioOld->errors))
+                                                                                                                                            if ($funcionarioOld->errors->on('codpostal') != null)
+                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                        ?>>
+
+                            <?php
+                            if (isset($funcionarioOld->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioOld->errors->on('codpostal') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="morada" class="text-dark">Morada</label>
+                            <input type="text" class="input" id="morada" name="morada" value="<?= $funcionarioOld->morada ?>" <?php
+                                                                                                                                if (isset($funcionarioOld->errors))
+                                                                                                                                    if ($funcionarioOld->errors->on('morada') != null)
+                                                                                                                                        echo 'data-state="error"';
+                                                                                                                                ?>>
+
+                            <?php
+                            if (isset($funcionarioOld->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioOld->errors->on('morada') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="[ form__localidade ] [ flex f-direction-column f-gap-1 ]">
+                            <label for="localidade" class="text-dark">Localidade</label>
+                            <input type="text" class="input" id="localidade" name="localidade" value="<?= $funcionarioOld->localidade ?>" <?php
+                                                                                                                                            if (isset($funcionarioOld->errors))
+                                                                                                                                                if ($funcionarioOld->errors->on('localidade') != null)
+                                                                                                                                                    echo 'data-state="error"';
+                                                                                                                                            ?>>
+
+                            <?php
+                            if (isset($funcionarioOld->errors)) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioOld->errors->on('localidade') . '</p>';
+                            } else {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                            }
+                            ?>
+
+                        </div>
+
+
+                        <div class="[ form__options ] [ margin-top-1 ]">
+
+                            <div class="[ form_options__subcontainer ] [ flex ]">
+                                <button type="button" class="button" data-type="outline" data-close-edit-modal>Cancelar</button>
+                                <input type="submit" class="button" data-type="primary" value="Confirmar">
+                            </div>
+                        </div>
+                    </form>
+
                     <input type="hidden" data-forced-toggle-edit-modal="<?= $editModalToggle ?>">
                 </dialog>
 

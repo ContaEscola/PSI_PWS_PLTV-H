@@ -32,6 +32,7 @@ class Router
             $this->method = $url[1];
         }
 
+
         // Função que chama o método do controlador com os devidos parâmetros
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
