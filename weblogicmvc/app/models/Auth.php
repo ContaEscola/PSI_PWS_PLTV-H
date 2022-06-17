@@ -34,15 +34,13 @@ class Auth
     public function isLoggedIn($expectedRole)
     {
         if (!isset($_SESSION['username']) || !isset($_SESSION['role']) || !isset($_SESSION['id'])) return false;
-
         if ($expectedRole[0] != null) {
             $foundRole = false;
             foreach ($expectedRole as $role) {
-                if ($role == $_SESSION['role'])
+                if ($role === $_SESSION['role'])
                     $foundRole  = true;
                 break;
             }
-
             return $foundRole;
         } else {
 

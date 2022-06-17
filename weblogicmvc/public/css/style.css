@@ -1264,7 +1264,10 @@ select {
   .form[data-type="dados-empresa"] {
     width: max-content;
     justify-content: space-between;
-    grid-template-columns: 14rem 14rem 14rem;
+    grid-template-columns: minmax(14rem, 20rem) minmax(14rem, 20rem) minmax(
+        14rem,
+        20rem
+      );
     grid-template-areas:
       "designacao-social  telefone    nif"
       "capital-social     localidade  codigo-postal"

@@ -90,57 +90,153 @@
                 Dados da Empresa
             </h1>
 
-            <form action="#" method="POST" class="[ form ] [ margin-top-3 grid ]" data-type="dados-empresa">
+            <form action="./?c=Dashboard&a=update&id=<?= $empresa->id ?>" method="POST" class="[ form ] [ margin-top-3 grid ]" data-type="dados-empresa">
 
                 <div class="[ form__designacao-social ] [ flex f-direction-column f-gap-1 ]">
                     <label for="designacao-social">Designação Social:</label>
-                    <input type="text" class="input" id="designacao-social" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                    <input type="text" class="input" id="designacao-social" name="designacaosocial" value="<?= $empresa->designacaosocial ?>" <?php
+                                                                                                                                                if (isset($empresa->errors))
+                                                                                                                                                    if ($empresa->errors->on('designacaosocial') != null)
+                                                                                                                                                        echo 'data-state="error"';
+                                                                                                                                                ?>>
+                    <?php
+
+                    if (isset($empresa->errors)) {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $empresa->errors->on('designacaosocial') . '</p>';
+                    } else {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                    }
+
+                    ?>
                 </div>
 
                 <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" class="input" id="telefone" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                    <input type="tel" class="input" id="telefone" name="telefone" value="<?= $empresa->telefone ?>" <?php
+                                                                                                                    if (isset($empresa->errors))
+                                                                                                                        if ($empresa->errors->on('telefone') != null)
+                                                                                                                            echo 'data-state="error"';
+                                                                                                                    ?>>
+
+                    <?php
+                    if (isset($empresa->errors)) {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $empresa->errors->on('telefone') . '</p>';
+                    } else {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                    }
+                    ?>
+
                 </div>
 
                 <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
                     <label for="nif">NIF:</label>
-                    <input type="text" class="input" id="nif" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                    <input type="text" class="input" id="nif" name="nif" value="<?= $empresa->nif ?>" <?php
+                                                                                                        if (isset($empresa->errors))
+                                                                                                            if ($empresa->errors->on('nif') != null)
+                                                                                                                echo 'data-state="error"';
+                                                                                                        ?>>
+
+                    <?php
+                    if (isset($empresa->errors)) {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $empresa->errors->on('nif') . '</p>';
+                    } else {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                    }
+                    ?>
+
                 </div>
 
                 <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
                     <label for="email">Email:</label>
-                    <input type="text" class="input" id="email" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                    <input type="text" class="input" id="email" name="email" value="<?= $empresa->email ?>" <?php
+                                                                                                            if (isset($empresa->errors))
+                                                                                                                if ($empresa->errors->on('email') != null)
+                                                                                                                    echo 'data-state="error"';
+                                                                                                            ?>>
+
+                    <?php
+                    if (isset($empresa->errors)) {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $empresa->errors->on('email') . '</p>';
+                    } else {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                    }
+                    ?>
+
                 </div>
 
                 <div class="[ form__localidade ] [ flex f-direction-column f-gap-1 ]">
                     <label for="localidade">Localidade:</label>
-                    <input type="text" class="input" id="localidade" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                    <input type="text" class="input" id="localidade" name="localidade" value="<?= $empresa->localidade ?>" <?php
+                                                                                                                            if (isset($empresa->errors))
+                                                                                                                                if ($empresa->errors->on('localidade') != null)
+                                                                                                                                    echo 'data-state="error"';
+                                                                                                                            ?>>
+
+                    <?php
+                    if (isset($empresa->errors)) {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $empresa->errors->on('localidade') . '</p>';
+                    } else {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                    }
+                    ?>
+
                 </div>
 
                 <div class="[ form__capital-social ] [ flex f-direction-column f-gap-1 ]">
                     <label for="capital-social">Capital Social:</label>
-                    <input type="text" class="input" id="capital-social" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                    <input type="text" class="input" id="capital-social" name="capitalsocial" value="<?= $empresa->capitalsocial ?>" <?php
+                                                                                                                                        if (isset($empresa->errors))
+                                                                                                                                            if ($empresa->errors->on('capitalsocial') != null)
+                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                        ?>>
+
+                    <?php
+                    if (isset($empresa->errors)) {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $empresa->errors->on('capitalsocial') . '</p>';
+                    } else {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                    }
+                    ?>
+
                 </div>
 
                 <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
                     <label for="morada">Morada:</label>
-                    <input type="text" class="input" id="morada" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                    <input type="text" class="input" id="morada" name="morada" value="<?= $empresa->morada ?>" <?php
+                                                                                                                if (isset($empresa->errors))
+                                                                                                                    if ($empresa->errors->on('morada') != null)
+                                                                                                                        echo 'data-state="error"';
+                                                                                                                ?>>
+
+                    <?php
+                    if (isset($empresa->errors)) {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $empresa->errors->on('morada') . '</p>';
+                    } else {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                    }
+                    ?>
+
                 </div>
 
                 <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
                     <label for="codigo-postal">Código Postal:</label>
-                    <input type="text" class="input" id="codigo-postal" />
-                    <p class="[ input__error ] [ fs-200 italic ]"></p>
+                    <input type="text" class="input" id="codigo-postal" name="codpostal" value="<?= $empresa->codpostal ?>" <?php
+                                                                                                                            if (isset($empresa->errors))
+                                                                                                                                if ($empresa->errors->on('codpostal') != null)
+                                                                                                                                    echo 'data-state="error"';
+                                                                                                                            ?>>
+
+                    <?php
+                    if (isset($empresa->errors)) {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $empresa->errors->on('codpostal') . '</p>';
+                    } else {
+                        echo ' <p class="[ input__error ] [ fs-200 italic ]"></p>';
+                    }
+                    ?>
+
                 </div>
 
-                <input type="submit" class="[ button ] [ form__submit ]" data-type="outline" value="Guardar" />
+                <input type="submit" class="[ button ] [ form__submit ]" data-type="outline" value="Guardar">
             </form>
         </div>
     </main>
