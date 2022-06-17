@@ -80,7 +80,7 @@
                 }
                 ?>
                 <li class="dashboard__item">
-                    <a href="#" class="navigation__link">Clientes</a>
+                    <a href="./?c=Cliente&a=index" class="navigation__link">Clientes</a>
                 </li>
             </ul>
         </nav>

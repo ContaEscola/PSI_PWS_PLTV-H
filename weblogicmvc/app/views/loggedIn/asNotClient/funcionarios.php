@@ -16,7 +16,7 @@
     <script src="./js/dropdowns.js" defer></script>
     <script src="./js/mobile-nav-toggle.js" defer></script>
     <script src="./js/manage-modals.js" defer></script>
-    <script src="./js/search-bar.js" defer></script>
+    <script src="./js/search-bar-funcionarios.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
@@ -76,7 +76,7 @@
                     <a href="./?c=Funcionario&a=index" class="navigation__link" data-state="active">Funcionários</a>
                 </li>
                 <li class="dashboard__item">
-                    <a href="#" class="navigation__link">Clientes</a>
+                    <a href="./?c=Cliente&a=index" class="navigation__link">Clientes</a>
                 </li>
             </ul>
         </nav>

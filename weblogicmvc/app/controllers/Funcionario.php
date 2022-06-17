@@ -80,7 +80,7 @@ class Funcionario extends BaseController
             else if (count($checkNifs) == 1 && $checkNifs[0]->nif != $funcionarioNIF)
                 $customErrors['nif'] = 'NIF já utilizado';
 
-            if (!empty($oldFuncionarioName) || !empty($oldFuncionarioNIF)) {
+            if (!empty($customErrors)) {
                 $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $newFuncionario, 'funcionarioOld' => $this->defaultNewFuncionario, 'addModalToggle' => 'true', "editModalToggle" => 'false', "customErrors" => $customErrors]);
                 return;
             }
