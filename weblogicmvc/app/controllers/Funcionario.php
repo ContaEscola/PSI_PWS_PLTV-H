@@ -61,21 +61,23 @@ class Funcionario extends BaseController
             $customErrors = array();
 
             $conditionsName = array('username = ?', $funcionarioName);
-            $oldFuncionarioName = FuncionarioAdmin::all(array('conditions' => $conditionsName));
+            $checkNames = FuncionarioAdmin::all(array('conditions' => $conditionsName));
 
 
 
             $conditionsNIF = array('nif = ?', $funcionarioNIF);
-            $oldFuncionarioNIF = FuncionarioAdmin::all(array('conditions' => $conditionsNIF));
+            $checkNifs = FuncionarioAdmin::all(array('conditions' => $conditionsNIF));
 
 
-            if (!empty($oldFuncionarioName)) {
+            if (count($checkNames) > 1)
                 $customErrors['username'] = 'Nome já utilizado!';
-            }
+            else if (count($checkNames) == 1 && $checkNames[0]->username != $funcionarioName)
+                $customErrors['username'] = 'Nome já utilizado!';
 
-            if (!empty($oldFuncionarioNIF)) {
+            if (count($checkNifs) > 1)
                 $customErrors['nif'] = 'NIF já utilizado';
-            }
+            else if (count($checkNifs) == 1 && $checkNifs[0]->nif != $funcionarioNIF)
+                $customErrors['nif'] = 'NIF já utilizado';
 
             if (!empty($oldFuncionarioName) || !empty($oldFuncionarioNIF)) {
                 $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $newFuncionario, 'funcionarioOld' => $this->defaultNewFuncionario, 'addModalToggle' => 'true', "editModalToggle" => 'false', "customErrors" => $customErrors]);
@@ -119,12 +121,17 @@ class Funcionario extends BaseController
             $checkNames = FuncionarioAdmin::all(array('conditions' => array("username = ?", $receivedFuncionario->username)));
             $checkNifs = FuncionarioAdmin::all(array('conditions' => array("nif = ?", $receivedFuncionario->nif)));
 
-            if (count($checkNames) > 1 && $checkNames != $receivedFuncionario->username)
+            if (count($checkNames) > 1)
+                $customErrorsOnOld['username'] = 'Nome já utilizado!';
+            else if (count($checkNames) == 1 && $checkNames[0]->username != $receivedFuncionario->username)
                 $customErrorsOnOld['username'] = 'Nome já utilizado!';
 
-            if (count($checkNifs) > 1 && $checkNifs != $receivedFuncionario->nif)
-                $customErrorsOnOld['nif'] = 'NIF já utilizado';
 
+
+            if (count($checkNifs) > 1)
+                $customErrorsOnOld['nif'] = 'NIF já utilizado';
+            else if (count($checkNifs) == 1 && $checkNifs[0]->nif != $receivedFuncionario->nif)
+                $customErrorsOnOld['nif'] = 'NIF já utilizado';
 
 
             if (!empty($customErrorsOnOld)) {
@@ -132,13 +139,15 @@ class Funcionario extends BaseController
                 return;
             }
 
-            $receivedPassword = $receivedFuncionario->password;
-            $hashPassword = password_hash($receivedPassword, PASSWORD_DEFAULT);
-
-            $receivedFuncionario->password = $hashPassword;
-
             $conditions = "role = 'Funcionário' AND id = " . $id;
             $funcionarioToUpdate = FuncionarioAdmin::first(array('conditions' => $conditions));
+
+            $receivedPassword = $receivedFuncionario->password;
+            if (strcmp($receivedPassword, $funcionarioToUpdate->password)) {
+                $hashPassword = password_hash($receivedPassword, PASSWORD_DEFAULT);
+                $_POST['password'] = $hashPassword;
+            }
+
             $funcionarioToUpdate->update_attributes($_POST);
 
             $this->redirectTo('Funcionario');

@@ -100,11 +100,11 @@
                     <form action="./?c=Funcionario&a=create" method="POST" class="[ modal-form ] [ form ] [ margin-top-3 grid ]" data-type="funcionarios">
                         <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
                             <label for="username" class="text-dark">Username</label>
-                            <input type="text" class="input" id="username" name="username" value="<?= $funcionarioNovo->username ?>" <?php
-                                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['username']))
-                                                                                                                                            if ($funcionarioNovo->errors->on('username') != null || isset($customErrorsOnOld['username']))
-                                                                                                                                                echo 'data-state="error"';
-                                                                                                                                        ?>>
+                            <input type="text" class="input" id="username" name="username" value="<?= isset($funcionarioNovo->username) ? $funcionarioNovo->username : "" ?>" <?php
+                                                                                                                                                                                if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['username']))
+                                                                                                                                                                                    if ($funcionarioNovo->errors->on('username')  || isset($customErrorsOnOld['username']))
+                                                                                                                                                                                        echo 'data-state="error"';
+                                                                                                                                                                                ?>>
                             <?php
                             if (isset($customErrorsOnOld['username'])) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['username'] . '</p>';
@@ -121,11 +121,11 @@
 
                         <div class="[ form__password ] [ flex f-direction-column f-gap-1 ]">
                             <label for="password" class="text-dark">Password</label>
-                            <input type="password" class="input" id="password" name="password" value="<?= $funcionarioNovo->password ?>" <?php
-                                                                                                                                            if (isset($funcionarioNovo->errors))
-                                                                                                                                                if ($funcionarioNovo->errors->on('password') != null)
-                                                                                                                                                    echo 'data-state="error"';
-                                                                                                                                            ?>>
+                            <input type="password" class="input" id="password" name="password" value="<?= isset($funcionarioNovo) ? $funcionarioNovo->password : "" ?>" <?php
+                                                                                                                                                                        if (isset($funcionarioNovo->errors))
+                                                                                                                                                                            if ($funcionarioNovo->errors->on('password') != null)
+                                                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                                                        ?>>
 
                             <?php
                             if (isset($funcionarioNovo->errors)) {
@@ -138,11 +138,11 @@
 
                         <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
                             <label for="telefone" class="text-dark">Telefone</label>
-                            <input type="text" class="input" id="telefone" name="telefone" value="<?= $funcionarioNovo->telefone ?>" <?php
-                                                                                                                                        if (isset($funcionarioNovo->errors))
-                                                                                                                                            if ($funcionarioNovo->errors->on('telefone') != null)
-                                                                                                                                                echo 'data-state="error"';
-                                                                                                                                        ?>>
+                            <input type="text" class="input" id="telefone" name="telefone" value="<?= isset($funcionarioNovo) ? $funcionarioNovo->telefone : "" ?>" <?php
+                                                                                                                                                                    if (isset($funcionarioNovo->errors))
+                                                                                                                                                                        if ($funcionarioNovo->errors->on('telefone') != null)
+                                                                                                                                                                            echo 'data-state="error"';
+                                                                                                                                                                    ?>>
                             <?php
                             if (isset($funcionarioNovo->errors)) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('telefone') . '</p>';
@@ -155,11 +155,11 @@
 
                         <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
                             <label for="email" class="text-dark">Email</label>
-                            <input type="text" class="input" id="email" name="email" value="<?= $funcionarioNovo->email ?>" <?php
-                                                                                                                            if (isset($funcionarioNovo->errors))
-                                                                                                                                if ($funcionarioNovo->errors->on('email') != null)
-                                                                                                                                    echo 'data-state="error"';
-                                                                                                                            ?>>
+                            <input type="text" class="input" id="email" name="email" value="<?= isset($funcionarioNovo) ? $funcionarioNovo->email : "" ?>" <?php
+                                                                                                                                                            if (isset($funcionarioNovo->errors))
+                                                                                                                                                                if ($funcionarioNovo->errors->on('email') != null)
+                                                                                                                                                                    echo 'data-state="error"';
+                                                                                                                                                            ?>>
 
                             <?php
                             if (isset($funcionarioNovo->errors)) {
@@ -173,11 +173,11 @@
 
                         <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
                             <label for="nif" class="text-dark">NIF</label>
-                            <input type="text" class="input" id="nif" name="nif" value="<?= $funcionarioNovo->nif ?>" <?php
-                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['nif']))
-                                                                                                                            if ($funcionarioNovo->errors->on('nif') != null || isset($customErrorsOnOld['nif']))
-                                                                                                                                echo 'data-state="error"';
-                                                                                                                        ?>>
+                            <input type="text" class="input" id="nif" name="nif" value="<?= isset($funcionarioNovo) ? $funcionarioNovo->nif : "" ?>" <?php
+                                                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['nif']))
+                                                                                                                                                            if ($funcionarioNovo->errors->on('nif') != null || isset($customErrorsOnOld['nif']))
+                                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                                        ?>>
 
                             <?php
                             if (isset($customErrorsOnOld['nif'])) {
@@ -193,11 +193,11 @@
 
                         <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
                             <label for="cod-postal" class="text-dark">Código Postal</label>
-                            <input type="text" class="input" id="cod-postal" name="codpostal" value="<?= $funcionarioNovo->codpostal ?>" <?php
-                                                                                                                                            if (isset($funcionarioNovo->errors))
-                                                                                                                                                if ($funcionarioNovo->errors->on('codpostal') != null)
-                                                                                                                                                    echo 'data-state="error"';
-                                                                                                                                            ?>>
+                            <input type="text" class="input" id="cod-postal" name="codpostal" value="<?= isset($funcionarioNovo) ? $funcionarioNovo->codpostal : "" ?>" <?php
+                                                                                                                                                                        if (isset($funcionarioNovo->errors))
+                                                                                                                                                                            if ($funcionarioNovo->errors->on('codpostal') != null)
+                                                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                                                        ?>>
 
                             <?php
                             if (isset($funcionarioNovo->errors)) {
@@ -211,11 +211,11 @@
 
                         <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
                             <label for="morada" class="text-dark">Morada</label>
-                            <input type="text" class="input" id="morada" name="morada" value="<?= $funcionarioNovo->morada ?>" <?php
-                                                                                                                                if (isset($funcionarioNovo->errors))
-                                                                                                                                    if ($funcionarioNovo->errors->on('morada') != null)
-                                                                                                                                        echo 'data-state="error"';
-                                                                                                                                ?>>
+                            <input type="text" class="input" id="morada" name="morada" value="<?= isset($funcionarioNovo) ? $funcionarioNovo->morada : "" ?>" <?php
+                                                                                                                                                                if (isset($funcionarioNovo->errors))
+                                                                                                                                                                    if ($funcionarioNovo->errors->on('morada') != null)
+                                                                                                                                                                        echo 'data-state="error"';
+                                                                                                                                                                ?>>
 
                             <?php
                             if (isset($funcionarioNovo->errors)) {
@@ -229,11 +229,11 @@
 
                         <div class="[ form__localidade ] [ flex f-direction-column f-gap-1 ]">
                             <label for="localidade" class="text-dark">Localidade</label>
-                            <input type="text" class="input" id="localidade" name="localidade" value="<?= $funcionarioNovo->localidade ?>" <?php
-                                                                                                                                            if (isset($funcionarioNovo->errors))
-                                                                                                                                                if ($funcionarioNovo->errors->on('localidade') != null)
-                                                                                                                                                    echo 'data-state="error"';
-                                                                                                                                            ?>>
+                            <input type="text" class="input" id="localidade" name="localidade" value="<?= isset($funcionarioNovo) ? $funcionarioNovo->localidade : "" ?>" <?php
+                                                                                                                                                                            if (isset($funcionarioNovo->errors))
+                                                                                                                                                                                if ($funcionarioNovo->errors->on('localidade') != null)
+                                                                                                                                                                                    echo 'data-state="error"';
+                                                                                                                                                                            ?>>
 
                             <?php
                             if (isset($funcionarioNovo->errors)) {
@@ -277,17 +277,16 @@
                         </div>
                     </form>
                 </dialog>
-
                 <dialog class="modal" id="editModal">
                     <h2 class="fs-500 text-dark">Editar Funcionário</h2>
-                    <form action="./?c=Funcionario&a=update&username&id=<?= $funcionarioOld->id ?>" method="POST" class="[ modal-form ] [ form ] [ margin-top-3 grid ]" data-type="funcionarios">
+                    <form action="./?c=Funcionario&a=update&username&id=<?= $funcionarioOld->id != null ? $funcionarioOld->id : "" ?>" method="POST" class="[ modal-form ] [ form ] [ margin-top-3 grid ]" data-type="funcionarios">
                         <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
                             <label for="usernameOld" class="text-dark">Username</label>
-                            <input type="text" class="input" id="usernameOld" name="username" value="<?= $funcionarioOld->username ?>" <?php
-                                                                                                                                        if (isset($funcionarioOld->errors) || isset($customErrorsOnOld['username']))
-                                                                                                                                            if ($funcionarioOld->errors->on('username') != null || isset($customErrorsOnOld['username']))
-                                                                                                                                                echo 'data-state="error"';
-                                                                                                                                        ?>>
+                            <input type="text" class="input" id="usernameOld" name="username" value="<?= $funcionarioOld->username != null ? $funcionarioOld->username : ""  ?>" <?php
+                                                                                                                                                                                    if (isset($funcionarioOld->errors) || isset($customErrorsOnOld['username']))
+                                                                                                                                                                                        if ($funcionarioOld->errors->on('username') != null || isset($customErrorsOnOld['username']))
+                                                                                                                                                                                            echo 'data-state="error"';
+                                                                                                                                                                                    ?>>
                             <?php
                             if (isset($customErrorsOnOld['username'])) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['username'] . '</p>';
@@ -304,11 +303,11 @@
 
                         <div class="[ form__password ] [ flex f-direction-column f-gap-1 ]">
                             <label for="passwordOld" class="text-dark">Password</label>
-                            <input type="password" class="input" id="passwordOld" name="password" value="<?= $funcionarioOld->password ?>" <?php
-                                                                                                                                            if (isset($funcionarioOld->errors))
-                                                                                                                                                if ($funcionarioOld->errors->on('password') != null)
-                                                                                                                                                    echo 'data-state="error"';
-                                                                                                                                            ?>>
+                            <input type="password" class="input" id="passwordOld" name="password" value="<?= $funcionarioOld->password != null ? $funcionarioOld->password : "" ?>" <?php
+                                                                                                                                                                                    if (isset($funcionarioOld->errors))
+                                                                                                                                                                                        if ($funcionarioOld->errors->on('password') != null)
+                                                                                                                                                                                            echo 'data-state="error"';
+                                                                                                                                                                                    ?>>
 
                             <?php
                             if (isset($funcionarioOld->errors)) {
@@ -321,11 +320,11 @@
 
                         <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
                             <label for="telefoneOld" class="text-dark">Telefone</label>
-                            <input type="text" class="input" id="telefoneOld" name="telefone" value="<?= $funcionarioOld->telefone ?>" <?php
-                                                                                                                                        if (isset($funcionarioOld->errors))
-                                                                                                                                            if ($funcionarioOld->errors->on('telefone') != null)
-                                                                                                                                                echo 'data-state="error"';
-                                                                                                                                        ?>>
+                            <input type="text" class="input" id="telefoneOld" name="telefone" value="<?= $funcionarioOld->telefone != null ? $funcionarioOld->telefone : "" ?>" <?php
+                                                                                                                                                                                if (isset($funcionarioOld->errors))
+                                                                                                                                                                                    if ($funcionarioOld->errors->on('telefone') != null)
+                                                                                                                                                                                        echo 'data-state="error"';
+                                                                                                                                                                                ?>>
                             <?php
                             if (isset($funcionarioOld->errors)) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioOld->errors->on('telefone') . '</p>';
@@ -338,11 +337,11 @@
 
                         <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
                             <label for="email" class="text-dark">Email</label>
-                            <input type="text" class="input" id="email" name="email" value="<?= $funcionarioOld->email ?>" <?php
-                                                                                                                            if (isset($funcionarioOld->errors))
-                                                                                                                                if ($funcionarioOld->errors->on('email') != null)
-                                                                                                                                    echo 'data-state="error"';
-                                                                                                                            ?>>
+                            <input type="text" class="input" id="email" name="email" value="<?= $funcionarioOld->email != null ? $funcionarioOld->email : "" ?>" <?php
+                                                                                                                                                                    if (isset($funcionarioOld->errors))
+                                                                                                                                                                        if ($funcionarioOld->errors->on('email') != null)
+                                                                                                                                                                            echo 'data-state="error"';
+                                                                                                                                                                    ?>>
 
                             <?php
                             if (isset($funcionarioOld->errors)) {
@@ -356,11 +355,11 @@
 
                         <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
                             <label for="nif" class="text-dark">NIF</label>
-                            <input type="text" class="input" id="nif" name="nif" value="<?= $funcionarioOld->nif ?>" <?php
-                                                                                                                        if (isset($funcionarioOld->errors) || isset($customErrorsOnOld['nif']))
-                                                                                                                            if ($funcionarioOld->errors->on('nif') != null || isset($customErrorsOnOld['nif']))
-                                                                                                                                echo 'data-state="error"';
-                                                                                                                        ?>>
+                            <input type="text" class="input" id="nif" name="nif" value="<?= $funcionarioOld->nif != null ? $funcionarioOld->nif : "" ?>" <?php
+                                                                                                                                                            if (isset($funcionarioOld->errors) || isset($customErrorsOnOld['nif']))
+                                                                                                                                                                if ($funcionarioOld->errors->on('nif') != null || isset($customErrorsOnOld['nif']))
+                                                                                                                                                                    echo 'data-state="error"';
+                                                                                                                                                            ?>>
 
                             <?php
                             if (isset($customErrorsOnOld['nif'])) {
@@ -376,11 +375,11 @@
 
                         <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
                             <label for="cod-postal" class="text-dark">Código Postal</label>
-                            <input type="text" class="input" id="cod-postal" name="codpostal" value="<?= $funcionarioOld->codpostal ?>" <?php
-                                                                                                                                        if (isset($funcionarioOld->errors))
-                                                                                                                                            if ($funcionarioOld->errors->on('codpostal') != null)
-                                                                                                                                                echo 'data-state="error"';
-                                                                                                                                        ?>>
+                            <input type="text" class="input" id="cod-postal" name="codpostal" value="<?= $funcionarioOld->codpostal != null ? $funcionarioOld->codpostal : "" ?>" <?php
+                                                                                                                                                                                    if (isset($funcionarioOld->errors))
+                                                                                                                                                                                        if ($funcionarioOld->errors->on('codpostal') != null)
+                                                                                                                                                                                            echo 'data-state="error"';
+                                                                                                                                                                                    ?>>
 
                             <?php
                             if (isset($funcionarioOld->errors)) {
@@ -394,11 +393,11 @@
 
                         <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
                             <label for="morada" class="text-dark">Morada</label>
-                            <input type="text" class="input" id="morada" name="morada" value="<?= $funcionarioOld->morada ?>" <?php
-                                                                                                                                if (isset($funcionarioOld->errors))
-                                                                                                                                    if ($funcionarioOld->errors->on('morada') != null)
-                                                                                                                                        echo 'data-state="error"';
-                                                                                                                                ?>>
+                            <input type="text" class="input" id="morada" name="morada" value="<?= $funcionarioOld->morada != null ? $funcionarioOld->morada : "" ?>" <?php
+                                                                                                                                                                        if (isset($funcionarioOld->errors))
+                                                                                                                                                                            if ($funcionarioOld->errors->on('morada') != null)
+                                                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                                                        ?>>
 
                             <?php
                             if (isset($funcionarioOld->errors)) {
@@ -412,11 +411,11 @@
 
                         <div class="[ form__localidade ] [ flex f-direction-column f-gap-1 ]">
                             <label for="localidade" class="text-dark">Localidade</label>
-                            <input type="text" class="input" id="localidade" name="localidade" value="<?= $funcionarioOld->localidade ?>" <?php
-                                                                                                                                            if (isset($funcionarioOld->errors))
-                                                                                                                                                if ($funcionarioOld->errors->on('localidade') != null)
-                                                                                                                                                    echo 'data-state="error"';
-                                                                                                                                            ?>>
+                            <input type="text" class="input" id="localidade" name="localidade" value="<?= $funcionarioOld->localidade != null ? $funcionarioOld->localidade : "" ?>" <?php
+                                                                                                                                                                                        if (isset($funcionarioOld->errors))
+                                                                                                                                                                                            if ($funcionarioOld->errors->on('localidade') != null)
+                                                                                                                                                                                                echo 'data-state="error"';
+                                                                                                                                                                                        ?>>
 
                             <?php
                             if (isset($funcionarioOld->errors)) {
