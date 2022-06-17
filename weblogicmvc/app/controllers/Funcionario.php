@@ -25,17 +25,17 @@ class Funcionario extends BaseController
         $this->defaultNewFuncionario->role = 'Funcionário';
     }
 
-    public function index($reset = false)
+    public function index()
     {
 
-        $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->defaultNewFuncionario, 'addModalToggle' => "false", "editModalToggle" => "false"]);
+        $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->defaultNewFuncionario, 'funcionarioOld' => $this->defaultNewFuncionario, 'addModalToggle' => "false", "editModalToggle" => "false"]);
     }
 
     public function delete($id)
     {
         try {
-
-            $funcionario = FuncionarioAdmin::find([$id]);
+            $conditions = "role = 'Funcionário' AND id = " . $id;
+            $funcionario = FuncionarioAdmin::first(array('conditions' => $conditions));
             if ($funcionario == null)
                 throw new Exception();
 
@@ -78,7 +78,7 @@ class Funcionario extends BaseController
             }
 
             if (!empty($oldFuncionarioName) || !empty($oldFuncionarioNIF)) {
-                $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $newFuncionario, 'addModalToggle' => 'true', "editModalToggle" => 'false', "customErrors" => $customErrors]);
+                $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $newFuncionario, 'funcionarioOld' => $this->defaultNewFuncionario, 'addModalToggle' => 'true', "editModalToggle" => 'false', "customErrors" => $customErrors]);
                 return;
             }
 
@@ -92,7 +92,59 @@ class Funcionario extends BaseController
             $this->redirectTo('Funcionario');
         } else {
 
-            $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $newFuncionario, 'addModalToggle' => 'true', "editModalToggle" => 'false']);
+            $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $newFuncionario, 'funcionarioOld' => $this->defaultNewFuncionario, 'addModalToggle' => 'true', "editModalToggle" => 'false']);
+        }
+    }
+
+    public function update($username = null, $id = null)
+    {
+        if ($username != null && $id == null) {
+
+            $conditions = "role = 'Funcionário' AND username = '" . $username . "'";
+            $oldFuncionario = FuncionarioAdmin::first(array('conditions' => $conditions));
+
+            $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->defaultNewFuncionario, 'funcionarioOld' => $oldFuncionario, 'addModalToggle' => 'false', "editModalToggle" => 'true']);
+            return;
+        } else {
+            $receivedFuncionario = new FuncionarioAdmin($_POST);
+        }
+
+        if ($receivedFuncionario->is_valid()) {
+
+            $customErrorsOnOld = array();
+
+
+
+
+            $checkNames = FuncionarioAdmin::all(array('conditions' => array("username = ?", $receivedFuncionario->username)));
+            $checkNifs = FuncionarioAdmin::all(array('conditions' => array("nif = ?", $receivedFuncionario->nif)));
+
+            if (count($checkNames) > 1 && $checkNames != $receivedFuncionario->username)
+                $customErrorsOnOld['username'] = 'Nome já utilizado!';
+
+            if (count($checkNifs) > 1 && $checkNifs != $receivedFuncionario->nif)
+                $customErrorsOnOld['nif'] = 'NIF já utilizado';
+
+
+
+            if (!empty($customErrorsOnOld)) {
+                $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->defaultNewFuncionario, 'funcionarioOld' => $receivedFuncionario, 'addModalToggle' => 'false', "editModalToggle" => 'true', "customErrorsOnOld" => $customErrorsOnOld]);
+                return;
+            }
+
+            $receivedPassword = $receivedFuncionario->password;
+            $hashPassword = password_hash($receivedPassword, PASSWORD_DEFAULT);
+
+            $receivedFuncionario->password = $hashPassword;
+
+            $conditions = "role = 'Funcionário' AND id = " . $id;
+            $funcionarioToUpdate = FuncionarioAdmin::first(array('conditions' => $conditions));
+            $funcionarioToUpdate->update_attributes($_POST);
+
+            $this->redirectTo('Funcionario');
+        } else {
+
+            $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->defaultNewFuncionario, 'funcionarioOld' => $receivedFuncionario, 'addModalToggle' => 'false', "editModalToggle" => 'true']);
         }
     }
 }
