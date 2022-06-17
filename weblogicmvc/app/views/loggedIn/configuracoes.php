@@ -11,27 +11,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../public/css/style.css">
+    <link rel="stylesheet" href="./css/style.css" />
 
-    <script src="../../../public/js/dropdowns.js" defer></script>
+    <script src="./js/dropdowns.js" defer></script>
+    <script src="./js/mobile-nav-toggle.js" defer></script>
+    <script src="./js/manage-modals.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
     <header class="[ header ] [ flex ]" data-type="logged-in">
         <div class="grid g-place-items-center">
-            <img src="../../../public/assets/logo.png" alt="Logo">
+            <img src="assets/logo.png" alt="Logo">
         </div>
         <div class="[ dropdown ] [ grid g-place-items-center margin-left-auto ]">
             <button
                 class="[ dropdown-toggle ] [ grid g-direction-column g-place-items-center  ] [ text-dark bg-white ] "
                 data-dropdown-toggle>
-                Pedro Norberto / Cliente
-                <img src="../../../public/assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon">
+                <?= $sessionInfo['username'] ?> / <?= $sessionInfo['role'] ?>
+                <img src="assets/dropdown-toggle__icon.svg" alt="" class="dropdown-toggle__icon">
             </button>
             <nav class="dropdown-nav" data-visible="false" aria-label="opções navegação">
                 <ul class="[ dropdown-list ] [ bg-white box-shadow-1 ]">
                     <li>
-                        <a class="[ dropdown-item__link ]  [ grid ]" href="#">
+                        <a class="[ dropdown-item__link ]  [ grid ]" href="./?c=Configuracoes&a=index">
                             Configurações
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -41,7 +43,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="[ dropdown-item__link ] [ grid ] " data-type="warning" href="#">
+                        <a class="[ dropdown-item__link ] [ grid ] " data-type="warning" href="./?c=Login&a=logout">
                             Logout
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="dropdown-item__icon">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -57,16 +59,152 @@
     </header>
     <main class="main-content" data-page="configurations">
         <div>
-            <a href="#" aria-label="voltar atrás">
-                <img src="../../../public/assets/go-back.svg" alt="">
+            <a href="./?c=Dashboard&a=index" aria-label="voltar atrás">
+                <img src="assets/go-back.svg" alt="">
             </a>
         </div>
         <h1 class="[ main-content__title ] [ margin-top-2 text-align-center ] [ fs-600 fw-bold ]">Configurações</h1>
+        <?php
+        if ($sessionInfo['role'] == 'Administrador'){
+            ?>
+        <form action="#" method="POST" class="[ form ] [  margin-top-3 grid ]" data-type="configuration">
+            <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
+                <label for="username">Username</label>
+                <input type="text" class="input" id="username">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__password ] [ flex f-direction-column f-gap-1 ]">
+                <label for="password">Password</label>
+                <input type="password" class="input" id="password">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
+                <label for="telefone">Telefone</label>
+                <input type="text" class="input" id="telefone">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
+                <label for="email">Email</label>
+                <input type="text" class="input" id="email">
+                <p class="[ input__error ] [ fs-200 italic ]">
+
+                </p>
+            </div>
+
+            <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
+                <label for="nif">NIF</label>
+                <input type="text" class="input" id="nif">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
+                <label for="cod-postal">Código Postal</label>
+                <input type="text" class="input" id="cod-postal">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
+                <label for="morada">Morada</label>
+                <input type="text" class="input" id="morada">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__localidade] [ flex f-direction-column f-gap-1 ]">
+                <label for="localidade">Localidade</label>
+                <input type="text" class="input" id="localidade">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+            <input type="submit" value="Guardar Alterações">
+        </form>
+        <?php
+            }
+        else if ($sessionInfo['role'] == 'Funcionário'){
+        ?>
+        <form action="./?c=Configuracoes&a=update&id=<?=$id?>" method="POST" class="[ form ] [  margin-top-3 grid ]" data-type="configuration">
+            <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
+                <label for="username">Username</label>
+                <input type="text" class="input" id="username" name="username">
+                    <?php
+                    if (isset($customErrors['username'])) {
+                        echo '<p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrors['username'] . '</p>';
+                    } else if (isset($user->errors)) {
+                        echo '<p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $user->errors->on('username') . '</p>';
+                    } else {
+                        echo '<p class="[ input__error ] [ fs-200 italic ]"></p>';
+                    }
+                    ?>
+                    
+                </p>
+            </div>
+
+            <div class="[ form__password ] [ flex f-direction-column f-gap-1 ]">
+                <label for="password">Password</label>
+                <input type="password" class="input" id="password" name="password">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__telefone ] [ flex f-direction-column f-gap-1 ]">
+                <label for="telefone">Telefone</label>
+                <input type="text" class="input" id="telefone" disabled data-state="disabled">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__email ] [ flex f-direction-column f-gap-1 ]">
+                <label for="email">Email</label>
+                <input type="text" class="input" id="email" disabled data-state="disabled">
+                <p class="[ input__error ] [ fs-200 italic ]">
+
+                </p>
+            </div>
+
+            <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
+                <label for="nif">NIF</label>
+                <input type="text" class="input" id="nif" disabled data-state="disabled">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__codigo-postal ] [ flex f-direction-column f-gap-1 ]">
+                <label for="cod-postal">Código Postal</label>
+                <input type="text" class="input" id="cod-postal" disabled data-state="disabled">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__morada ] [ flex f-direction-column f-gap-1 ]">
+                <label for="morada">Morada</label>
+                <input type="text" class="input" id="morada" disabled data-state="disabled">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+
+            <div class="[ form__localidade] [ flex f-direction-column f-gap-1 ]">
+                <label for="localidade">Localidade</label>
+                <input type="text" class="input" id="localidade" disabled data-state="disabled">
+                <p class="[ input__error ] [ fs-200 italic ]">
+                </p>
+            </div>
+            <input type="submit" value="Guardar Alterações">
+        </form>
+        <?php }
+            else{
+        ?>
         <p class="[ main-title__subtext ] [ margin-top-1 text-align-center ]">Não é possível alterar nenhuma
             característica sua, já que não tem os
             privilégios
             necessários!</p>
-
         <form action="#" method="POST" class="[ form ] [  margin-top-3 grid ]" data-type="configuration">
             <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
                 <label for="username">Username</label>
@@ -119,12 +257,16 @@
             </div>
 
             <div class="[ form__localidade] [ flex f-direction-column f-gap-1 ]">
-                <label for="morada">Localidade</label>
-                <input type="text" class="input" id="morada" disabled data-state="disabled">
+                <label for="localidade">Localidade</label>
+                <input type="text" class="input" id="localidade" disabled data-state="disabled">
                 <p class="[ input__error ] [ fs-200 italic ]">
                 </p>
             </div>
-        </form>
+        </form> <?php }?>
+
+
+
+
 
     </main>
 </body>
