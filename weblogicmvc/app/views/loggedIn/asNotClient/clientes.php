@@ -16,7 +16,7 @@
     <script src="./js/dropdowns.js" defer></script>
     <script src="./js/mobile-nav-toggle.js" defer></script>
     <script src="./js/manage-modals.js" defer></script>
-    <script src="./js/search-bar-funcionarios.js" defer></script>
+    <script src="./js/search-bar-clientes.js" defer></script>
 </head>
 
 <body class="[ body ] [ grid ]">
@@ -106,13 +106,13 @@
                         <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
                             <label for="username" class="text-dark">Username</label>
                             <input type="text" class="input" id="username" name="username" value="<?= isset($newCliente->username) ? $newCliente->username : "" ?>" <?php
-                                                                                                                                                                    if (isset($newCliente->errors) || isset($customErrorsOnOld['username']))
-                                                                                                                                                                        if ($newCliente->errors->on('username') != null || isset($customErrorsOnOld['username']))
+                                                                                                                                                                    if (isset($newCliente->errors) || isset($customErrors['username']))
+                                                                                                                                                                        if ($newCliente->errors->on('username') != null || isset($customErrors['username']))
                                                                                                                                                                             echo 'data-state="error"';
                                                                                                                                                                     ?>>
                             <?php
-                            if (isset($customErrorsOnOld['username'])) {
-                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['username'] . '</p>';
+                            if (isset($customErrors['username'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrors['username'] . '</p>';
                             }
                             if (isset($newCliente->errors)) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $newCliente->errors->on('username') . '</p>';
@@ -179,14 +179,14 @@
                         <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
                             <label for="nif" class="text-dark">NIF</label>
                             <input type="text" class="input" id="nif" name="nif" value="<?= isset($newCliente) ? $newCliente->nif : "" ?>" <?php
-                                                                                                                                            if (isset($newCliente->errors) || isset($customErrorsOnOld['nif']))
-                                                                                                                                                if ($newCliente->errors->on('nif') != null || isset($customErrorsOnOld['nif']))
+                                                                                                                                            if (isset($newCliente->errors) || isset($customErrors['nif']))
+                                                                                                                                                if ($newCliente->errors->on('nif') != null || isset($customErrors['nif']))
                                                                                                                                                     echo 'data-state="error"';
                                                                                                                                             ?>>
 
                             <?php
-                            if (isset($customErrorsOnOld['nif'])) {
-                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['nif'] . '</p>';
+                            if (isset($customErrors['nif'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrors['nif'] . '</p>';
                             } else if (isset($newCliente->errors)) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $newCliente->errors->on('nif') . '</p>';
                             } else {
@@ -268,7 +268,7 @@
                         <h2 class="text-dark">Escolha o cliente</h2>
                         <p class="text-dark">Digite o nome do cliente!</p>
                     </div>
-                    <form action="./?c=Funcionario&a=update&username=" method="POST">
+                    <form action="./?c=Cliente&a=update&username=" method="POST">
                         <div class="[ search-navigation ]">
                             <input type="text" class="[ input ] [ width-100 ]" data-searchbar>
                             <nav aria-label="funcionários navegação" class="[ search__results-container ] [ width-100 ]" data-search-results-container data-visible="false">
@@ -284,7 +284,7 @@
                 </dialog>
                 <dialog class="modal" id="editModal">
                     <h2 class="fs-500 text-dark">Editar Funcionário</h2>
-                    <form action="./?c=Funcionario&a=update&username&id=<?= $oldCliente->id != null ? $oldCliente->id : "" ?>" method="POST" class="[ modal-form ] [ form ] [ margin-top-3 grid ]" data-type="funcionarios">
+                    <form action="./?c=Cliente&a=update&username&id=<?= $oldCliente->id != null ? $oldCliente->id : "" ?>" method="POST" class="[ modal-form ] [ form ] [ margin-top-3 grid ]" data-type="funcionarios">
                         <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
                             <label for="usernameOld" class="text-dark">Username</label>
                             <input type="text" class="input" id="usernameOld" name="username" value="<?= $oldCliente->username != null ? $oldCliente->username : ""  ?>" <?php

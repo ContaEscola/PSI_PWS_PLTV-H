@@ -101,13 +101,13 @@
                         <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
                             <label for="username" class="text-dark">Username</label>
                             <input type="text" class="input" id="username" name="username" value="<?= isset($funcionarioNovo->username) ? $funcionarioNovo->username : "" ?>" <?php
-                                                                                                                                                                                if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['username']))
-                                                                                                                                                                                    if ($funcionarioNovo->errors->on('username') != null || isset($customErrorsOnOld['username']))
+                                                                                                                                                                                if (isset($funcionarioNovo->errors) || isset($customErrors['username']))
+                                                                                                                                                                                    if ($funcionarioNovo->errors->on('username') != null || isset($customErrors['username']))
                                                                                                                                                                                         echo 'data-state="error"';
                                                                                                                                                                                 ?>>
                             <?php
-                            if (isset($customErrorsOnOld['username'])) {
-                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['username'] . '</p>';
+                            if (isset($customErrors['username'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrors['username'] . '</p>';
                             }
                             if (isset($funcionarioNovo->errors)) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('username') . '</p>';
@@ -174,14 +174,14 @@
                         <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
                             <label for="nif" class="text-dark">NIF</label>
                             <input type="text" class="input" id="nif" name="nif" value="<?= isset($funcionarioNovo) ? $funcionarioNovo->nif : "" ?>" <?php
-                                                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['nif']))
-                                                                                                                                                            if ($funcionarioNovo->errors->on('nif') != null || isset($customErrorsOnOld['nif']))
+                                                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrors['nif']))
+                                                                                                                                                            if ($funcionarioNovo->errors->on('nif') != null || isset($customErrors['nif']))
                                                                                                                                                                 echo 'data-state="error"';
                                                                                                                                                         ?>>
 
                             <?php
-                            if (isset($customErrorsOnOld['nif'])) {
-                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrorsOnOld['nif'] . '</p>';
+                            if (isset($customErrors['nif'])) {
+                                echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $customErrors['nif'] . '</p>';
                             } else if (isset($funcionarioNovo->errors)) {
                                 echo ' <p class="[ input__error ] [ fs-200 italic ]" data-visible="true">' . $funcionarioNovo->errors->on('nif') . '</p>';
                             } else {

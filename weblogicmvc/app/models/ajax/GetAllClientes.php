@@ -17,7 +17,7 @@ ActiveRecord\Config::initialize(function ($cfg) use ($connections) {
 });
 
 
-require_once '../UserAdmin.php';
+require_once '../UserToCreateCliente.php';
 
 $input = $_GET['v'];
 if (empty($input)) {
@@ -26,7 +26,7 @@ if (empty($input)) {
 }
 
 $conditions = array("role = ? AND username LIKE '" . $input . "%'", 'Cliente');
-$allFuncionarios = UserAdmin::all(array('conditions' => $conditions));
+$allFuncionarios = UserToCreateCliente::all(array('conditions' => $conditions));
 
 if ($allFuncionarios != null) {
 

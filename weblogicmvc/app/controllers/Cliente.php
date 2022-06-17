@@ -51,6 +51,7 @@ class Cliente extends BaseController
 
     public function create()
     {
+
         $newClient = new  UserToCreateCliente($_POST);
         $newClient->role = 'Cliente';
 
@@ -71,15 +72,12 @@ class Cliente extends BaseController
             $checkNifs =  UserToCreateCliente::all(array('conditions' => $conditionsNIF));
 
 
-            if (count($checkNames) > 1)
-                $customErrors['username'] = 'Nome já utilizado!';
-            else if (count($checkNames) == 1 && $checkNames[0]->username != $clientName)
+            if (count($checkNames) > 0)
                 $customErrors['username'] = 'Nome já utilizado!';
 
-            if (count($checkNifs) > 1)
+            if (count($checkNifs) > 0)
                 $customErrors['nif'] = 'NIF já utilizado';
-            else if (count($checkNifs) == 1 && $checkNifs[0]->nif != $clientNIF)
-                $customErrors['nif'] = 'NIF já utilizado';
+
 
             if (!empty($customErrors)) {
                 $this->renderView('loggedIn/asNotClient/clientes', ['sessionInfo' => $this->sessionInfo, 'clientes' => $this->allClientes, 'newCliente' => $newClient, 'oldCliente' => $this->defaultNewClient, 'addModalToggle' => 'true', "editModalToggle" => 'false', "customErrors" => $customErrors]);
@@ -93,7 +91,7 @@ class Cliente extends BaseController
 
             $newClient->save();
 
-            $this->redirectTo('Funcionario');
+            $this->redirectTo('Cliente');
         } else {
 
             $this->renderView('loggedIn/asNotClient/clientes', ['sessionInfo' => $this->sessionInfo, 'clientes' => $this->allClientes, 'newCliente' => $newClient, 'oldCliente' => $this->defaultNewClient, 'addModalToggle' => 'true', "editModalToggle" => 'false']);
@@ -110,7 +108,9 @@ class Cliente extends BaseController
             $this->renderView('loggedIn/asNotClient/clientes', ['sessionInfo' => $this->sessionInfo, 'clientes' => $this->allClientes, 'newCliente' => $this->defaultNewClient, 'oldCliente' => $oldClient, 'addModalToggle' => 'false', "editModalToggle" => 'true']);
             return;
         } else {
+            $oldCliente = UserToCreateCliente::find([$id]);
             $receivedCliente = new UserToCreateCliente($_POST);
+            $receivedCliente->id = $oldCliente->id;
         }
 
         if ($receivedCliente->is_valid()) {
@@ -125,14 +125,14 @@ class Cliente extends BaseController
 
             if (count($checkNames) > 1)
                 $customErrorsOnOld['username'] = 'Nome já utilizado!';
-            else if (count($checkNames) == 1 && $checkNames[0]->username != $receivedCliente->username)
+            else if (count($checkNames) == 1 && $checkNames[0]->username != $oldCliente->username)
                 $customErrorsOnOld['username'] = 'Nome já utilizado!';
 
 
 
             if (count($checkNifs) > 1)
                 $customErrorsOnOld['nif'] = 'NIF já utilizado';
-            else if (count($checkNifs) == 1 && $checkNifs[0]->nif != $receivedCliente->nif)
+            else if (count($checkNifs) == 1 && $checkNifs[0]->nif != $oldCliente->nif)
                 $customErrorsOnOld['nif'] = 'NIF já utilizado';
 
 
@@ -155,7 +155,7 @@ class Cliente extends BaseController
             $this->redirectTo('Cliente');
         } else {
 
-            $this->renderView('loggedIn/asNotClient/cliente', ['sessionInfo' => $this->sessionInfo, 'clientes' => $this->allClientes, 'newCliente' => $this->defaultNewClient, 'oldCliente' => $receivedCliente, 'addModalToggle' => 'false', "editModalToggle" => 'true']);
+            $this->renderView('loggedIn/asNotClient/clientes', ['sessionInfo' => $this->sessionInfo, 'clientes' => $this->allClientes, 'newCliente' => $this->defaultNewClient, 'oldCliente' => $receivedCliente, 'addModalToggle' => 'false', "editModalToggle" => 'true']);
         }
     }
 }

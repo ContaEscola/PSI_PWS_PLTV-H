@@ -70,15 +70,12 @@ class Funcionario extends BaseController
             $checkNifs = FuncionarioAdmin::all(array('conditions' => $conditionsNIF));
 
 
-            if (count($checkNames) > 1)
-                $customErrors['username'] = 'Nome já utilizado!';
-            else if (count($checkNames) == 1 && $checkNames[0]->username != $funcionarioName)
+            if (count($checkNames) > 0)
                 $customErrors['username'] = 'Nome já utilizado!';
 
-            if (count($checkNifs) > 1)
+            if (count($checkNifs) > 0)
                 $customErrors['nif'] = 'NIF já utilizado';
-            else if (count($checkNifs) == 1 && $checkNifs[0]->nif != $funcionarioNIF)
-                $customErrors['nif'] = 'NIF já utilizado';
+
 
             if (!empty($customErrors)) {
                 $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $newFuncionario, 'funcionarioOld' => $this->defaultNewFuncionario, 'addModalToggle' => 'true', "editModalToggle" => 'false', "customErrors" => $customErrors]);
@@ -109,7 +106,9 @@ class Funcionario extends BaseController
             $this->renderView('loggedIn/asNotClient/funcionarios', ['sessionInfo' => $this->sessionInfo, 'funcionarios' => $this->allFuncionarios, 'funcionarioNovo' => $this->defaultNewFuncionario, 'funcionarioOld' => $oldFuncionario, 'addModalToggle' => 'false', "editModalToggle" => 'true']);
             return;
         } else {
+            $oldFuncionario = FuncionarioAdmin::find([$id]);
             $receivedFuncionario = new FuncionarioAdmin($_POST);
+            $receivedFuncionario->id = $oldFuncionario->id;
         }
 
         if ($receivedFuncionario->is_valid()) {
@@ -124,14 +123,14 @@ class Funcionario extends BaseController
 
             if (count($checkNames) > 1)
                 $customErrorsOnOld['username'] = 'Nome já utilizado!';
-            else if (count($checkNames) == 1 && $checkNames[0]->username != $receivedFuncionario->username)
+            else if (count($checkNames) == 1 && $checkNames[0]->username != $oldFuncionario->username)
                 $customErrorsOnOld['username'] = 'Nome já utilizado!';
 
 
 
             if (count($checkNifs) > 1)
                 $customErrorsOnOld['nif'] = 'NIF já utilizado';
-            else if (count($checkNifs) == 1 && $checkNifs[0]->nif != $receivedFuncionario->nif)
+            else if (count($checkNifs) == 1 && $checkNifs[0]->nif != $oldFuncionario->nif)
                 $customErrorsOnOld['nif'] = 'NIF já utilizado';
 
 
