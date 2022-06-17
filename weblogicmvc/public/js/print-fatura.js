@@ -1,13 +1,21 @@
-function printDiv() {
-    const originalContents = document.body.innerHTML;
-    const printContents = document.getElementById('printFatura');
-    const container = printContents.querySelector(".fatura-container__subcontainer");
-    const lista = printContents.querySelector(".fatura__products-list");
-    container.classList.remove('fatura-container__subcontainer');
-    lista.style.width = "unset";
-    const print = printContents.innerHTML;
+const printBtn = document.querySelector("[data-print-receipt]");
 
-    document.body.innerHTML = print;
+printBtn.addEventListener('click', () => {
+
+    let faturaID = document.querySelector('#fatura-id');
+    let receipt = document.querySelector('#fatura');
+
+    let receiptContainer = receipt.querySelector(".fatura-container__subcontainer");
+    let productsList = receipt.querySelector(".fatura__products-list");
+
+    receiptContainer.classList.remove('fatura-container__subcontainer');
+    productsList.style.width = "unset";
+
+    let receiptReadyToPrint = receipt.innerHTML;
+
+    document.body.innerHTML = receiptReadyToPrint;
     window.print();
-    document.body.innerHTML = originalContents;
-}
+
+    document.location.href = `./?c=Fatura&a=index&id=${faturaID.textContent}`;
+})
+
