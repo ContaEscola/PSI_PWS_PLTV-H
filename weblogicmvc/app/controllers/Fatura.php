@@ -10,7 +10,8 @@ class Fatura extends BaseController
         $this->auth = $this->loadModel('Auth');
 
         if (!$this->auth->isLoggedIn(['Cliente']))
-            $this->redirectTo('Dashboard');
+            echo "adeus";
+        //$this->redirectTo('Dashboard');
 
         $this->sessionInfo = $this->getSessionInfo();
     }
@@ -18,6 +19,7 @@ class Fatura extends BaseController
     public function index($id)
     {
         try {
+
 
             $faturaToCheck = FaturaCliente::find([$id]);
 
@@ -35,9 +37,11 @@ class Fatura extends BaseController
             $faturaFormatada = FaturaCliente::all(array('select' => $select, 'from' => $from, 'joins' => $joins, 'conditions' => $conditions, 'order' => $order));
 
 
+            var_dump($faturaToCheck->referenciacliente);
+            var_dump($faturaToCheck->referenciafuncionario);
 
-            $client = UserToLogin::find([$faturaToCheck->referenciacliente]);
-            $funcionario = UserToLogin::find([$faturaToCheck->referenciafuncionario]);
+            $client = UserToLogin::find(["{$faturaToCheck->referenciacliente}"]);
+            $funcionario = UserToLogin::find(["{$faturaToCheck->referenciafuncionario}"]);
 
             $empresa = EmpresaCliente::first();
 
