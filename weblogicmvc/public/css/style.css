@@ -999,7 +999,8 @@ select {
     "nif"
     "codigo-postal"
     "morada"
-    "localidade";
+    "localidade"
+    "submit";
 }
 
 @media (min-width: 52em) {
@@ -1011,7 +1012,11 @@ select {
       "username password      telefone"
       "nif      localidade    codigo-postal"
       "morada   morada        morada"
-      "email    email         email";
+      "email    email         email"
+      "submit   .             .";
+  }
+  .form[data-type="configuration"] > .form__submit {
+    width: max-content;
   }
 }
 
@@ -1022,8 +1027,9 @@ select {
     grid-template-columns: repeat(5, minmax(9.375rem, 1fr));
 
     grid-template-areas:
-      "username password telefone nif codigo-postal"
-      "email    email    morada   morada localidade";
+      "username password telefone nif     codigo-postal"
+      "email    email    morada   morada  localidade"
+      "submit   .        .        .       .";
   }
 }
 
