@@ -101,8 +101,17 @@
                         <div class="[ form__username ] [ flex f-direction-column f-gap-1 ]">
                             <label for="username" class="text-dark">Username</label>
                             <input type="text" class="input" id="username" name="username" value="<?= isset($funcionarioNovo->username) ? $funcionarioNovo->username : "" ?>" <?php
+<<<<<<< HEAD
                                                                                                                                                                                 if (isset($funcionarioNovo->errors) || isset($customErrors['username']))
                                                                                                                                                                                     if ($funcionarioNovo->errors->on('username') != null || isset($customErrors['username']))
+=======
+                                                                                                                                                                                if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['username']))
+<<<<<<< HEAD
+                                                                                                                                                                                    if ($funcionarioNovo->errors->on('username') != null || isset($customErrorsOnOld['username']))
+=======
+                                                                                                                                                                                    if ($funcionarioNovo->errors->on('username')  || isset($customErrorsOnOld['username']))
+>>>>>>> development
+>>>>>>> development
                                                                                                                                                                                         echo 'data-state="error"';
                                                                                                                                                                                 ?>>
                             <?php
@@ -174,8 +183,13 @@
                         <div class="[ form__nif ] [ flex f-direction-column f-gap-1 ]">
                             <label for="nif" class="text-dark">NIF</label>
                             <input type="text" class="input" id="nif" name="nif" value="<?= isset($funcionarioNovo) ? $funcionarioNovo->nif : "" ?>" <?php
+<<<<<<< HEAD
                                                                                                                                                         if (isset($funcionarioNovo->errors) || isset($customErrors['nif']))
                                                                                                                                                             if ($funcionarioNovo->errors->on('nif') != null || isset($customErrors['nif']))
+=======
+                                                                                                                                                        if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['nif']))
+                                                                                                                                                            if ($funcionarioNovo->errors->on('nif') != null || isset($customErrorsOnOld['nif']))
+>>>>>>> development
                                                                                                                                                                 echo 'data-state="error"';
                                                                                                                                                         ?>>
 
