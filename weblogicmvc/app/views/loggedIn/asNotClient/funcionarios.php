@@ -102,7 +102,11 @@
                             <label for="username" class="text-dark">Username</label>
                             <input type="text" class="input" id="username" name="username" value="<?= isset($funcionarioNovo->username) ? $funcionarioNovo->username : "" ?>" <?php
                                                                                                                                                                                 if (isset($funcionarioNovo->errors) || isset($customErrorsOnOld['username']))
+<<<<<<< HEAD
+                                                                                                                                                                                    if ($funcionarioNovo->errors->on('username') != null || isset($customErrorsOnOld['username']))
+=======
                                                                                                                                                                                     if ($funcionarioNovo->errors->on('username')  || isset($customErrorsOnOld['username']))
+>>>>>>> development
                                                                                                                                                                                         echo 'data-state="error"';
                                                                                                                                                                                 ?>>
                             <?php

@@ -13,6 +13,7 @@ class Funcionario extends BaseController
     {
         $this->auth = $this->loadModel('Auth');
 
+
         if (!$this->auth->isLoggedIn(['Administrador']))
             $this->redirectTo('Dashboard');
 
