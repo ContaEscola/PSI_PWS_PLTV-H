@@ -42,6 +42,12 @@ class Dashboard extends BaseController
             case 'Funcionário':
                 $this->renderView('loggedIn/asNotClient/index', ['sessionInfo' => $this->sessionInfo, 'empresa' => $this->empresa]);
                 break;
+<<<<<<< HEAD
+            default:
+                $this->redirectTo();
+                break;
+=======
+>>>>>>> development
         }
     }
 
